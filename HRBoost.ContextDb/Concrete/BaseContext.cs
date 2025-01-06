@@ -9,15 +9,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace HRBoost.ContextDb.Concrete
 {
 	public class BaseContext : IdentityDbContext<User, Role, Guid>, IEFContext
 	{
-		public BaseContext(DbContextOptions options) : base(options)
+        public BaseContext(DbContextOptions options) : base(options)
 		{
 
-		}
+        }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
