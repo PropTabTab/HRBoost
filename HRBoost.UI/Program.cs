@@ -1,4 +1,8 @@
+using HRBoost.UI.Extension;
+
 var builder = WebApplication.CreateBuilder(args);
+
+DependencyInjection.ProjectServices(builder.Services, builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
