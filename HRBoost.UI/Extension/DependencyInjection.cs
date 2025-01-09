@@ -1,4 +1,6 @@
 ﻿using HRBoost.Entity;
+using HRBoost.Services.Abstracts;
+using HRBoost.Services.Concretes;
 
 namespace HRBoost.UI.Extension
 {
@@ -17,7 +19,7 @@ namespace HRBoost.UI.Extension
             //SErvices katmanı LifeCycle
 
 
-            //services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
             
 
 

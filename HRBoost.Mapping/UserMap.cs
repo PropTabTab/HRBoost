@@ -15,6 +15,8 @@ namespace HRBoost.Mapping
 		{
 			builder.HasKey(x => x.Id);
 
+
+
 			builder.Property(x => x.FirstName)
 				.IsRequired()
 				.HasMaxLength(100)

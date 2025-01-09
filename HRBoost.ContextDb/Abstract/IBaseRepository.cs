@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRBoost.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRBoost.ContextDb.Abstract
 {
-	public interface IBaseRepository<T>
+	public interface IBaseRepository<T> where T : BaseEntity
 	{
 		Task AddAsync(T entity);
 		Task UpdateAsync(T entity);
