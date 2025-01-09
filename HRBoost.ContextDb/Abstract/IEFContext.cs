@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HRBoost.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace HRBoost.ContextDb.Abstract
 	public interface IEFContext
 	{
 		EntityEntry Entry(object entry);
-		EntityEntry Entry<TEntity>(TEntity entity) where TEntity : class;
+		EntityEntry Entry<TEntity>(TEntity entity) where TEntity : BaseEntity;
 
 		int SaveChanges();
 

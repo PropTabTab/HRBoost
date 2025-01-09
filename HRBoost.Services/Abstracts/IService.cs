@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRBoost.Services.Abstracts
 {
-	public interface IService<T> where T : BaseEntity
+	public interface IService<T>
 	{
 		Task AddAsync(T entity);
 		Task UpdateAsync(T entity);

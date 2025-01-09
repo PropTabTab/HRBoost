@@ -21,11 +21,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HRBoost.ContextDb\HRBoost.ContextDb.csproj" />
+    <ProjectReference Include="..\HRBoost.Services\HRBoost.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Models\VM\" />
   </ItemGroup>
 
 </Project>

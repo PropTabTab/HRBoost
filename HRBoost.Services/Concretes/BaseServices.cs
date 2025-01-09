@@ -18,7 +18,7 @@ namespace HRBoost.Services.Concretes
 		public BaseServices(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
-			_baseRepository = _unitOfWork.Repository<T>();
+            _baseRepository = _unitOfWork.Repository<T>();
 		}
 
 		public virtual async Task AddAsync(T entity)
