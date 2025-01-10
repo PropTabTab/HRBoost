@@ -1,4 +1,8 @@
+using HRBoost.UI.Extension;
+
 var builder = WebApplication.CreateBuilder(args);
+
+DependencyInjection.ProjectServices(builder.Services, builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -15,6 +19,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+           name: "areas",
+           pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+         );
 
 app.MapControllerRoute(
     name: "default",

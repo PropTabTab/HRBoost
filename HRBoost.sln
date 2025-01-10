@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRBoost.Shared", "HRBoost.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRBoost.ContextDb", "HRBoost.ContextDb\HRBoost.ContextDb.csproj", "{CFAA2DF0-57C0-4446-B13F-C68E28AA0A6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRBoost.Mapping", "HRBoost.Mapping\HRBoost.Mapping.csproj", "{956D6D2A-A55A-43E6-BC07-CA401017B833}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{CFAA2DF0-57C0-4446-B13F-C68E28AA0A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFAA2DF0-57C0-4446-B13F-C68E28AA0A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFAA2DF0-57C0-4446-B13F-C68E28AA0A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{956D6D2A-A55A-43E6-BC07-CA401017B833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{956D6D2A-A55A-43E6-BC07-CA401017B833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{956D6D2A-A55A-43E6-BC07-CA401017B833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{956D6D2A-A55A-43E6-BC07-CA401017B833}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{736B0476-59F0-4153-994E-8D76AAD7BDE8} = {ED01369D-E284-4B1F-B5CE-394BDF419AC2}
 		{61AAC583-589F-4870-8007-2E3CE4446657} = {ED01369D-E284-4B1F-B5CE-394BDF419AC2}
 		{CFAA2DF0-57C0-4446-B13F-C68E28AA0A6B} = {ED01369D-E284-4B1F-B5CE-394BDF419AC2}
+		{956D6D2A-A55A-43E6-BC07-CA401017B833} = {ED01369D-E284-4B1F-B5CE-394BDF419AC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44130A77-F7AF-4D65-958F-EBBD9A3782DD}
