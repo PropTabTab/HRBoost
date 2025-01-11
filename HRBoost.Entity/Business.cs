@@ -8,6 +8,9 @@ namespace HRBoost.Entity
 {
     public class Business:BaseEntity
     {
-        public Subscription Subscription { get; set; }
+        public Guid SubscriptionId { get; set; }
+        public string BusinessName { get; set; }
+
+        public virtual Subscription Subscription { get; set; }
     }
 }

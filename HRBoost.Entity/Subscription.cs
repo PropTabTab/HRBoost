@@ -14,6 +14,6 @@ namespace HRBoost.Entity
         public decimal Price { get; set; }
 
         //Navi
-        public List<Business> Businesses { get; set; }
+        public virtual List<Business> Businesses { get; set; }
     }
 }
