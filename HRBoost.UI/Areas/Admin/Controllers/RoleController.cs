@@ -11,7 +11,13 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             _roleService = roleService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            return View(await _roleService.GetAll());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
         {
             return View();
         }
