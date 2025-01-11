@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRBoost.Services.Abstracts
 {
-    internal interface IRoleService
+    public interface IRoleService
     {
         Task<bool> Add(string name);
         Task<List<Role>> GetRoles(Expression<Func<Role,bool>>exp);
