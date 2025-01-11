@@ -114,5 +114,13 @@ namespace HRBoost.Services.Concretes
             }
             return sonuc;
         }
+
+        public List<User> GetAllUsers()
+        {
+
+            return _userManager.Users.ToList();
+        }
+
+        
     }
 }

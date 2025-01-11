@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<HRBoost.Entity.User>
+
+</table>
+<h2>Kullanıcı Ekle</h2>
+<form method="post" action="/admin/user/add">
+    <div>
+        <label>Ad:</label>
+        <input type="text" name="FirstName" required />
+    </div>
+    <div>
+        <label>Soyad:</label>
+        <input type="text" name="LastName" required />
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" name="Email" required />
+    </div>
+    <div>
+        <label>Durum:</label>
+        <select name="Status" required>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+    </div>
+    <button type="submit">Ekle</button>
+</form>

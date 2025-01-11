@@ -10,6 +10,7 @@ namespace HRBoost.Services.Abstracts
 {
     public interface IUserService
     {
+        List<User> GetAllUsers();
         Task<bool> LoginAsync(User user);
         Task<bool> RegisterAsync(User user);
         Task<string> GenerateEmailConfirmationTokenAsync(User user);
