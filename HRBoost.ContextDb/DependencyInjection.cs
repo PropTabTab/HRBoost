@@ -24,7 +24,7 @@ namespace HRBoost.ContextDb
             services.AddIdentity<User, Role>(option =>
             {
 
-                option.SignIn.RequireConfirmedEmail = false;
+                option.SignIn.RequireConfirmedEmail = true;
                 option.SignIn.RequireConfirmedPhoneNumber = false;
                 option.SignIn.RequireConfirmedAccount = false;
                 option.Password.RequiredUniqueChars = 0;
