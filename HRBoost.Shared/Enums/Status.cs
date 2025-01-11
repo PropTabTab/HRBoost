@@ -12,5 +12,6 @@ namespace HRBoost.Shared.Enums
 		DeActive = 2,
 		Approved = 3,
 		Deleted = 4,
+		Pending = 5,
 	}
 }

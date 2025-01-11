@@ -13,6 +13,7 @@ namespace HRBoost.Entity
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
+        public string? BusinessName { get; set; }
         [NotMapped]
         public string? Password { get; set; }
 		public Status Status { get; set; }
