@@ -12,5 +12,8 @@ namespace HRBoost.Services.Abstracts
     {
         Task<bool> LoginAsync(User user);
         Task<bool> RegisterAsync(User user);
+        Task<string> GenerateEmailConfirmationTokenAsync(User user);
+
+        Task<bool> ConfirmEmailAsync(string email, string token); 
     }
 }
