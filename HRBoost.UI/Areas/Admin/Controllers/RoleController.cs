@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HRBoost.Services.Abstracts;
+using HRBoost.Entity;
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -20,6 +21,16 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Add()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(Role role)
+        {
+            if (await _roleService.Add(role.Name))
+            {
+                return RedirectToAction("Index");
+            }
+            return View(role);
         }
 
 
