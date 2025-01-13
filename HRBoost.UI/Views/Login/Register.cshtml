@@ -4,58 +4,58 @@
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Register</h1>
-
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Register">
+<div class="container">
+<section id="contact" class="contact section">
+    <div class="col-lg-8">
+        <form asp-action="Register" asp-controller="Login" method="post" class="php-email-form">
+            <div class="row gy-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <div class="form-group col-md-6">
+                <label asp-for="FirstName" class="control-label"> First Name</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <div class="form-group col-md-6">
+                <label asp-for="LastName" class="control-label"> Last Name</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <div class="form-group col-md-8">
+                <label asp-for="Email" class="control-label"> Email </label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
+                <div class="form-group col-md-8">
+                <label asp-for="Password" class="control-label"> Password</label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="BusinessName" class="control-label"></label>
+                <div class="form-group col-md-8">
+                <label asp-for="BusinessName" class="control-label"> Business Name</label>
                 <input asp-for="BusinessName" class="form-control" />
                 <span asp-validation-for="BusinessName" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
+                <div class="form-group col-md-8">
+                <label asp-for="PhoneNumber" class="control-label"> Phone Number</label>
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-           
-            <div class="form-group">
+
+                <div class="form-group col-md-12">
                 <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
             </div>
         </form>
     </div>
-</div>
+</section>
 
 <div>
     <a asp-action="Index">Back to List</a>
+</div>
+
 </div>
 
