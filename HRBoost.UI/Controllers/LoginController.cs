@@ -34,7 +34,7 @@ namespace HRBoost.UI.Controllers
 
             if (cevap)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "BusinessManager");
             }
             return View(user);
         }
@@ -57,7 +57,7 @@ namespace HRBoost.UI.Controllers
                 var confirmationLink = Url.Action(nameof(ConfirmEmail), "Login", new { token, email = user.Email },Request.Scheme);
 
                 await _emailService.SendEmail(user.Email, "Email Confirmation", confirmationLink);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("EmailSent", "Login");
             }
             return View(user);
         }
@@ -75,6 +75,12 @@ namespace HRBoost.UI.Controllers
 
         [HttpGet]
         public IActionResult SuccessRegistration()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult EmailSent()
         {
             return View();
         }

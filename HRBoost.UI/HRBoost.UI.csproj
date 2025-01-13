@@ -27,6 +27,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Models\VM\" />
+    <Folder Include="wwwroot\vendor\php-email-form\" />
   </ItemGroup>
 
   <ItemGroup>
