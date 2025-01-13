@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRBoost.ContextDb.Concrete
 {
+
 	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly IEFContext _context;

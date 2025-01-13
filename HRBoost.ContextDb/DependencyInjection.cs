@@ -41,7 +41,7 @@ namespace HRBoost.ContextDb
             services.AddScoped<IEFContext, BaseContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            return services;
+			return services;
         }
     }
 }
