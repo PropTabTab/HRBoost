@@ -1,31 +1,32 @@
-﻿@model HRBoost.Entity.Role
-
+﻿
+@model HRBoost.Entity.Role
 @{
     ViewData["Title"] = "Add";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Add</h1>
+<form method=post asp-action="Add" asp-area="Admin" asp-controller="Role" role="form">
+	<div class="panel panel-default">
+		<div class="panel-heading"><h6 class="panel-title"><i class="icon-menu"></i> Role Add</h6></div>
+		<div class="panel-body">
 
-<h4>Role</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Add">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Name" class="col-sm-2 control-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="Name" class="form-control" placeholder="Role Name" type="text"/>
+				</div>
+			</div>
 
+			<div class="form-actions text-right">
+
+				<a class="btn btn-dark" asp-action="Index">
+					<i class="icon-grid"></i>Back to List
+				</a>
+
+				<input type="submit" value="Save" class="btn btn-primary">
+			</div>
+
+		</div>
+	</div>
+</form>
