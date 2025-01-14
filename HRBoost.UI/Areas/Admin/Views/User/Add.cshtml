@@ -1,31 +1,81 @@
-﻿
+﻿@using HRBoost.UI.Areas.Admin.Models.VM
+@model HRBoost.UI.Areas.Admin.Models.VM.UserViewModel
+
+
 @{
     ViewData["Title"] = "Add";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<HRBoost.Entity.User>
 
-</table>
-<h2>Kullanıcı Ekle</h2>
-<form method="post" action="/admin/user/add">
-    <div>
-        <label>Ad:</label>
-        <input type="text" name="FirstName" required />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Form Başlığı -->
+            <div class="card" style="border-color: #ddd;">
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="card-title">Kullanıcı Ekle</h5>
+                </div>
+                <!-- Form İçeriği -->
+                <div class="card-body">
+                    <form method="post" action="/Admin/User/Add">
+                        <!-- Ad -->
+                        <div class="form-group mb-2">
+                            <label for="FirstName" class="form-label">Ad:</label>
+                            <input type="text" id="FirstName" name="FirstName"
+                                   class="form-control" placeholder="Adınızı girin"
+                                   value="@Model.FirstName" required />
+                        </div>
+
+                        <!-- Soyad -->
+                        <div class="form-group mb-2">
+                            <label for="LastName" class="form-label">Soyad:</label>
+                            <input type="text" id="LastName" name="LastName"
+                                   class="form-control" placeholder="Soyadınızı girin"
+                                   value="@Model.LastName" required />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group mb-2">
+                            <label for="Email" class="form-label">Email:</label>
+                            <input type="email" id="Email" name="Email"
+                                   class="form-control" placeholder="E-posta adresinizi girin"
+                                   value="@Model.Email" required />
+                        </div>
+
+                        <!-- Şifre -->
+                        <div class="form-group mb-2">
+                            <label for="Password" class="form-label">Şifre:</label>
+                            <input type="password" id="Password" name="Password"
+                                   class="form-control" placeholder="Şifrenizi girin" required />
+                        </div>
+
+                       
+
+                        <!-- Durum -->
+                        <div class="form-group mb-2">
+                            <label for="Status" class="form-label">Durum:</label>
+                            <select id="Status" name="Status" class="form-select" required>
+                                @foreach (var status in Enum.GetValues(typeof(HRBoost.Shared.Enums.Status)))
+
+                                {
+                                    <option value="@status" @(Model.Status == status ? "selected" : "")>
+                                        @status
+                                    </option>
+                                }
+                            </select>
+                        </div>
+
+                        <!-- Ekle Butonu -->
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-dark btn-sm" style="background-color: #555; color: #fff;">
+                                Ekle
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Soyad:</label>
-        <input type="text" name="LastName" required />
-    </div>
-    <div>
-        <label>Email:</label>
-        <input type="email" name="Email" required />
-    </div>
-    <div>
-        <label>Durum:</label>
-        <select name="Status" required>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-        </select>
-    </div>
-    <button type="submit">Ekle</button>
-</form>
+</div>
+@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
