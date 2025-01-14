@@ -161,6 +161,11 @@ namespace HRBoost.Services.Concretes
         {
             throw new NotImplementedException();
         }
+
+        public Task<User> GetUserById(string id)
+        {
+            return _userManager.FindByIdAsync(id);
+        }
     }
 }
 
