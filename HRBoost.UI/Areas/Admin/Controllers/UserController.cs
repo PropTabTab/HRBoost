@@ -74,6 +74,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             ModelState.AddModelError("", "Kullanıcı kaydedilirken bir hata oluştu.");
             return View(userModel);
         }
+
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -123,6 +124,19 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                 }
             }
             return View(userModel);
+        }
+
+        [HttpGet]
+        public IActionResult Reject()
+        {
+            var users = _userService.GetAllUsersAsync();
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Reject(string id)
+        {
+            User user = await _userService.GetUserById(id);
+            return View(user);
         }
     }
 }
