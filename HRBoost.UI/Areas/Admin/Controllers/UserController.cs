@@ -1,6 +1,7 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.UI.Areas.Admin.Models.VM;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.Admin.Controllers
@@ -24,21 +25,53 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            var userModel = new User(); 
+            var userModel = new UserViewModel(); 
             return View(userModel); 
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(User userModel)
+        public async Task<IActionResult> Add(UserViewModel userModel)
         {
-            if (ModelState.IsValid)
+            
+            var user = new User
             {
-                var result = await _userService.RegisterAsync(userModel);
-                if (result)
-                {
-                    return RedirectToAction("List");
-                }
+                
+                FirstName=userModel.FirstName,
+                LastName=userModel.LastName,
+                Email = userModel.Email,
+                Password=userModel.Password,
+            };
+
+            
+            if (user == null || string.IsNullOrEmpty(userModel.Password) )
+            {
+                ModelState.AddModelError("", "Geçerli bir kullanıcı bilgisi ve şifre gereklidir.");
+                return View(userModel);
             }
+
+            
+            if (userModel.Password.Length < 6 || userModel.Password.Length > 16)
+            {
+                ModelState.AddModelError("Password", "Şifre 6-16 karakter arasında olmalıdır.");
+                return View(userModel);
+            }
+
+            
+            
+
+           
+            var passwordHasher = new PasswordHasher<User>();
+            user.PasswordHash = passwordHasher.HashPassword(user, userModel.Password);
+
+           
+            var result = await _userService.RegisterAsync(user);
+            if (result)
+            {
+                return RedirectToAction("List");
+            }
+
+            
+            ModelState.AddModelError("", "Kullanıcı kaydedilirken bir hata oluştu.");
             return View(userModel);
         }
         [HttpGet]
