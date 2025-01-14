@@ -3,29 +3,65 @@
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<HRBoost.Entity.User>
+@model HRBoost.Entity.User
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-5">
+            <!-- Daha dar bir form için col-md-5 kullanıldı -->
+            <div class="card" style="border-color: #ddd;">
+                <!-- Başlık kısmı -->
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="mb-0">Kullanıcı Ekle</h5>
+                </div>
+                <!-- Form içeriği -->
+                <div class="card-body">
+                    <form method="post" action="/Admin/User/Add">
+                        <!-- Ad -->
+                        <div class="form-group mb-2">
+                            <label for="FirstName" class="form-label">Ad:</label>
+                            <input type="text" id="FirstName" name="FirstName"
+                                   class="form-control form-control-sm" placeholder="Adınızı girin"
+                                   value="@Model.FirstName" required />
+                        </div>
 
-</table>
-<h2>Kullanıcı Ekle</h2>
-<form method="post" action="/admin/user/add">
-    <div>
-        <label>Ad:</label>
-        <input type="text" name="FirstName" required />
+                        <!-- Soyad -->
+                        <div class="form-group mb-2">
+                            <label for="LastName" class="form-label">Soyad:</label>
+                            <input type="text" id="LastName" name="LastName"
+                                   class="form-control form-control-sm" placeholder="Soyadınızı girin"
+                                   value="@Model.LastName" required />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group mb-2">
+                            <label for="Email" class="form-label">Email:</label>
+                            <input type="email" id="Email" name="Email"
+                                   class="form-control form-control-sm" placeholder="E-posta adresinizi girin"
+                                   value="@Model.Email" required />
+                        </div>
+
+                        <!-- Durum -->
+                        <div class="form-group mb-2">
+                            <label for="Status" class="form-label">Durum:</label>
+                            <select id="Status" name="Status" class="form-select form-select-sm" required>
+                                @foreach (var status in Enum.GetValues(typeof(HRBoost.Shared.Enums.Status)))
+                                {
+                                    <option value="@status" @(Model.Status == (HRBoost.Shared.Enums.Status)status ? "selected" : "")>
+                                        @status
+                                    </option>
+                                }
+                            </select>
+                        </div>
+
+                        <!-- Ekle Butonu -->
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-dark btn-sm" style="background-color: #555; color: #fff;">
+                                Ekle
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Soyad:</label>
-        <input type="text" name="LastName" required />
-    </div>
-    <div>
-        <label>Email:</label>
-        <input type="email" name="Email" required />
-    </div>
-    <div>
-        <label>Durum:</label>
-        <select name="Status" required>
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-        </select>
-    </div>
-    <button type="submit">Ekle</button>
-</form>
+</div>
