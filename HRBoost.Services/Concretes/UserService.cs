@@ -3,6 +3,7 @@ using HRBoost.ContextDb.Abstract;
 using HRBoost.ContextDb.Concrete;
 using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
+using HRBoost.Shared.Enums;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,12 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace HRBoost.Services.Concretes
 {
@@ -157,15 +161,13 @@ namespace HRBoost.Services.Concretes
             return await _userManager.FindByIdAsync(id.ToString());
         }
 
-        public string? GetAllUsers()
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<User> GetUserById(string id)
         {
             return _userManager.FindByIdAsync(id);
         }
+
+
     }
 }
 
