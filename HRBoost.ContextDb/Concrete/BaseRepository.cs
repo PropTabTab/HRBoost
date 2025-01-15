@@ -30,7 +30,7 @@ namespace HRBoost.ContextDb.Concrete
 			catch (Exception ex)
 			{
 
-				throw new Exception(ex.Message);
+				throw new Exception("Ekleme işlemleri sırasında bir hata oluştu..." + "(" + ex.Message + ")");
 			}
 		}
 
@@ -43,7 +43,7 @@ namespace HRBoost.ContextDb.Concrete
 			catch (Exception ex)
 			{
 
-				throw new Exception(ex.Message);
+				throw new Exception("Güncelleme işlemleri sırasında bir hata oluştu... " + "(" + ex.Message + ")");
 			}
 		}
 

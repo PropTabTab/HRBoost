@@ -110,10 +110,10 @@ namespace HRBoost.Services.Concretes
                     sonuc = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception("Oluşturma işlemleri sırasında bir hata oluştu..." + "(" + ex.Message + ")");
             }
             return sonuc;
         }
