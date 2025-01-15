@@ -1,10 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Update";
+    ViewData["Title"] = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model HRBoost.Entity.User
+@model HRBoost.UI.Areas.Admin.Models.VM.UserViewModel
+
 
 <h2>Kullanıcı Güncelle</h2>
+
 <form method="post" action="/Admin/User/Update">
     <input type="hidden" name="Id" value="@Model.Id" />
     <div>
@@ -24,7 +26,7 @@
         <select name="Status" required>
             @foreach (var status in Enum.GetValues(typeof(HRBoost.Shared.Enums.Status)))
             {
-                <option value="@status" @(Model.Status == (HRBoost.Shared.Enums.Status)status ? "selected" : "")>
+                <option value="@status" @(Model.Status == status.ToString() ? "selected" : "")>
                     @status
                 </option>
             }
