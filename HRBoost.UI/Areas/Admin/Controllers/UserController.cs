@@ -1,5 +1,7 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
+using HRBoost.Services.Concretes;
+using HRBoost.Shared.Enums;
 using HRBoost.UI.Areas.Admin.Models.VM;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +12,12 @@ namespace HRBoost.UI.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IEmailService emailService)
         {
             _userService = userService;
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -121,6 +125,24 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                 return View("Error");
             }
 
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RejectList()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            var pendingUsers = users.Where(x => x.Status == Status.Pending).ToList();
+
+            return View(pendingUsers);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Reject(Guid id)
+        {
+            User user = await _userService.GetUserByIdAsync(id);
+            await _emailService.SendEmail(user.Email, "Hesap Başvurunuz reddedildi", "Hesap başvurunuz reddedilmiştir. daha detaylı bilgi için müşteri hizmetlerimizle iletişime geçebilirsiniz");
+            user.Status = Shared.Enums.Status.Deleted;
+            await _userService.UpdateUserAsync(user);
             return RedirectToAction("List");
         }
     }

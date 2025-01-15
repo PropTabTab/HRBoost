@@ -11,6 +11,7 @@ namespace HRBoost.Services.Abstracts
     public interface IUserService
     {
         Task<List<User>> GetAllUsersAsync();
+
         Task<User> GetUserByIdAsync(Guid id);
         Task<bool> DeleteUserAsync(Guid userId);
         Task<bool> UpdateUserAsync(User user);
@@ -19,6 +20,7 @@ namespace HRBoost.Services.Abstracts
         Task<string> GenerateEmailConfirmationTokenAsync(User user);
 
         Task<bool> ConfirmEmailAsync(string email, string token);
-        string? GetAllUsers();
+        Task<User> GetUserById(string id);
+
     }
 }

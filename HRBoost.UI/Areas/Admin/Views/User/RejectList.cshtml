@@ -1,7 +1,12 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Reject";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@model IEnumerable<HRBoost.Entity.User>
+
+<h1>Reject</h1>
+
+@model List<HRBoost.Entity.User>
 <h2>Kullanıcı Listesi</h2>
 <div class="card mb-4">
     <div class="card-header">
@@ -12,34 +17,34 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Status</th>
                     <th>Email Confirmed</th>
+                    <th></th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Status</th>
                     <th>Email Confirmed</th>
+                    <th></th>
                 </tr>
             </tfoot>
             <tbody>
                 @foreach (var user in Model)
-                {   
+                {
                     <tr>
-                        <td>@user.Id</td>
                         <td>@user.FirstName</td>
                         <td>@user.LastName</td>
                         <td>@user.Email</td>
                         <td>@user.Status</td>
                         <td>@user.EmailConfirmed</td>
+                        <th> <a asp-action="Reject" asp-controller="User" asp-area="Admin" asp-route-id="@user.Id" class="btn btn-danger">Sil</a></th>
                     </tr>
                 }
 
