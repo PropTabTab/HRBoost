@@ -16,7 +16,8 @@ namespace HRBoost.Entity
         public string? BusinessName { get; set; }
         [NotMapped]
         public string? Password { get; set; }
-        
+        public Guid Id { get; set; }
+
         public Status Status { get; set; }
 		public DateTime CreateDate { get; set; }
 		public DateTime ModifiedDate { get; set; }
