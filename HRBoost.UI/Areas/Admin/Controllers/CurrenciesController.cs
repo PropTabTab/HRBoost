@@ -53,6 +53,23 @@ namespace HRBoost.UI.Areas.Admin.Controllers
 		}
 
 
+		[HttpGet]
+		public async Task<IActionResult> Update(Guid id)
+		{
+			var currency = await _currencyService.GetById(x => x.Id == id); 
+			return View(currency);
+		}
+
+
+		[HttpGet]
+		public async Task<IActionResult> Delete(Guid id)
+		{
+			var currency = await _currencyService.GetById(x => x.Id == id);
+			await _currencyService.DeleteAsync(currency);
+			return RedirectToAction("Index");
+		}
+
+
 
 
 	}
