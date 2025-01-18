@@ -1,4 +1,6 @@
-﻿using HRBoost.Entity;
+﻿using HRBoost.ContextDb.Abstract;
+using HRBoost.ContextDb.Concrete;
+using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.Services.Concretes;
 
@@ -22,6 +24,8 @@ namespace HRBoost.UI.Extension
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService,EmailService>();
 			services.AddTransient<IRoleService, RoleService>();
+            services.AddScoped<IPermissionTypeRepository, PermissionTypeRepository>();
+            services.AddScoped<IPermissionTypeService, PermissionTypeService>();
 
 
 

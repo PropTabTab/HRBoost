@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -15,20 +16,23 @@ namespace HRBoost.ContextDb.Concrete
 {
 	public class BaseContext : IdentityDbContext<User, Role, Guid>, IEFContext
 	{
+		public DbSet<PermissionType> PermissionTypes { get; set; }
+		public DbSet<Entity.PermissionTypeRecord> PermissionRecords{get;set;}
+
         public BaseContext(DbContextOptions options) : base(options)
 		{
 
         }
 
-		protected override void OnModelCreating(ModelBuilder builder)
-		{
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+           
+            modelBuilder.ApplyConfiguration(new PermissionTypeMap());
+        }
 
-
-			base.OnModelCreating(builder);
-		}
-
-		public override DbSet<TEntity> Set<TEntity>()
+        public override DbSet<TEntity> Set<TEntity>()
 		{
 			return base.Set<TEntity>();
 		}
@@ -77,6 +81,7 @@ namespace HRBoost.ContextDb.Concrete
 		{
 			return Database.SqlQueryRaw<TResult>(query, parameters).ToListAsync().Result.First();
 		}
+	
 
 		
 	}

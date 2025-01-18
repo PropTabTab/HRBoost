@@ -4,11 +4,56 @@
 }
 @model HRBoost.Entity.User
 
-<h2>Kullanıcı Sil</h2>
-<p>@Model.FirstName @Model.LastName adlı kullanıcıyı silmek istediğinize emin misiniz?</p>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="custom-card text-center col-md-6">
+        <h1 class="mb-4">Kullanıcı Sil</h1>
+        <p><strong>@Model.FirstName @Model.LastName</strong> adlı kullanıcıyı silmek istediğinizden emin misiniz?</p>
+        <form method="post" action="/Admin/User/DeleteConfirmed/@Model.Id">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <div class="mt-4">
+                <button type="submit" class="custom-button">Evet, Sil</button>
+                <a href="/Admin/User/List" class="secondary-button">Hayır, Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
 
-<form method="post" action="/Admin/User/DeleteConfirmed/@Model.Id">
-    <input type="hidden" name="Id" value="@Model.Id" />
-    <button type="submit">Evet, Sil</button>
-    <a href="/Admin/User/List">Hayır, Geri Dön</a>
-</form>
+<style>
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+    }
+    .custom-card {
+        background-color: #1c1c1e;
+        border: none;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    .custom-button {
+        background-color: #dc3545;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+    }
+    .custom-button:hover {
+        background-color: #a71d2a;
+    }
+    .secondary-button {
+        background-color: #6c757d;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    .secondary-button:hover {
+        background-color: #4a4e52;
+    }
+</style>
