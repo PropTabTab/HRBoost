@@ -15,7 +15,8 @@ namespace HRBoost.ContextDb.Concrete
 {
 	public class BaseContext : IdentityDbContext<User, Role, Guid>, IEFContext
 	{
-        public BaseContext(DbContextOptions options) : base(options)
+		public DbSet<Currency> Currencies { get; set; }
+		public BaseContext(DbContextOptions options) : base(options)
 		{
 
         }
