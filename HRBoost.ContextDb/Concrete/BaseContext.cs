@@ -1,7 +1,7 @@
 ﻿using HRBoost.ContextDb.Abstract;
 using HRBoost.Entity;
-using HRBoost.Mapping;
 using HRBoost.Shared.Enums;
+using HRBoost.Mapping;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -16,8 +16,8 @@ namespace HRBoost.ContextDb.Concrete
 {
 	public class BaseContext : IdentityDbContext<User, Role, Guid>, IEFContext
 	{
-       
-        public BaseContext(DbContextOptions options) : base(options)
+		public DbSet<Currency> Currencies { get; set; }
+		public BaseContext(DbContextOptions options) : base(options)
 		{
 
         }
@@ -25,7 +25,7 @@ namespace HRBoost.ContextDb.Concrete
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 
-			 builder.ApplyConfiguration (new FileTypeMap()) ;
+			builder.ApplyConfiguration(new CurrencyMap());
 
 			base.OnModelCreating(builder);
 		}
