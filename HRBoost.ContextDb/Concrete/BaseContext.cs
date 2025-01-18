@@ -1,5 +1,6 @@
 ﻿using HRBoost.ContextDb.Abstract;
 using HRBoost.Entity;
+using HRBoost.Mapping;
 using HRBoost.Shared.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ namespace HRBoost.ContextDb.Concrete
 {
 	public class BaseContext : IdentityDbContext<User, Role, Guid>, IEFContext
 	{
+       
         public BaseContext(DbContextOptions options) : base(options)
 		{
 
@@ -23,7 +25,7 @@ namespace HRBoost.ContextDb.Concrete
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 
-
+			 builder.ApplyConfiguration (new FileTypeMap()) ;
 
 			base.OnModelCreating(builder);
 		}
