@@ -8,7 +8,6 @@ namespace HRBoost.Entity
 {
 	public class Currency:BaseEntity
 	{
-        //public int Id { get; set; }
         public string Symbol { get; set; }
         public string Code { get; set; }
 

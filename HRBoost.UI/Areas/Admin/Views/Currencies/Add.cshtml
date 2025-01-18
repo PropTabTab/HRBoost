@@ -26,10 +26,6 @@
         @Html.ValidationMessageFor(model => model.Symbol, "", new { @class = "text-danger" })
     </div>
 
-    <!-- Hidden fields for CreatedBy and ModifiedBy -->
-    <input type="hidden" id="CreatedBy" name="CreatedBy" value="@User.Identity.Name" />
-    <input type="hidden" id="ModifiedBy" name="ModifiedBy" value="@User.Identity.Name" />
-
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Add Currency</button>
     </div>

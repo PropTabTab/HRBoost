@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRBoost.Services.Abstracts
+namespace HRBoost.Mapping
 {
-	public interface ICurrencyService:IService<Currency>
+	public class CurrencyMap:BaseMap<Currency>
 	{
-		
+
+
 	}
 }

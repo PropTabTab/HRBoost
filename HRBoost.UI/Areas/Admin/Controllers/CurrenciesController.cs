@@ -25,7 +25,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         }
 		public async Task<IActionResult> Index()
 		{
-			return View(_currencyService.GetCurrencies());
+			return View(await _currencyService.GetAll());
 		}
 		[HttpGet]
 		public async Task<IActionResult> Add()
@@ -38,25 +38,15 @@ namespace HRBoost.UI.Areas.Admin.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Add(Currency currency)
 		{
-			if (ModelState.IsValid)
+			try
+			{
+				await _currencyService.AddAsync(currency);
+				return RedirectToAction("Index");
+			}
+			catch (Exception)
 			{
 				
-				currency.CreatedBy = User.Identity.Name;  
-				currency.ModifiedBy = User.Identity.Name; 
 				
-
-	
-
-				bool result = await _currencyService.Add(currency);
-
-				if (result)
-				{
-					return RedirectToAction("Index");
-				}
-				else
-				{
-					ModelState.AddModelError(string.Empty, "Currency already exists.");
-				}
 			}
 
 			return View(currency);
