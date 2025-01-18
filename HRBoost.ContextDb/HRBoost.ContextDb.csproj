@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HRBoost.Entity\HRBoost.Entity.csproj" />
+    <ProjectReference Include="..\HRBoost.Mapping\HRBoost.Mapping.csproj" />
   </ItemGroup>
 
 </Project>

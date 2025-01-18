@@ -3,14 +3,14 @@ using HRBoost.Services.Abstracts;
 using HRBoost.Entity;
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class RoleController : Controller
-    {
-        private readonly IRoleService _roleService;
-        public RoleController(IRoleService roleService)
-        {
-            _roleService = roleService;
-        }
+	[Area("Admin")]
+	public class RoleController : Controller
+	{
+		private readonly IRoleService _roleService;
+		public RoleController(IRoleService roleService)
+		{
+			_roleService = roleService;
+		}
 
 		public async Task<IActionResult> Index()
 		{
