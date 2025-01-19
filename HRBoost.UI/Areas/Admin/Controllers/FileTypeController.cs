@@ -29,10 +29,8 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Add(FileType fileType)
         {
             await _fileTypeService.AddAsync(fileType);
-            {
-
-            }
-            return View(fileType);
+            
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

@@ -23,13 +23,13 @@ namespace HRBoost.UI.Extension
             services.AddTransient<IEmailService,EmailService>();
 			services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
+            services.AddScoped<IFileTypeService, FileTypeService>();
 
 
 
 
 
-
-			return services;
+            return services;
         }
 
 

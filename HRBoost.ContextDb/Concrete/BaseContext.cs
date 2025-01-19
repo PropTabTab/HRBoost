@@ -26,8 +26,10 @@ namespace HRBoost.ContextDb.Concrete
 		{
 
 			builder.ApplyConfiguration(new CurrencyMap());
+			builder.ApplyConfiguration(new FileTypeMap());
 
-			base.OnModelCreating(builder);
+
+            base.OnModelCreating(builder);
 		}
 
 		public override DbSet<TEntity> Set<TEntity>()
