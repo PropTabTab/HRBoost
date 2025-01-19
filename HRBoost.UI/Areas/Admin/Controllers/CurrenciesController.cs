@@ -60,6 +60,24 @@ namespace HRBoost.UI.Areas.Admin.Controllers
 			return View(currency);
 		}
 
+		[HttpPost]
+		public async Task<IActionResult> Update(Currency currency)
+		{
+			try
+			{
+                var currency2 = await _currencyService.GetById(x => x.Id == currency.Id);
+				currency2.Name = currency.Name;
+				currency2.Symbol = currency.Symbol;
+                await _currencyService.UpdateAsync(currency2);
+				return RedirectToAction("Index");
+			}
+			catch (Exception)
+			{
+
+			}
+
+			return View(currency);
+		}
 
 		[HttpGet]
 		public async Task<IActionResult> Delete(Guid id)

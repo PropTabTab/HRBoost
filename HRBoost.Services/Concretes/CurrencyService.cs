@@ -14,7 +14,9 @@ namespace HRBoost.Services.Concretes
 	{
 		public CurrencyService(IUnitOfWork unitOfWork):base(unitOfWork) 
 		{
-		
+		//başka bilgisayardan veri çekme işlemi
+
+
 		}
 
 

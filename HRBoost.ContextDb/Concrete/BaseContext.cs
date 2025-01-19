@@ -67,7 +67,17 @@ namespace HRBoost.ContextDb.Concrete
 					}
 				}
 			}
-			return await base.SaveChangesAsync(cancellationToken);
+			int rowCount = 0;
+			try
+			{
+               rowCount= await base.SaveChangesAsync(cancellationToken);
+            }
+			catch (Exception ex)
+			{
+
+				throw new Exception($"Veri Kaydetme İşleminde Bir Hata Oluştu =>{ex.Message}");
+			}
+			return rowCount;
 		}
 
 		public IEnumerable<TEntity> SqlQuery<TEntity>(FormattableString query)
