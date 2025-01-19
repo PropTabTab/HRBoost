@@ -3,44 +3,6 @@
     ViewData["Title"] = "Currency List";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@* @{
-	int sayac = 0;
-}
-<div class="row">
-	<a asp-action="Add" asp-controller="Currency" asp-area="Admin" class="btn btn-primary">Currency Add</a>
-</div>
-<div class="panel panel-default">
-	<div class="panel-heading"><h6 class="panel-title"><i class="icon-paragraph-justify"></i> Currencies </h6></div>
-	<div class="datatable">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Name</th>
-                    <th>Code</th>
-                    <th>Exchange Rate</th>
-                    <th>Actions</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach (var item in Model)
-				{
-					<tr>
-						<td>@(++sayac)</td>
-						<td>@item.Name</td>
-						<td>
-							<a asp-action="Delete" asp-controller="Role" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-danger">Sil</a>
-							<a asp-action="Update" asp-controller="Role" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
-
-						</td>
-					</tr>
-				}
-
-			</tbody>
-		</table>
-	</div>
-</div> *@
-
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -53,9 +15,9 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Name</th>
                     <th>Code</th>
-                    <th>Exchange Rate</th>
+                    <th>Name</th>
+                    <th>Symbol</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -63,9 +25,9 @@
                 @foreach (var currency in Model)
                 {
                     <tr>
-                        <td>@currency.Name</td>
                         <td>@currency.Code</td>
-                        <td>@currency.ExchangeRate</td>
+                        <td>@currency.Name</td>
+                        <td>@currency.Symbol</td>
                         <td>
                             <a asp-action="Delete" asp-controller="Currencies" asp-area="Admin" asp-route-id="@currency.Id" class="btn btn-danger">Sil</a>
 							<a asp-action="Update" asp-controller="Currencies" asp-area="Admin" asp-route-id="@currency.Id" class="btn btn-warning">Update</a>

@@ -1,0 +1,46 @@
+﻿@model HRBoost.Entity.Currency
+
+@{
+    ViewData["Title"] = "Update Currency";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post" asp-action="Update" asp-area="Admin" asp-controller="Currencies" role="form">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title"><i class="icon-menu"></i> Update Currency</h6>
+        </div>
+        <div class="panel-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Code" class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Code" class="form-control" placeholder="Currency Code" type="text" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Name" class="form-control" placeholder="Currency Name" type="text" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Symbol" class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="Symbol" class="form-control" placeholder="Currency Symbol" type="text" />
+                </div>
+            </div>
+
+            <div class="form-actions text-right">
+                <a class="btn btn-dark" asp-action="Index">
+                    <i class="icon-grid"></i> Back to List
+                </a>
+                <input type="submit" value="Update" class="btn btn-primary">
+            </div>
+
+        </div>
+    </div>
+</form>
