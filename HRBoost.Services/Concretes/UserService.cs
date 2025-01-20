@@ -108,9 +108,11 @@ namespace HRBoost.Services.Concretes
             try
             {
                 IdentityResult result = await _userManager.CreateAsync(u, user.Password);
-                //var resultRole = await _userManager.AddToRoleAsync(u, "user");
                 if (result.Succeeded)
                 {
+                    var currentUser = await _userManager.FindByNameAsync(u.UserName);
+                    
+                    var resultRole = await _userManager.AddToRoleAsync(currentUser, "BusinessManager");
                     sonuc = true;
                 }
             }
@@ -145,6 +147,7 @@ namespace HRBoost.Services.Concretes
                 existingUser.LastName = user.LastName;
                 existingUser.Email = user.Email;
                 existingUser.Status = user.Status;
+ 
 
                 var result = await _userManager.UpdateAsync(existingUser);
                 return result.Succeeded;

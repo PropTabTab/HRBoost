@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+
     public class CurrenciesController : Controller
     {
         private readonly ICurrencyService _currencyService;

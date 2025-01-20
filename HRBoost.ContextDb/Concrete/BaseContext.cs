@@ -25,6 +25,7 @@ namespace HRBoost.ContextDb.Concrete
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 
+
 			builder.ApplyConfiguration(new CurrencyMap());
 			builder.ApplyConfiguration(new FileTypeMap());
 

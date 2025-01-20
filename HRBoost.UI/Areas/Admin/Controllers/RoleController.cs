@@ -4,6 +4,7 @@ using HRBoost.Entity;
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
 	[Area("Admin")]
+
 	public class RoleController : Controller
 	{
 		private readonly IRoleService _roleService;
