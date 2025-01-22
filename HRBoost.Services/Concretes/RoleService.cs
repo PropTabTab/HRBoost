@@ -52,10 +52,9 @@ namespace HRBoost.Services.Concretes
 			catch (Exception)
 			{
 
+                return false;
+            }
 
-			}
-
-			return false;
 		}
 
 		public async Task<List<Role>> GetAll()

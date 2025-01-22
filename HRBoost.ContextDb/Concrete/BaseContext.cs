@@ -1,6 +1,7 @@
 ﻿using HRBoost.ContextDb.Abstract;
 using HRBoost.Entity;
 using HRBoost.Shared.Enums;
+using HRBoost.Mapping;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -16,21 +17,21 @@ namespace HRBoost.ContextDb.Concrete
 {
 	public class BaseContext : IdentityDbContext<User, Role, Guid>, IEFContext
 	{
-		public DbSet<PermissionType> PermissionTypes { get; set; }
-		public DbSet<Entity.PermissionTypeRecord> PermissionRecords{get;set;}
-
-        public BaseContext(DbContextOptions options) : base(options)
+		public DbSet<Currency> Currencies { get; set; }
+		public BaseContext(DbContextOptions options) : base(options)
 		{
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
 
-           
-            modelBuilder.ApplyConfiguration(new PermissionTypeMap());
-        }
+			builder.ApplyConfiguration(new CurrencyMap());
+			builder.ApplyConfiguration(new FileTypeMap());
+
+
+            base.OnModelCreating(builder);
+		}
 
         public override DbSet<TEntity> Set<TEntity>()
 		{
@@ -69,7 +70,17 @@ namespace HRBoost.ContextDb.Concrete
 					}
 				}
 			}
-			return await base.SaveChangesAsync(cancellationToken);
+			int rowCount = 0;
+			try
+			{
+               rowCount= await base.SaveChangesAsync(cancellationToken);
+            }
+			catch (Exception ex)
+			{
+
+				throw new Exception($"Veri Kaydetme İşleminde Bir Hata Oluştu =>{ex.Message}");
+			}
+			return rowCount;
 		}
 
 		public IEnumerable<TEntity> SqlQuery<TEntity>(FormattableString query)

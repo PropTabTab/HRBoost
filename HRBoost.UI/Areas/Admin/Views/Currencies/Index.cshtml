@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HRBoost.Entity.Currency>
+@{
+    ViewData["Title"] = "Currency List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h6 class="panel-title"><i class="icon-menu"></i> Currency List</h6>
+    </div>
+    <div class="panel-body">
+       <a asp-action="Add" asp-controller="Currencies" asp-area="Admin" class="btn btn-primary">Currency Add</a>
+        </a>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var currency in Model)
+                {
+                    <tr>
+                        <td>@currency.Code</td>
+                        <td>@currency.Name</td>
+                        <td>@currency.Symbol</td>
+                        <td>
+                            <a asp-action="Delete" asp-controller="Currencies" asp-area="Admin" asp-route-id="@currency.Id" class="btn btn-danger">Sil</a>
+							<a asp-action="Update" asp-controller="Currencies" asp-area="Admin" asp-route-id="@currency.Id" class="btn btn-warning">Update</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

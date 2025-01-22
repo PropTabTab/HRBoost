@@ -1,0 +1,53 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<HRBoost.Entity.FileType>
+<h1>Index</h1>
+<h2>Kullanıcı Listesi</h2>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable Example
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th> Name</th>
+                    <th>Description</th>
+
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th> Name</th>
+                    <th>Description</th>
+                   
+                    <th>Status</th>
+                   
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Description</td>
+                    
+                        <td>@user.Status</td>
+                      
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

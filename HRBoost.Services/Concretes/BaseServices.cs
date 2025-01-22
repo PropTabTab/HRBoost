@@ -31,7 +31,7 @@ namespace HRBoost.Services.Concretes
 			catch (Exception ex)
 			{
 
-				throw new Exception(ex.Message);
+				throw new Exception("Ekleme işlemleri sırasında bir hata oluştu..." + "(" + ex.Message + ")");
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace HRBoost.Services.Concretes
 			catch (Exception ex)
 			{
 
-				throw new Exception(ex.Message);
+				throw new Exception("Güncelleme işlemleri sırasında bir hata oluştu..." + "(" + ex.Message + ")");
 			}
 		}
 
@@ -59,7 +59,7 @@ namespace HRBoost.Services.Concretes
 			catch (Exception ex)
 			{
 
-				throw new Exception(ex.Message);
+				throw new Exception("Silme işlemleri sırasında bir hata oluştu..." + "(" + ex.Message + ")");
 			}
 		}
 
