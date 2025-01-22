@@ -1,4 +1,4 @@
-﻿using HRBoost.ContextDb.Abstract;
+﻿  using HRBoost.ContextDb.Abstract;
 using HRBoost.Entity;
 using HRBoost.Shared.Enums;
 using HRBoost.Mapping;
@@ -18,7 +18,10 @@ namespace HRBoost.ContextDb.Concrete
 	public class BaseContext : IdentityDbContext<User, Role, Guid>, IEFContext
 	{
 		public DbSet<Currency> Currencies { get; set; }
-		public BaseContext(DbContextOptions options) : base(options)
+        public DbSet<PermissionType> PermissionTypes { get; set; }
+        public DbSet<Entity.PermissionTypeRecord> PermissionRecords { get; set; }
+
+        public BaseContext(DbContextOptions options) : base(options)
 		{
 
         }
@@ -29,6 +32,7 @@ namespace HRBoost.ContextDb.Concrete
 
 			builder.ApplyConfiguration(new CurrencyMap());
 			builder.ApplyConfiguration(new FileTypeMap());
+            builder.ApplyConfiguration(new PermissionTypeMap());
 
 
             base.OnModelCreating(builder);
