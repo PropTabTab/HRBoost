@@ -1711,6 +1711,16 @@ section,
   color: var(--accent-color);
 }
 
+.btn {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: none;
+}
+
+    .btn:hover {
+        background-color: #333333 !important;
+    }
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/

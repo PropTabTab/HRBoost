@@ -11,23 +11,23 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <!-- Form Başlığı -->
+          
             <div class="card" style="border-color: #ddd;">
                 <div class="card-header" style="background-color: #555; color: #fff;">
                     <h5 class="card-title">Kullanıcı Ekle</h5>
                 </div>
-                <!-- Form İçeriği -->
+              
                 <div class="card-body">
                     <form method="post" action="/Admin/User/Add">
-                        <!-- Ad -->
+                       
                         <div class="form-group mb-2">
-                            <label for="FirstName" class="form-label">Ad:</label>
+                            <label for="FirstName" class="form-label">Ad:</label>2
                             <input type="text" id="FirstName" name="FirstName"
                                    class="form-control" placeholder="Adınızı girin"
                                    value="@Model.FirstName" required />
                         </div>
 
-                        <!-- Soyad -->
+                       
                         <div class="form-group mb-2">
                             <label for="LastName" class="form-label">Soyad:</label>
                             <input type="text" id="LastName" name="LastName"
@@ -35,7 +35,7 @@
                                    value="@Model.LastName" required />
                         </div>
 
-                        <!-- Email -->
+                        
                         <div class="form-group mb-2">
                             <label for="Email" class="form-label">Email:</label>
                             <input type="email" id="Email" name="Email"
@@ -43,7 +43,7 @@
                                    value="@Model.Email" required />
                         </div>
 
-                        <!-- Şifre -->
+                       
                         <div class="form-group mb-2">
                             <label for="Password" class="form-label">Şifre:</label>
                             <input type="password" id="Password" name="Password"
@@ -52,7 +52,7 @@
 
                        
 
-                        <!-- Durum -->
+                      
                         <div class="form-group mb-2">
                             <label for="Status" class="form-label">Durum:</label>
                             <select id="Status" name="Status" class="form-select" required>

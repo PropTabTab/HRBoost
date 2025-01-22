@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -33,7 +34,7 @@ namespace HRBoost.ContextDb.Concrete
             base.OnModelCreating(builder);
 		}
 
-		public override DbSet<TEntity> Set<TEntity>()
+        public override DbSet<TEntity> Set<TEntity>()
 		{
 			return base.Set<TEntity>();
 		}
@@ -92,6 +93,7 @@ namespace HRBoost.ContextDb.Concrete
 		{
 			return Database.SqlQueryRaw<TResult>(query, parameters).ToListAsync().Result.First();
 		}
+	
 
 		
 	}

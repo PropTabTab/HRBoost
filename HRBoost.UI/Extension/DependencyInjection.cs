@@ -1,4 +1,6 @@
-﻿using HRBoost.Entity;
+﻿using HRBoost.ContextDb.Abstract;
+using HRBoost.ContextDb.Concrete;
+using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.Services.Concretes;
 
