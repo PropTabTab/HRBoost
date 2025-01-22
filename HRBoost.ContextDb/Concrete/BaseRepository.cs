@@ -73,6 +73,9 @@ namespace HRBoost.ContextDb.Concrete
 			return await _table.Where(exp).FirstAsync();
 		}
 
-
-	}
+        public Task GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
