@@ -48,6 +48,30 @@ namespace HRBoost.UI.Areas.Admin.Controllers
 
             return View(fileType);
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var user = await _fileTypeService.GetById(x => x.Id == id);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = "Silmek istediğiniz kullanıcı bulunamadı.";
+                return View("Error");
+            }
+
+            return View(user);
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            FileType fileType = await _fileTypeService.GetById(x => x.Id == id);
+            await _fileTypeService.DeleteAsync(fileType);
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

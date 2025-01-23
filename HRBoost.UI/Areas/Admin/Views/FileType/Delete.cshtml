@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model HRBoost.Entity.FileType
+
+<h2>Dosya Sil</h2>
+<p>@Model.Name @Model.Description adlı dosyayı silmek istediğinize emin misiniz?</p>
+
+<form method="post" action="/Admin/FileType/DeleteConfirmed/@Model.Id">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit">Evet, Sil</button>
+    <a class=" btn btn-primary" href="/Admin/FileType/Add">Hayır, Geri Dön</a>
+</form>
+
+<h1>Delete</h1>
