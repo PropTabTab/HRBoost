@@ -12,18 +12,18 @@ namespace HRBoost.Services.Concretes
 {
     public class BusinessService : BaseServices<Business>, IBusinessService
     {
-        public BusinessService(IUnitOfWork unitOfWork): base(unitOfWork)
+        public BusinessService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            
+
         }
 
-        public async Task<bool> RegisterBusiness(Business business)
+        public async Task<Business> RegisterBusiness(Business business, string subName)
         {
-            bool sonuc = false;
+
 
             if (business is null)
             {
-                return sonuc;
+                return business;
             }
             //MApper - MApster
 
@@ -35,19 +35,40 @@ namespace HRBoost.Services.Concretes
             b.CreatedBy = "default";
             b.CreateDate = DateTime.Now;
             b.ModifiedDate = DateTime.Now;
+            b.BusinessPhone = "placeholder";
             b.ModifiedBy = "default";
+            b.SubscriptionStartTime = DateTime.Now;
+            switch (subName)
+            {
+                case "Free":
+                    b.SubscriptionFinishTime = DateTime.Now.AddDays(15);
+                    break;
+                case "Monthly":
+                    b.SubscriptionFinishTime = DateTime.Now.AddMonths(1);
+                    break;
+                case "Yearly":
+                    b.SubscriptionFinishTime = DateTime.Now.AddYears(1);
+                    break;
+                case "Premium":
+                    b.SubscriptionFinishTime = DateTime.Now.AddYears(50);
+                    break;
+                default:
+                    b.SubscriptionFinishTime = DateTime.Now;
+                    break;
+                    break;
+            }
             #endregion
 
             try
             {
-                this.AddAsync(b);
+                await this.AddAsync(b);
             }
             catch (Exception ex)
             {
 
                 throw new Exception("Oluşturma işlemleri sırasında bir hata oluştu..." + "(" + ex.Message + ")");
             }
-            return sonuc;
+            return b;
         }
     }
 }

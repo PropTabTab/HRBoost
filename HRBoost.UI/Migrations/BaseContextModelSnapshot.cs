@@ -104,7 +104,7 @@ namespace HRBoost.UI.Migrations
                         .HasColumnType("varchar");
 
                     b.Property<decimal>("ExchangeRate")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -165,7 +165,7 @@ namespace HRBoost.UI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FileType");
+                    b.ToTable("FileTypes");
                 });
 
             modelBuilder.Entity("HRBoost.Entity.PermissionType", b =>
@@ -265,7 +265,7 @@ namespace HRBoost.UI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("Money");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

@@ -11,7 +11,7 @@ namespace HRBoost.Services.Abstracts
     public interface IBusinessService : IService<Business>
     {
 
-        Task<bool> RegisterBusiness(Business business);
+        Task<Business> RegisterBusiness(Business business, string subName);
         
     }
 }

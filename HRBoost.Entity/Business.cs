@@ -8,7 +8,7 @@ namespace HRBoost.Entity
 {
     public class Business:BaseEntity
     {
-        public Guid SubscriptionId { get; set; }
+        
         public string BusinessName { get; set; }
 
         public string? BusinessComment { get; set; }
@@ -23,6 +23,8 @@ namespace HRBoost.Entity
         public DateTime SubscriptionFinishTime { get; set; }
 
         public byte[]? BusinessLogo { get; set; }
+
+        public Guid SubscriptionId { get; set; }
 
         public virtual Subscription Subscription { get; set; }
         public virtual List<User> Users { get; set; }

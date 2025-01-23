@@ -15,5 +15,7 @@ namespace HRBoost.Services.Concretes
         {
             
         }
+
+        
     }
 }

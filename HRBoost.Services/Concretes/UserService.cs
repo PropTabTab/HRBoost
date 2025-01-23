@@ -97,6 +97,7 @@ namespace HRBoost.Services.Concretes
             u.UserName = user.Email;
             u.Email = user.Email;
             u.BusinessName = user.BusinessName;
+            u.BusinessId = user.BusinessId;
             u.PhoneNumber = user.PhoneNumber;
             u.Status = Shared.Enums.Status.Pending;
             u.CreatedBy = "default";

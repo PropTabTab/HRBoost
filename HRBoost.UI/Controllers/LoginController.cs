@@ -15,12 +15,14 @@ namespace HRBoost.UI.Controllers
         IUserService _userService;
         private IEmailService _emailService;
         private IBusinessService _businessService;
+        private ISubscriptionService _subscriptionService;
 
-        public LoginController(IUserService userService, IEmailService emailService, IBusinessService businessService)
+        public LoginController(IUserService userService, IEmailService emailService, IBusinessService businessService, ISubscriptionService subscriptionService)
         {
             _userService = userService;
             _emailService = emailService;
             _businessService = businessService;
+            _subscriptionService = subscriptionService;
         }
 
         [HttpGet("Login")]
@@ -37,40 +39,55 @@ namespace HRBoost.UI.Controllers
 
             if (cevap)
             {
-                if (User.IsInRole("Personel")){
-                    return RedirectToAction("Index", "Personel", new {area = "Personel"});
+                if (User.IsInRole("Personel"))
+                {
+                    return RedirectToAction("Index", "Personel", new { area = "Personel" });
                 }
                 if (User.IsInRole("BusinessManager"))
                 {
-                    return RedirectToAction("Index", "BusinessManager", new {area = "BusinessManager"});
+                    return RedirectToAction("Index", "BusinessManager", new { area = "BusinessManager" });
                 }
                 if (User.IsInRole("Admin"))
                 {
-                    return RedirectToAction("Index", "Admin", new {area = "Admin"});
+                    return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 }
             }
             return View(user);
         }
 
         [HttpGet("Register")]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register(string SubscriptionType)
         {
-            return View();
+            RegisterVM vm = new RegisterVM();
+            vm.SubscriptionName = SubscriptionType;
+            return View(vm);
         }
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
-            
-            User user = await _userService.GetUserByMail(registerVM.Email);
-            
+            Subscription s = (await _subscriptionService.GetBy(x => x.SubscriptionType == registerVM.SubscriptionName)).FirstOrDefault();
+            Business business = new Business();
+            business.BusinessName = registerVM.BusinessName;
+            business.SubscriptionId = s.Id;
+            Business b = await _businessService.RegisterBusiness(business,s.SubscriptionType);
+
+            User user = new User();
+            user.FirstName = registerVM.FirstName;
+            user.LastName = registerVM.LastName;
+            user.Email = registerVM.Email;
+            user.Password = registerVM.Password;
+            user.PhoneNumber = registerVM.PhoneNumber;
+            user.BusinessId = b.Id;
+            user.BusinessName = registerVM.BusinessName;
+
             var cevap = await _userService.RegisterAsync(user);
 
             if (cevap)
             {
-                
+
                 var token = await _userService.GenerateEmailConfirmationTokenAsync(user);
-                var confirmationLink = Url.Action(nameof(ConfirmEmail), "Login", new { token, email = user.Email },Request.Scheme);
+                var confirmationLink = Url.Action(nameof(ConfirmEmail), "Login", new { token, email = user.Email }, Request.Scheme);
 
                 await _emailService.SendEmail(user.Email, "Email Confirmation", confirmationLink);
                 return RedirectToAction("EmailSent", "Login");
