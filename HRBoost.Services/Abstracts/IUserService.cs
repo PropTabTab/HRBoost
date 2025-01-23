@@ -21,6 +21,8 @@ namespace HRBoost.Services.Abstracts
 
         Task<bool> ConfirmEmailAsync(string email, string token);
         Task<User> GetUserById(string id);
+        Task<User> GetUserByMail(string Mail);
+
 
     }
 }

@@ -1,5 +1,4 @@
 ﻿using HRBoost.Entity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -9,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace HRBoost.Mapping
 {
-	public class CurrencyMap:BaseMap<Currency>
-	{
-        public override void Configure(EntityTypeBuilder<Currency> builder)
+    public class BusinessMap : BaseMap<Business>
+    {
+        public override void Configure(EntityTypeBuilder<Business> builder)
         {
-            builder.Property(X => X.ExchangeRate).HasColumnType("money");
+            builder.Property(x => x.BusinessComment).HasMaxLength(300);
             base.Configure(builder);
         }
-
     }
 }

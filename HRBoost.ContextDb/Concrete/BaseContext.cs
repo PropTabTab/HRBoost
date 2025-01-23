@@ -19,7 +19,9 @@ namespace HRBoost.ContextDb.Concrete
 	{
 		public DbSet<Currency> Currencies { get; set; }
         public DbSet<PermissionType> PermissionTypes { get; set; }
-        public DbSet<Entity.PermissionTypeRecord> PermissionRecords { get; set; }
+		public DbSet<Business> Businesses { get; set; }
+		public DbSet<Subscription> Subscriptions { get; set; }
+		public DbSet<FileType> FileTypes { get; set; }
 
         public BaseContext(DbContextOptions options) : base(options)
 		{
@@ -29,10 +31,12 @@ namespace HRBoost.ContextDb.Concrete
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 
-
-			builder.ApplyConfiguration(new CurrencyMap());
+            builder.ApplyConfiguration(new UserMap());
+            builder.ApplyConfiguration(new CurrencyMap());
 			builder.ApplyConfiguration(new FileTypeMap());
             builder.ApplyConfiguration(new PermissionTypeMap());
+            builder.ApplyConfiguration(new BusinessMap());
+            builder.ApplyConfiguration(new SubscriptionMap());
 
 
             base.OnModelCreating(builder);

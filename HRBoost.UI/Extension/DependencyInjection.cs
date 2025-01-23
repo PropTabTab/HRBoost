@@ -26,6 +26,8 @@ namespace HRBoost.UI.Extension
 			services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
             services.AddScoped<IFileTypeService, FileTypeService>();
+            services.AddScoped<IBusinessService, BusinessService>();
+            services.AddScoped<ISubscriptionService, SubscriptionService>();
 
 
 

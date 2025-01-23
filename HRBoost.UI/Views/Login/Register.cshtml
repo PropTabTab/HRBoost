@@ -1,61 +1,60 @@
-﻿@model HRBoost.Entity.User
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.UI.Models.VM.RegisterVM
 
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-<section id="contact" class="contact section">
-    <div class="col-lg-8">
-        <form asp-action="Register" method="post" class="php-email-form">
-            <div class="row gy-4">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group col-md-6">
-                <label asp-for="FirstName" class="control-label"> Ad</label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-                <div class="form-group col-md-6">
-                <label asp-for="LastName" class="control-label"> Soyad</label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
+    <section id="contact" class="contact section">
+        <div class="col-lg-8">
+            <form asp-action="Register" method="post" class="php-email-form">
+                <div class="row gy-4">
+                   
+                    <div class="form-group col-md-6">
+                        <label asp-for="FirstName" class="control-label"> Ad</label>
+                        <input type="text" required asp-for="FirstName" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="LastName" class="control-label"> Soyad</label>
+                        <input type="text" required asp-for="LastName" class="form-control" />
+                    </div>
 
-                <div class="form-group col-md-12">
-                <label asp-for="Email" class="control-label"> Email </label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+                    <div class="form-group col-md-12">
+                        <label asp-for="Email" class="control-label"> Email </label>
+                        <input type="email" required asp-for="Email" class="form-control" />
+                    </div>
 
-                <div class="form-group col-md-12">
-                <label asp-for="Password" class="control-label"> Şifre</label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+                    <div class="form-group col-md-12">
+                        <label asp-for="Password" class="control-label"> Şifre</label>
+                        <input type="password" required asp-for="Password" class="form-control" />
+                    </div>
 
-                <div class="form-group col-md-12">
-                <label asp-for="BusinessName" class="control-label"> Şirket İsmi</label>
-                <input asp-for="BusinessName" class="form-control" />
-                <span asp-validation-for="BusinessName" class="text-danger"></span>
-            </div>
+                    <div class="form-group col-md-12">
+                        <label asp-for="BusinessName" class="control-label"> Şirket İsmi</label>
+                        <input type="text" required asp-for="BusinessName" class="form-control" />
+                    </div>
 
-                <div class="form-group col-md-12">
-                <label asp-for="PhoneNumber" class="control-label"> Telefon Numarası</label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
+                    <div class="form-group col-md-12">
+                        <label asp-for="PhoneNumber" class="control-label"> Telefon Numarası</label>
+                        <input type="text" required asp-for="PhoneNumber" class="form-control" />
+                        
+                    </div>
 
-                <div class="form-group col-md-12 text-center">
-                <input type="submit" value="Kaydol" class="btn btn-primary" />
-            </div>
-            </div>
-        </form>
+                    <input asp-for="SubscriptionName" class="visually-hidden" />
+
+
+                    <div class="form-group col-md-12 text-center">
+                        <input type="submit" value="Kaydol" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
     </div>
-</section>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 </div>
 

@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace HRBoost.Mapping
 {
-	public class CurrencyMap:BaseMap<Currency>
-	{
-        public override void Configure(EntityTypeBuilder<Currency> builder)
+    public class SubscriptionMap : BaseMap<Subscription>
+    {
+        public override void Configure(EntityTypeBuilder<Subscription> builder)
         {
-            builder.Property(X => X.ExchangeRate).HasColumnType("money");
+            builder.Property(x => x.Price).HasColumnType("Money");
             base.Configure(builder);
-        }
 
+        }
     }
 }
