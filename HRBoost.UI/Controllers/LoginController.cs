@@ -39,15 +39,15 @@ namespace HRBoost.UI.Controllers
 
             if (cevap)
             {
-                if (User.IsInRole("Personel"))
+                if (User.IsInRole("PERSONEL"))
                 {
                     return RedirectToAction("Index", "Personel", new { area = "Personel" });
                 }
-                if (User.IsInRole("BusinessManager"))
+                if (User.IsInRole("BUSINESSMANAGER"))
                 {
                     return RedirectToAction("Index", "BusinessManager", new { area = "BusinessManager" });
                 }
-                if (User.IsInRole("Admin"))
+                if (User.IsInRole("ADMIN"))
                 {
                     return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 }
