@@ -55,7 +55,6 @@ namespace HRBoost.Services.Concretes
                 default:
                     b.SubscriptionFinishTime = DateTime.Now;
                     break;
-                    break;
             }
             #endregion
 

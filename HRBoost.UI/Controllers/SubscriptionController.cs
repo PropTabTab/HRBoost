@@ -1,12 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HRBoost.Services.Abstracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Controllers
 {
     public class SubscriptionController : Controller
     {
-        public IActionResult Index()
+        private readonly ISubscriptionService _subscriptionService;
+
+        public SubscriptionController(ISubscriptionService subscriptionService)
         {
-            return View();
+            _subscriptionService = subscriptionService;
+        }
+        public async Task<IActionResult> Index()
+        {
+            return View(await _subscriptionService.GetAll());
         }
     }
 }
