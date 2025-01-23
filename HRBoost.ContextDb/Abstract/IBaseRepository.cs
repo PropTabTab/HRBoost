@@ -17,5 +17,6 @@ namespace HRBoost.ContextDb.Abstract
 		Task<T> GetById(Expression<Func<T, bool>> exp);
 		Task<List<T>> GetBy(Expression<Func<T, bool>> exp);
 		Task<List<T>> GetAllActive();
-	}
+        Task GetByIdAsync(Guid id);
+    }
 }
