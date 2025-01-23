@@ -1,4 +1,4 @@
-﻿
+﻿@model HRBoost.UI.Models.VM.RegisterVM
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,7 +23,7 @@
                     <div class="icon">
                         <i class="bi bi-bookmark"></i>
                     </div>
-                    <a asp-action="Register" asp-controller="Login" class="stretched-link">                             
+                    <a asp-action="Register" asp-controller="Login" asp-route-SubscriptionName="Free" class="stretched-link">                             
                         <h3>Trial</h3>
                         FREE
                         <h6>15 Days</h6>
@@ -37,7 +37,7 @@
                     <div class="icon">
                         <i class="bi bi-bookmark-check"></i>
                     </div>
-                    <a asp-action="Register" asp-controller="Login" class="stretched-link">
+                            <a asp-action="Register" asp-controller="Login" asp-route-SubscriptionName="Monthly" class="stretched-link">
                         <h3>Monthly</h3>
                         149,90€ / per month
                     </a>
@@ -51,7 +51,7 @@
                     <div class="icon">
                         <i class="bi bi-bookmark-check-fill"></i>
                     </div>
-                    <a asp-action="Register" asp-controller="Login" class="stretched-link">
+                            <a asp-action="Register" asp-controller="Login" asp-route-SubscriptionName="Yearly" class="stretched-link">
                         <h3>Yearly</h3>
                         1.499,90€ / per year
                     </a>
@@ -65,7 +65,7 @@
                     <div class="icon">
                         <i class="bi bi-bookmark-star-fill"></i>
                     </div>
-                    <a asp-action="Register" asp-controller="Login" class="stretched-link">
+                    <a asp-action="Register" asp-controller="Login"  class="stretched-link">
                         <h3>Premium</h3>
                         12.999,90€ / one time
                     </a>

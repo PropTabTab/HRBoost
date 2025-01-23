@@ -1,6 +1,7 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.Services.Concretes;
+using HRBoost.UI.Models.VM;
 using Humanizer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,13 @@ namespace HRBoost.UI.Controllers
     {
         IUserService _userService;
         private IEmailService _emailService;
+        private IBusinessService _businessService;
 
-        public LoginController(IUserService userService, IEmailService emailService)
+        public LoginController(IUserService userService, IEmailService emailService, IBusinessService businessService)
         {
             _userService = userService;
             _emailService = emailService;
+            _businessService = businessService;
         }
 
         [HttpGet("Login")]
@@ -56,8 +59,11 @@ namespace HRBoost.UI.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register(User user)
+        public async Task<IActionResult> Register(RegisterVM registerVM)
         {
+            
+            User user = await _userService.GetUserByMail(registerVM.Email);
+            
             var cevap = await _userService.RegisterAsync(user);
 
             if (cevap)
@@ -69,7 +75,7 @@ namespace HRBoost.UI.Controllers
                 await _emailService.SendEmail(user.Email, "Email Confirmation", confirmationLink);
                 return RedirectToAction("EmailSent", "Login");
             }
-            return View(user);
+            return View(registerVM);
         }
 
         [HttpGet]

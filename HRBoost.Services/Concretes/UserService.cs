@@ -170,7 +170,10 @@ namespace HRBoost.Services.Concretes
             return _userManager.FindByIdAsync(id);
         }
 
-
+        public Task<User> GetUserByMail(string Mail)
+        {
+            return _userManager.FindByEmailAsync(Mail);
+        }
     }
 }
 

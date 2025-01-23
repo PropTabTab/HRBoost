@@ -34,7 +34,6 @@
     <Folder Include="Areas\BusinessManager\Models\" />
     <Folder Include="Areas\Personel\Data\" />
     <Folder Include="Areas\Personel\Models\" />
-    <Folder Include="Models\VM\" />
     <Folder Include="wwwroot\vendor\php-email-form\" />
   </ItemGroup>
 

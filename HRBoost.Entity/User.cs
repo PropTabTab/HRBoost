@@ -14,6 +14,8 @@ namespace HRBoost.Entity
 		public string? FirstName { get; set; }
 		public string? LastName { get; set; }
         public string? BusinessName { get; set; }
+
+		public Guid? BusinessId { get; set; }
         [NotMapped]
         public string? Password { get; set; }
         //public Guid Id { get; set; }
@@ -23,5 +25,9 @@ namespace HRBoost.Entity
 		public DateTime ModifiedDate { get; set; }
 		public string CreatedBy { get; set; }
 		public string ModifiedBy { get; set; }
+
+		//virtual
+
+		public virtual Business Business { get; set; }
 	}
 }
