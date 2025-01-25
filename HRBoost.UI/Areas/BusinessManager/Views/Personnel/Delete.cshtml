@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model HRBoost.Entity.User
+
+<h2>Dosya Sil</h2>
+<p>@Model.FirstName @Model.LastName adlı personali silmek istediğinize emin misiniz?</p>
+
+<form method="post" action="/Admin/Personel/DeleteConfirmed/@Model.Id">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit">Evet, Sil</button>
+    <a class=" btn btn-primary" href="/Admin/Personel/Add">Hayır, Geri Dön</a>
+</form>
+
+<h1>Delete</h1>

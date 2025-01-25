@@ -81,7 +81,7 @@ namespace HRBoost.UI.Controllers
             user.BusinessId = b.Id;
             user.BusinessName = registerVM.BusinessName;
 
-            var cevap = await _userService.RegisterAsync(user);
+            var cevap = await _userService.RegisterAsync(user, "BusinessManager");
 
             if (cevap)
             {

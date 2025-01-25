@@ -2,9 +2,10 @@
 
 namespace HRBoost.UI.Areas.BusinessManager.Controllers
 {
+    [Area("BusinessManager")]
+
     public class BusinessManagerController : Controller
     {
-        [Area("BusinessManager")]
         public IActionResult Index()
         {
             return View();

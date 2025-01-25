@@ -47,7 +47,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                
             };
 
-            var result = await _userService.RegisterAsync(user);
+            var result = await _userService.RegisterAsync(user,"BusinessManager");
 
             if (!result)
             {

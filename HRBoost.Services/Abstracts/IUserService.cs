@@ -16,13 +16,12 @@ namespace HRBoost.Services.Abstracts
         Task<bool> DeleteUserAsync(Guid userId);
         Task<bool> UpdateUserAsync(User user);
         Task<bool> LoginAsync(User user);
-        Task<bool> RegisterAsync(User user);
+        Task<bool> RegisterAsync(User user,string role );
         Task<string> GenerateEmailConfirmationTokenAsync(User user);
 
         Task<bool> ConfirmEmailAsync(string email, string token);
         Task<User> GetUserById(string id);
         Task<User> GetUserByMail(string Mail);
-
-
+      
     }
 }

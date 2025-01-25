@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Personel Bilgilerini Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model HRBoost.Entity.User
+
+<h2>Personel Bilgilerini Düzenle</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label for="FirstName">Ad</label>
+        <input asp-for="FirstName" class="form-control" placeholder="Ad girin" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">Soyad</label>
+        <input asp-for="LastName" class="form-control" placeholder="Soyad girin" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input asp-for="Email" type="email" class="form-control" placeholder="Email adresi girin" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+   
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri</a>
+</form>
