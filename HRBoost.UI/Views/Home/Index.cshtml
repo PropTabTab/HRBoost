@@ -522,7 +522,7 @@
             @foreach (var y in Model)
             {
                 <div class="swiper-wrapper">
-                    <a class="btn btn-transparent" style="border:none; display: block; margin: 0 auto;">
+                    <a class="btn btn-transparent" style="border:none; display: block; margin: 0 auto" asp-action="Index" asp-controller="testimonial">
                         <div class="swiper-slide">
                             <div class="testimonial-item">
                                 <img src="data:image/jpeg;base64,@y.BusinessLogo" class="testimonial-img" alt="Şirket Logosu">
