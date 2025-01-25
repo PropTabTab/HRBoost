@@ -175,6 +175,12 @@ namespace HRBoost.Services.Concretes
         {
             return _userManager.FindByEmailAsync(Mail);
         }
+
+        public async Task<string> GetUserRole(User user)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            return roles.First();
+        }
     }
 }
 

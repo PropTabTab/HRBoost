@@ -14,8 +14,11 @@ namespace HRBoost.Entity
 		public string? FirstName { get; set; }
 		public string? LastName { get; set; }
         public string? BusinessName { get; set; }
+        public byte[]? UserPhoto { get; set; }
+        public string? Position { get; set; }
 
-		public Guid? BusinessId { get; set; }
+
+        public Guid? BusinessId { get; set; }
         [NotMapped]
         public string? Password { get; set; }
         //public Guid Id { get; set; }
