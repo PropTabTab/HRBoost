@@ -1727,3 +1727,10 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+.btn-transparent {
+    background-color: transparent !important; /* Þeffaf arka plan */
+    border: none; /* Ýsteðe baðlý: bir sýnýr eklemek için */
+    color: #007bff; /* Metin rengini ayarlamak */
+
+}
