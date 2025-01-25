@@ -519,10 +519,11 @@
                   }
                 }
             </script>
+            <div class="swiper-wrapper">
             @foreach (var y in Model)
             {
-                <div class="swiper-wrapper">
-                    <a class="btn btn-transparent" style="border:none; display: block; margin: 0 auto" asp-action="Index" asp-controller="testimonial">
+                
+                    <a class="btn btn-transparent" style="border:none; display: block; margin: 0 auto" asp-action="Index" asp-controller="testimonial" asp-route-UserMail="@y.UserMail">
                         <div class="swiper-slide">
                             <div class="testimonial-item">
                                 <img src="data:image/jpeg;base64,@y.BusinessLogo" class="testimonial-img" alt="Şirket Logosu">
@@ -545,8 +546,9 @@
                         </div><!-- End testimonial item -->
                     </a>
 
-                </div>
             }
+            </div>
+
             <div class="swiper-pagination"></div>
         </div>
 

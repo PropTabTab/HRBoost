@@ -1,56 +1,40 @@
-﻿using HRBoost.Services.Abstracts;
+﻿using HRBoost.Entity;
+using HRBoost.Services.Abstracts;
 using HRBoost.UI.Models.VM;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Controllers
 {
     public class TestimonialController : Controller
-{
-    private readonly IBusinessService _businessService;
-    private readonly IUserService _userService;
-
-    public TestimonialController(IUserService userService, IBusinessService businessService)
     {
-        _userService = userService;
-        _businessService = businessService;
-    }
+        private readonly IBusinessService _businessService;
+        private readonly IUserService _userService;
 
-    public async Task<IActionResult> Index()
-    {
-        YorumVM selectedYorum = null; 
-        var ul = await _userService.GetAllUsersAsync();
-        var bs = await _businessService.GetBy(x => x.BusinessComment != null);
-        foreach (var b in bs)
+        public TestimonialController(IUserService userService, IBusinessService businessService)
         {
-            foreach (var user in ul)
-            {
-                if (await _userService.GetUserRole(user) == "BusinessManager")
-                {
-                    if (user.BusinessId == b.Id)
-                    {
-                        YorumVM yorum = new YorumVM
-                        {
-                            BusinessName = b.BusinessName,
-                            BusinessComment = b.BusinessComment,
-                            BusinessLogo = b.BusinessLogo,
-                            UserPhoto = user.UserPhoto,
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            Position = user.Position
-                        };
-
-                        selectedYorum = yorum; 
-                        break;
-                    }
-                }
-            }
-            if (selectedYorum != null)
-            {
-                break; 
-            }
+            _userService = userService;
+            _businessService = businessService;
         }
 
-        return View(new List<YorumVM> { selectedYorum }); 
+        public async Task<IActionResult> Index(string UserMail)
+        {
+            YorumVM selectedYorum = null;
+            var u = await _userService.GetUserByMail(UserMail);
+            var b = (await _businessService.GetBy(x => x.BusinessComment != null && x.Id == u.BusinessId)).First();
+            YorumVM yorum = new YorumVM
+            {
+                BusinessName = b.BusinessName,
+                BusinessComment = b.BusinessComment,
+                BusinessLogo = b.BusinessLogo,
+                UserPhoto = u.UserPhoto,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Position = u.Position
+            };
+
+            selectedYorum = yorum;
+            
+            return View(new List<YorumVM> { selectedYorum });
+        }
     }
-}
 }

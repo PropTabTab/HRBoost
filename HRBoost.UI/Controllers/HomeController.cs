@@ -40,6 +40,7 @@ namespace HRBoost.UI.Controllers
                             yorum.FirstName = user.FirstName;
                             yorum.LastName=user.LastName;
                             yorum.Position=user.Position;
+                            yorum.UserMail=user.Email;
 
                             yorums.Add(yorum);
                         }

@@ -11,5 +11,6 @@
         public string? LastName { get; set; }
         public byte[]? UserPhoto { get; set; }
         public string? Position { get; set; }
+        public string? UserMail { get; set; }
     }
 }
