@@ -1,0 +1,52 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.Entity.Business
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Business</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BusinessName" class="control-label"></label>
+                <input asp-for="BusinessName" class="form-control" />
+                <span asp-validation-for="BusinessName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BusinessAdress" class="control-label"></label>
+                <input asp-for="BusinessAdress" class="form-control" />
+                <span asp-validation-for="BusinessAdress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BusinessPhone" class="control-label"></label>
+                <input asp-for="BusinessPhone" class="form-control" />
+                <span asp-validation-for="BusinessPhone" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="BusinessLogo" class="control-label"></label>
+                <input type="file" asp-for="BusinessLogo" class="form-control" />
+                <span asp-validation-for="BusinessLogo" class="text-danger"></span>
+            </div>
+
+            <input asp-for="Id" type="hidden" />
+
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
