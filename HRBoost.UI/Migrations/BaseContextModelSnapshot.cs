@@ -76,8 +76,7 @@ namespace HRBoost.UI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SubscriptionId")
-                        .IsUnique();
+                    b.HasIndex("SubscriptionId");
 
                     b.ToTable("Businesses");
                 });
@@ -494,8 +493,8 @@ namespace HRBoost.UI.Migrations
             modelBuilder.Entity("HRBoost.Entity.Business", b =>
                 {
                     b.HasOne("HRBoost.Entity.Subscription", "Subscription")
-                        .WithOne("Busines")
-                        .HasForeignKey("HRBoost.Entity.Business", "SubscriptionId")
+                        .WithMany("Businesses")
+                        .HasForeignKey("SubscriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -569,8 +568,7 @@ namespace HRBoost.UI.Migrations
 
             modelBuilder.Entity("HRBoost.Entity.Subscription", b =>
                 {
-                    b.Navigation("Busines")
-                        .IsRequired();
+                    b.Navigation("Businesses");
                 });
 #pragma warning restore 612, 618
         }

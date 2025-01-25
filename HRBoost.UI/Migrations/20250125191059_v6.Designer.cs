@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRBoost.UI.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20250124155435_v5")]
-    partial class v5
+    [Migration("20250125191059_v6")]
+    partial class v6
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,8 +79,7 @@ namespace HRBoost.UI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SubscriptionId")
-                        .IsUnique();
+                    b.HasIndex("SubscriptionId");
 
                     b.ToTable("Businesses");
                 });
@@ -497,8 +496,8 @@ namespace HRBoost.UI.Migrations
             modelBuilder.Entity("HRBoost.Entity.Business", b =>
                 {
                     b.HasOne("HRBoost.Entity.Subscription", "Subscription")
-                        .WithOne("Busines")
-                        .HasForeignKey("HRBoost.Entity.Business", "SubscriptionId")
+                        .WithMany("Businesses")
+                        .HasForeignKey("SubscriptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -572,8 +571,7 @@ namespace HRBoost.UI.Migrations
 
             modelBuilder.Entity("HRBoost.Entity.Subscription", b =>
                 {
-                    b.Navigation("Busines")
-                        .IsRequired();
+                    b.Navigation("Businesses");
                 });
 #pragma warning restore 612, 618
         }

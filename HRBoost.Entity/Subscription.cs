@@ -12,6 +12,6 @@ namespace HRBoost.Entity
         public decimal Price { get; set; }
         // ay bazlı süre property ekle
         //Navi
-        public virtual Business Busines { get; set; }
+        public virtual List<Business> Businesses { get; set; }
     }
 }
