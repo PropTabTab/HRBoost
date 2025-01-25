@@ -23,6 +23,7 @@ namespace HRBoost.Services.Abstracts
         Task<User> GetUserById(string id);
         Task<User> GetUserByMail(string Mail);
 
+        Task<string> GetUserRole(User user);
 
     }
 }

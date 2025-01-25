@@ -80,7 +80,7 @@ namespace HRBoost.Services.Concretes
             return false;
         }
 
-        public async Task<bool> RegisterAsync(User user)
+        public async Task<bool> RegisterAsync(User user, string role)
         {
             bool sonuc = false;
 
@@ -113,7 +113,7 @@ namespace HRBoost.Services.Concretes
                 {
                     var currentUser = await _userManager.FindByNameAsync(u.UserName);
                     
-                    var resultRole = await _userManager.AddToRoleAsync(currentUser, "BusinessManager");
+                    var resultRole = await _userManager.AddToRoleAsync(currentUser, role);
                     sonuc = true;
                 }
             }

@@ -1,14 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Personel Bilgilerini Düzenle";
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Yeni Personel Ekle";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 @model HRBoost.Entity.User
 
-<h2>Personel Bilgilerini Düzenle</h2>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
 
+<h2>Yeni Personel Ekle</h2>
+
+<form asp-action="Create" method="post">
     <div class="form-group">
         <label for="FirstName">Ad</label>
         <input asp-for="FirstName" class="form-control" placeholder="Ad girin" />
@@ -27,8 +28,8 @@
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
-   
+  
 
-    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <button type="submit" class="btn btn-primary">Ekle</button>
     <a asp-action="Index" class="btn btn-secondary">Geri</a>
 </form>
