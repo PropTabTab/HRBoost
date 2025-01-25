@@ -80,7 +80,7 @@ namespace HRBoost.Services.Concretes
             return false;
         }
 
-        public async Task<bool> RegisterAsync(User user , string role)
+        public async Task<bool> RegisterAsync(User user)
         {
             bool sonuc = false;
 
@@ -98,7 +98,7 @@ namespace HRBoost.Services.Concretes
             u.Email = user.Email;
             u.BusinessName = user.BusinessName;
             u.BusinessId = user.BusinessId;
-            u.PhoneNumber = user.PhoneNumber;
+            u.PhoneNumber = "default";
             u.Status = Shared.Enums.Status.Pending;
             u.CreatedBy = "default";
             u.CreateDate = DateTime.Now;
@@ -113,7 +113,7 @@ namespace HRBoost.Services.Concretes
                 {
                     var currentUser = await _userManager.FindByNameAsync(u.UserName);
                     
-                    var resultRole = await _userManager.AddToRoleAsync(currentUser, role);
+                    var resultRole = await _userManager.AddToRoleAsync(currentUser, "BusinessManager");
                     sonuc = true;
                 }
             }
@@ -176,8 +176,11 @@ namespace HRBoost.Services.Concretes
             return _userManager.FindByEmailAsync(Mail);
         }
 
-       
-
+        public async Task<string> GetUserRole(User user)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            return roles.First();
+        }
     }
 }
 

@@ -13,8 +13,6 @@ namespace HRBoost.Entity
 
         public string? BusinessComment { get; set; }
 
-        public int? BusinessStar {  get; set; }
-
         public string? BusinessAdress {  get; set; }
 
         public string BusinessPhone { get; set; }
