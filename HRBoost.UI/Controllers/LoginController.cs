@@ -45,7 +45,7 @@ namespace HRBoost.UI.Controllers
                 }
                 if (User.IsInRole("BUSINESSMANAGER"))
                 {
-                    return RedirectToAction("Index", "BusinessManager", new { area = "BusinessManager" });
+                    return RedirectToAction("Index","Home", new { area = "BusinessManager" });
                 }
                 if (User.IsInRole("ADMIN"))
                 {

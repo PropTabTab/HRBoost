@@ -1,0 +1,33 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.Entity.Business
+
+@{
+    ViewData["Title"] = "AddComment";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>AddComment</h1>
+
+<h4>Business</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddComment">
+            
+            <div class="form-group">
+                <label asp-for="BusinessComment" class="control-label"></label>
+                <input asp-for="BusinessComment" class="form-control" />
+                <span asp-validation-for="BusinessComment" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
