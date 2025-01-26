@@ -28,7 +28,7 @@ namespace HRBoost.UI.Controllers
             {
                 foreach (var user in ul)
                 {
-                    if (await _userService.GetUserRole(user) == "BusinessManager")
+                    if ((await _userService.GetUserRole(user)).ToLower() == "businessmanager")
                     {
                         if (user.BusinessId == b.Id)
                         {

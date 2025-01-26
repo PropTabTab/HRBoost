@@ -14,8 +14,6 @@
             <th>Ad</th>
             <th>Soyad</th>
             <th>Email</th>
-            <th>Telefon</th>
-            <th>Rol</th>
             <th>İşlemler</th>
         </tr>
     </thead>
@@ -29,7 +27,7 @@
                
                 <td>
                     <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-warning">Düzenle</a>
-                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-warning">Sil</a>
+                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Sil</a>
                 </td>
             </tr>
         }
