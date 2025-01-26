@@ -1,14 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HRBoost.Services.Abstracts;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
-	public class AdminController : Controller
+    [Area("Admin")]
+    [Route("Admin")]
+    public class AdminController : Controller
 	{
-		[Area("Admin")]
-		[Route("Admin")]
-		public IActionResult Index()
+		private readonly IBusinessService _businessService;
+		private readonly IUserService _userService;
+
+        public AdminController(IUserService userService, IBusinessService businessService)
+        {
+            _businessService = businessService;
+            _userService = userService;
+        }
+        public async Task<IActionResult> Index()
 		{
-			return View();
+            var bl = await _businessService.GetAll();
+			return View(bl);
 		}
 	}
 }
