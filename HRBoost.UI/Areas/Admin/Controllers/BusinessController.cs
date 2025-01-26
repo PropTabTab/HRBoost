@@ -11,11 +11,13 @@ namespace HRBoost.UI.Areas.Admin.Controllers
     {
         private readonly IBusinessService _businessService;
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
 
-        public BusinessController(IBusinessService businessService, IUserService userService)
+        public BusinessController(IBusinessService businessService, IUserService userService, IEmailService emailService)
         {
             _businessService = businessService;
             _userService = userService;
+            _emailService = emailService;
         }
         public async Task<IActionResult> Index()
         {
@@ -63,10 +65,19 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         {
             var b = await _businessService.GetById(x => x.Id == id);
             var ul = (await _userService.GetAllUsersAsync()).Where(x => x.BusinessId == b.Id);
+            var yonetici = new User();
             foreach (var user in ul)
             {
                 user.Status = Shared.Enums.Status.Pending;
                 await _userService.UpdateUserAsync(user);
+                if (await _userService.GetUserRole(user) == "BusinessManager")
+                {
+                    yonetici = user;
+                }
+            }
+           if (yonetici != null)
+            {
+                _emailService.SendEmail(yonetici.Email, "Abolenik süresi dolumu", "Abonelik süreniz dolduğu için hesabiniz dondurulmuştur. Daha fazla bilgi için müşteri hizmetleriyle iletişime geçin");
             }
             return RedirectToAction("Index");
         }

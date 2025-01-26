@@ -11,11 +11,13 @@ namespace HRBoost.UI.Areas.BusinessManager.Controllers
 
         IUserService _userService;
         private IBusinessService _businessService;
+        private readonly IEmailService _emailService;
 
-        public PersonelController(IUserService userService, IBusinessService businessService)
+        public PersonelController(IUserService userService, IBusinessService businessService, IEmailService emailService)
         {
             _userService = userService;
             _businessService = businessService;
+            _emailService = emailService;
         }
 
 
@@ -80,6 +82,21 @@ namespace HRBoost.UI.Areas.BusinessManager.Controllers
            
             await _userService.DeleteUserAsync(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Freeze(Guid id)
+        {
+            var model = await _userService.GetUserByIdAsync(id);
+            if (model != null)
+            {
+                model.Status = Shared.Enums.Status.DeActive;
+                await _userService.UpdateUserAsync(model);
+                _emailService.SendEmail(model.Email, "Hesabınız şirket yöeticisi tarafından askıya alındı", "Ayrıntılı bilgi için şirket yöeticinizle iletişime geçin");
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
         }
     }
 }
