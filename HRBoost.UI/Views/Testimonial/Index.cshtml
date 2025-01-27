@@ -1,11 +1,10 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
-@model List<HRBoost.UI.Models.VM.YorumVM>
+@model HRBoost.UI.Models.VM.YorumVM
 <!-- Testimonials Section -->
 <section id="testimonials" class="testimonials section dark-background">
-    
+
     <img src="~/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -26,36 +25,32 @@
                   }
                 }
             </script>
-            @foreach (var y in Model)
-            {
-                <div class="swiper-wrapper">
-                    
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="data:image/jpeg;base64,@y.BusinessLogo" class="testimonial-img" alt="Şirket Logosu">
-                                <img src="data:image/jpeg;base64,@y.UserPhoto" class="testimonial-img" alt="Personel Fotoğrafı">
-                                <h3>@y.FirstName @y.LastName</h3>
-                                <h4>@y.Position</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>
-                                        @y.BusinessComment
-                                    </span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-                    
+            <div class="swiper-wrapper">
 
-                </div>
-            }
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <img src="data:image/jpeg;base64,@Model.BusinessLogo" class="testimonial-img" alt="Şirket Logosu">
+                        <img src="data:image/jpeg;base64,@Model.UserPhoto" class="testimonial-img" alt="Personel Fotoğrafı">
+                        <h3>@Model.FirstName @Model.LastName</h3>
+                        <h4>@Model.Position</h4>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p>
+                            <i class="bi bi-quote quote-icon-left"></i>
+                            <span>
+                                @Model.BusinessComment
+                            </span>
+                            <i class="bi bi-quote quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div><!-- End testimonial item -->
+
+
+            </div>
             <div class="swiper-pagination"></div>
         </div>
 
     </div>
 
 </section><!-- /Testimonials Section -->
-
