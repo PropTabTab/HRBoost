@@ -32,9 +32,6 @@ namespace HRBoost.Entity
 		//virtual
 
 		public virtual Business Business { get; set; }
-    
       
-       
-        
     }
 }
