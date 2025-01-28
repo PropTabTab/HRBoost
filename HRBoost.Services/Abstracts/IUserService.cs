@@ -1,4 +1,5 @@
 ﻿using HRBoost.Entity;
+using HRBoost.Services.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace HRBoost.Services.Abstracts
         Task<User> GetUserByMail(string Mail);
 
         Task<string> GetUserRole(User user);
-
+       
+        Task<User> GetUserByEmailAsync(string email);
+        List<User> GetUsersByBusiness(Guid businessId);
+        Task<bool> Logout();
     }
 }

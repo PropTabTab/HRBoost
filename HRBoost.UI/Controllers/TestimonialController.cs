@@ -34,7 +34,7 @@ namespace HRBoost.UI.Controllers
 
             selectedYorum = yorum;
             
-            return View(new List<YorumVM> { selectedYorum });
+            return View(selectedYorum);
         }
     }
 }
