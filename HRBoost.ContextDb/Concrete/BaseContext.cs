@@ -37,7 +37,9 @@ namespace HRBoost.ContextDb.Concrete
             builder.ApplyConfiguration(new PermissionTypeMap());
             builder.ApplyConfiguration(new BusinessMap());
             builder.ApplyConfiguration(new SubscriptionMap());
-
+            builder.Entity<Role>().HasData(new Role { Name = "admin" },
+                    new Role { Name = "businessmanager" },
+                    new Role { Name = "personel" });
 
             base.OnModelCreating(builder);
 		}
