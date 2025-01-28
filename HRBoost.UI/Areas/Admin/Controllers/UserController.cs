@@ -19,7 +19,6 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             _emailService = emailService;
         }
 
-     
         [HttpGet]
         public async Task<IActionResult> List()
         {
@@ -27,7 +26,6 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             return View(users);
         }
 
-        
         [HttpGet]
         public IActionResult Add()
         {
@@ -35,7 +33,6 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             return View(userModel);
         }
 
-       
         [HttpPost]
         public async Task<IActionResult> Add(UserViewModel userModel)
         {
@@ -51,10 +48,10 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                 LastName = userModel.LastName,
                 Email = userModel.Email,
                 Password = userModel.Password,
-                Status = Status.Active 
+                Status = Status.Active
             };
 
-            var result = await _userService.RegisterAsync(user,"BusinessManager");
+            var result = await _userService.RegisterAsync(user, "BusinessManager");
 
             if (!result)
             {
@@ -65,7 +62,6 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             return RedirectToAction("List");
         }
 
-       
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -82,13 +78,12 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                Status = user.Status.ToString() 
+                Status = user.Status.ToString()
             };
 
             return View(userModel);
         }
 
-       
         [HttpPost]
         public async Task<IActionResult> Edit(UserViewModel userModel)
         {
@@ -104,7 +99,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
                 Email = userModel.Email,
-                Status = Enum.Parse<Status>(userModel.Status) 
+                Status = Enum.Parse<Status>(userModel.Status)
             };
 
             var result = await _userService.UpdateUserAsync(user);
@@ -118,30 +113,97 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             return RedirectToAction("List");
         }
 
-       
+        [HttpGet]
+        public async Task<IActionResult> Settings()
+        {
+
+            var users = await _userService.GetAllUsersAsync();
+
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                ViewBag.ErrorMessage = "Hiçbir kullanıcı bulunamadı. Lütfen bir kullanıcı girişi yapınız.";
+                return RedirectToAction("Add");
+            }
+
+
+            var user = users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault();
+            var userModel = new UserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Status = user.Status.ToString()
+            };
+
+            return View(userModel);
+        }
+
         [HttpPost]
+        public async Task<IActionResult> Settings(UserViewModel userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Lütfen tüm alanları doğru şekilde doldurunuz.";
+                return View(userModel);
+            }
+
+            var user = new User
+            {
+                Id = userModel.Id,
+                FirstName = userModel.FirstName,
+                LastName = userModel.LastName,
+                Email = userModel.Email,
+                Status = Enum.Parse<Status>(userModel.Status)
+            };
+
+            var result = await _userService.UpdateUserAsync(user);
+
+            if (!result)
+            {
+                ViewBag.ErrorMessage = "Güncelleme sırasında bir hata oluştu.";
+                return View(userModel);
+            }
+
+            ViewBag.SuccessMessage = "Bilgiler başarıyla güncellendi.";
+            return RedirectToAction("Settings");
+        }
+
+        
         public async Task<IActionResult> Deactivate(Guid id)
         {
             var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
             {
                 ViewBag.ErrorMessage = "Pasif hale getirmek istediğiniz kullanıcı bulunamadı.";
-                return RedirectToAction("List");
+                return RedirectToAction("Index","Home");
             }
 
-            user.Status = Status.DeActive; 
+            if ((await _userService.GetUserRole(user)).ToLower()=="businessmanager")
+            {
+                var users = _userService.GetUsersByBusiness((Guid)user.BusinessId);
+                foreach (var u in users)
+                {
+                    u.Status = Status.DeActive;
+                    var res = await _userService.UpdateUserAsync(u);
+                }
+                return RedirectToAction("Index", "Home", new { area = "" });
+
+            }
+            user.Status = Status.DeActive;
             var result = await _userService.UpdateUserAsync(user);
 
             if (!result)
             {
                 ViewBag.ErrorMessage = "Kullanıcı pasif hale getirilemedi.";
-                return RedirectToAction("List");
+                return RedirectToAction("Settings");
             }
 
-            return RedirectToAction("List");
+            await _userService.Logout();
+            return RedirectToAction("Index","Home", new {area ="" });
         }
 
-       
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -155,7 +217,6 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             return View(user);
         }
 
-        
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -167,33 +228,6 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             }
 
             return RedirectToAction("List");
-        }
-
-       
-        [HttpGet]
-        public async Task<IActionResult> RejectList()
-        {
-            var users = await _userService.GetAllUsersAsync();
-            var pendingUsers = users.Where(x => x.Status == Status.Pending).ToList();
-            return View(pendingUsers);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Reject(Guid id)
-        {
-            var user = await _userService.GetUserByIdAsync(id);
-            if (user == null)
-            {
-                ViewBag.ErrorMessage = "Hesap bulunamadı.";
-                return RedirectToAction("RejectList");
-            }
-
-            await _emailService.SendEmail(user.Email, "Hesap başvurunuz reddedildi.",
-                "Hesap başvurunuz reddedilmiştir. Daha detaylı bilgi için iletişime geçiniz.");
-            user.Status = Status.Deleted; 
-            await _userService.UpdateUserAsync(user);
-
-            return RedirectToAction("RejectList");
         }
     }
 }

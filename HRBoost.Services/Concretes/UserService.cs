@@ -112,7 +112,7 @@ namespace HRBoost.Services.Concretes
                 if (result.Succeeded)
                 {
                     var currentUser = await _userManager.FindByNameAsync(u.UserName);
-                    
+
                     var resultRole = await _userManager.AddToRoleAsync(currentUser, role);
                     sonuc = true;
                 }
@@ -135,7 +135,7 @@ namespace HRBoost.Services.Concretes
                 var result = await _userManager.DeleteAsync(user);
                 return result.Succeeded;
             }
-            return false; 
+            return false;
         }
 
 
@@ -148,7 +148,7 @@ namespace HRBoost.Services.Concretes
                 existingUser.LastName = user.LastName;
                 existingUser.Email = user.Email;
                 existingUser.Status = user.Status;
- 
+
 
                 var result = await _userManager.UpdateAsync(existingUser);
                 return result.Succeeded;
@@ -181,8 +181,68 @@ namespace HRBoost.Services.Concretes
             var roles = await _userManager.GetRolesAsync(user);
             return roles.First();
         }
+        public async Task<bool> DeactivateManagerAndEmployeesAsync(Guid managerId)
+        {
+            var manager = await _userManager.FindByIdAsync(managerId.ToString());
+            if (manager == null)
+                return false;
+
+            var employees = await _userManager.Users
+                .Where(u => u.BusinessId == manager.BusinessId)
+                .ToListAsync();
+
+            foreach (var employee in employees)
+            {
+                employee.Status = Status.DeActive;
+                await _userManager.UpdateAsync(employee);
+            }
+
+            manager.Status = Status.DeActive;
+            var result = await _userManager.UpdateAsync(manager);
+            return result.Succeeded;
+        }
+
+
+        public Task<User> GetUserByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetUsersByBusiness(Guid businessId)
+        {
+            var users = _userManager.Users.Where(x => x.BusinessId == businessId).ToList();
+            return (users);
+        }
+        public async Task<bool> Logout()
+
+        {
+
+           
+
+       
+            try
+            {
+                await _signInManager.SignOutAsync();
+            }
+            catch (Exception)
+            {
+                return false;
+                
+            }
+            return true;
+
+        }
+
+       
     }
 }
+    
+
+
+
+    
+       
+
 
 
 
