@@ -126,16 +126,13 @@ namespace HRBoost.UI.Migrations
                     b.ToTable("Currencies");
                 });
 
-            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
+            modelBuilder.Entity("HRBoost.Entity.Expense", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("BusinessId")
+                    b.Property<Guid>("BusinessID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -147,6 +144,7 @@ namespace HRBoost.UI.Migrations
                         .HasColumnType("varchar");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
@@ -159,11 +157,13 @@ namespace HRBoost.UI.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PersonelId")
+                    b.Property<Guid>("PersonelID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("Money");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -173,11 +173,11 @@ namespace HRBoost.UI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BusinessId");
+                    b.HasIndex("BusinessID");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Debits");
+                    b.ToTable("Expenses");
                 });
 
             modelBuilder.Entity("HRBoost.Entity.FileType", b =>
@@ -555,25 +555,6 @@ namespace HRBoost.UI.Migrations
                     b.Navigation("Subscription");
                 });
 
-            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
-                {
-                    b.HasOne("HRBoost.Entity.Business", "Business")
-                        .WithMany("Debits")
-                        .HasForeignKey("BusinessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HRBoost.Entity.User", "User")
-                        .WithMany("Debits")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Business");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("HRBoost.Entity.User", b =>
                 {
                     b.HasOne("HRBoost.Entity.Business", "Business")
@@ -636,19 +617,12 @@ namespace HRBoost.UI.Migrations
 
             modelBuilder.Entity("HRBoost.Entity.Business", b =>
                 {
-                    b.Navigation("Debits");
-
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("HRBoost.Entity.Subscription", b =>
                 {
                     b.Navigation("Businesses");
-                });
-
-            modelBuilder.Entity("HRBoost.Entity.User", b =>
-                {
-                    b.Navigation("Debits");
                 });
 #pragma warning restore 612, 618
         }

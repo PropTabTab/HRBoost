@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HRBoost.UI.Migrations
 {
     /// <inheritdoc />
-    public partial class v4 : Migration
+    public partial class v9 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -129,7 +129,6 @@ namespace HRBoost.UI.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BusinessName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BusinessComment = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    BusinessStar = table.Column<int>(type: "int", nullable: true),
                     BusinessAdress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BusinessPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SubscriptionStartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -161,6 +160,8 @@ namespace HRBoost.UI.Migrations
                     FirstName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     BusinessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserPhoto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BusinessId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -277,6 +278,40 @@ namespace HRBoost.UI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Expenses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<decimal>(type: "Money", nullable: false),
+                    PersonelID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BusinessID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    ModifiedBy = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Expenses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Expenses_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Expenses_Businesses_BusinessID",
+                        column: x => x.BusinessID,
+                        principalTable: "Businesses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -324,8 +359,17 @@ namespace HRBoost.UI.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Businesses_SubscriptionId",
                 table: "Businesses",
-                column: "SubscriptionId",
-                unique: true);
+                column: "SubscriptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Expenses_BusinessID",
+                table: "Expenses",
+                column: "BusinessID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Expenses_UserId",
+                table: "Expenses",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -348,6 +392,9 @@ namespace HRBoost.UI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Currencies");
+
+            migrationBuilder.DropTable(
+                name: "Expenses");
 
             migrationBuilder.DropTable(
                 name: "FileTypes");

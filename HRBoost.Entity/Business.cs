@@ -29,5 +29,7 @@ namespace HRBoost.Entity
         public virtual List<Debit> Debits { get; set; }
 
 
+        public virtual List<Expense> Expenses { get; set; }
+
     }
 }

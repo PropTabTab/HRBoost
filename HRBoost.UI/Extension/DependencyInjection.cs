@@ -28,9 +28,7 @@ namespace HRBoost.UI.Extension
             services.AddScoped<IFileTypeService, FileTypeService>();
             services.AddScoped<IBusinessService, BusinessService>();
             services.AddScoped<ISubscriptionService, SubscriptionService>();
-            services.AddScoped<IDebitService, DebitService>();
-
-
+            services.AddScoped<IExpense, ExpenseService>();
 
 
 
