@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model IEnumerable<HRBoost.Entity.Debit>
+<style>
+
+    body {
+        background-color: black;
+        color: white;
+    }
+
+
+    table {
+        background-color: #1a1a1a;
+        color: white;
+    }
+
+    th, td {
+        border: 1px solid white;
+        color: white;
+    }
+
+
+    .text-white {
+        color: white !important;
+    }
+</style>
+
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        <i class="fas fa-table me-1"></i>
+        Üzerime Kayıtlı Zimmetler
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var debit in Model)
+
+                {
+                    <tr>
+                        <td>@debit.Name</td>
+                        <td>@debit.Amount</td>
+                        <td>@debit.Description</td>
+                    </tr>
+                }
+
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
