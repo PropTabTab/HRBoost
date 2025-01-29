@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace HRBoost.Entity
 {
-    public class Expense
+    public class Expense:BaseEntity
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public decimal Quantity { get; set; }
+
+        public Guid PersonelID { get; set; }
+
+        public Guid BusinessID { get; set; }
+
+
+
+
+
     }
 }
