@@ -32,6 +32,8 @@ namespace HRBoost.Entity
 		//virtual
 
 		public virtual Business Business { get; set; }
+
+        public virtual List<Expense> Expenses { get; set; }
       
     }
 }

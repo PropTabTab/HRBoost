@@ -27,5 +27,7 @@ namespace HRBoost.Entity
         public virtual Subscription Subscription { get; set; }
         public virtual List<User> Users { get; set; }
 
+        public virtual List<Expense> Expenses { get; set; }
+
     }
 }
