@@ -41,6 +41,7 @@ namespace HRBoost.ContextDb.Concrete
             builder.ApplyConfiguration(new BusinessMap());
             builder.ApplyConfiguration(new SubscriptionMap());
 			builder.ApplyConfiguration(new ExpenseMap());
+            builder.ApplyConfiguration(new DebitMap());
 
             base.OnModelCreating(builder);
 		}

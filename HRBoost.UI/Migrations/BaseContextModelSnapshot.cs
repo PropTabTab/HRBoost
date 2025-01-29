@@ -180,6 +180,60 @@ namespace HRBoost.UI.Migrations
                     b.ToTable("Expenses");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
+
+                b.Property<int>("Amount")
+                    .HasColumnType("int");
+
+                b.Property<Guid>("BusinessId")
+                    .HasColumnType("uniqueidentifier");
+
+                b.Property<DateTime>("CreateDate")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("CreatedBy")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("varchar");
+
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("ModifiedBy")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("varchar");
+
+                b.Property<DateTime>("ModifiedDate")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
+
+                b.Property<Guid>("PersonelId")
+                    .HasColumnType("uniqueidentifier");
+
+                b.Property<int>("Status")
+                    .HasColumnType("int");
+
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier");
+
+                b.HasKey("Id");
+
+                b.HasIndex("BusinessId");
+
+                b.HasIndex("UserId");
+
+                b.ToTable("Debits");
+            });
+
             modelBuilder.Entity("HRBoost.Entity.FileType", b =>
                 {
                     b.Property<Guid>("Id")
