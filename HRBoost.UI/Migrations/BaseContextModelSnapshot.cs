@@ -126,6 +126,60 @@ namespace HRBoost.UI.Migrations
                     b.ToTable("Currencies");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.Expense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BusinessID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PersonelID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("Money");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BusinessID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Expenses");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.FileType", b =>
                 {
                     b.Property<Guid>("Id")
@@ -501,6 +555,25 @@ namespace HRBoost.UI.Migrations
                     b.Navigation("Subscription");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.Expense", b =>
+                {
+                    b.HasOne("HRBoost.Entity.Business", "Business")
+                        .WithMany("Expenses")
+                        .HasForeignKey("BusinessID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HRBoost.Entity.User", "User")
+                        .WithMany("Expenses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.User", b =>
                 {
                     b.HasOne("HRBoost.Entity.Business", "Business")
@@ -563,12 +636,19 @@ namespace HRBoost.UI.Migrations
 
             modelBuilder.Entity("HRBoost.Entity.Business", b =>
                 {
+                    b.Navigation("Expenses");
+
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("HRBoost.Entity.Subscription", b =>
                 {
                     b.Navigation("Businesses");
+                });
+
+            modelBuilder.Entity("HRBoost.Entity.User", b =>
+                {
+                    b.Navigation("Expenses");
                 });
 #pragma warning restore 612, 618
         }

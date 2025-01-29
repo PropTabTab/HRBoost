@@ -18,7 +18,8 @@ namespace HRBoost.Entity
         public Guid BusinessID { get; set; }
 
 
-
+        public virtual User User { get; set; }
+        public virtual Business Business { get; set; }
 
 
     }
