@@ -22,6 +22,7 @@ namespace HRBoost.ContextDb.Concrete
 		public DbSet<Business> Businesses { get; set; }
 		public DbSet<Subscription> Subscriptions { get; set; }
 		public DbSet<FileType> FileTypes { get; set; }
+		public DbSet<Debit> Debits { get; set; }
 
 		public DbSet<Expense> Expenses { get; set; }
 
@@ -40,6 +41,7 @@ namespace HRBoost.ContextDb.Concrete
             builder.ApplyConfiguration(new BusinessMap());
             builder.ApplyConfiguration(new SubscriptionMap());
 			builder.ApplyConfiguration(new ExpenseMap());
+            builder.ApplyConfiguration(new DebitMap());
 
             base.OnModelCreating(builder);
 		}

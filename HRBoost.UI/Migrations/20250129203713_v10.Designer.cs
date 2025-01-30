@@ -4,6 +4,7 @@ using HRBoost.ContextDb.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRBoost.UI.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20250129203713_v10")]
+    partial class v10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,13 +129,16 @@ namespace HRBoost.UI.Migrations
                     b.ToTable("Currencies");
                 });
 
-            modelBuilder.Entity("HRBoost.Entity.Expense", b =>
+            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BusinessID")
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("BusinessId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
@@ -144,7 +150,6 @@ namespace HRBoost.UI.Migrations
                         .HasColumnType("varchar");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
@@ -157,13 +162,11 @@ namespace HRBoost.UI.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("PersonelID")
+                    b.Property<Guid>("PersonelId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("Money");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -173,66 +176,12 @@ namespace HRBoost.UI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BusinessID");
+                    b.HasIndex("BusinessId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Expenses");
+                    b.ToTable("Debits");
                 });
-
-            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
-            {
-                b.Property<Guid>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("uniqueidentifier");
-
-                b.Property<int>("Amount")
-                    .HasColumnType("int");
-
-                b.Property<Guid>("BusinessId")
-                    .HasColumnType("uniqueidentifier");
-
-                b.Property<DateTime>("CreateDate")
-                    .HasColumnType("datetime2");
-
-                b.Property<string>("CreatedBy")
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnType("varchar");
-
-                b.Property<string>("Description")
-                    .HasColumnType("nvarchar(max)");
-
-                b.Property<string>("ModifiedBy")
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnType("varchar");
-
-                b.Property<DateTime>("ModifiedDate")
-                    .HasColumnType("datetime2");
-
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnType("nvarchar(100)");
-
-                b.Property<Guid>("PersonelId")
-                    .HasColumnType("uniqueidentifier");
-
-                b.Property<int>("Status")
-                    .HasColumnType("int");
-
-                b.Property<Guid>("UserId")
-                    .HasColumnType("uniqueidentifier");
-
-                b.HasKey("Id");
-
-                b.HasIndex("BusinessId");
-
-                b.HasIndex("UserId");
-
-                b.ToTable("Debits");
-            });
 
             modelBuilder.Entity("HRBoost.Entity.FileType", b =>
                 {
@@ -609,6 +558,25 @@ namespace HRBoost.UI.Migrations
                     b.Navigation("Subscription");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
+                {
+                    b.HasOne("HRBoost.Entity.Business", "Business")
+                        .WithMany("Debits")
+                        .HasForeignKey("BusinessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HRBoost.Entity.User", "User")
+                        .WithMany("Debits")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.User", b =>
                 {
                     b.HasOne("HRBoost.Entity.Business", "Business")
@@ -671,12 +639,19 @@ namespace HRBoost.UI.Migrations
 
             modelBuilder.Entity("HRBoost.Entity.Business", b =>
                 {
+                    b.Navigation("Debits");
+
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("HRBoost.Entity.Subscription", b =>
                 {
                     b.Navigation("Businesses");
+                });
+
+            modelBuilder.Entity("HRBoost.Entity.User", b =>
+                {
+                    b.Navigation("Debits");
                 });
 #pragma warning restore 612, 618
         }
