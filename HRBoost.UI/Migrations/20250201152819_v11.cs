@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace HRBoost.UI.Migrations
 {
     /// <inheritdoc />
-    public partial class v9 : Migration
+    public partial class v11 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,6 +45,26 @@ namespace HRBoost.UI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Currencies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Document",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UploadDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    ModifiedBy = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Document", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,6 +112,7 @@ namespace HRBoost.UI.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SubscriptionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "Money", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -279,21 +302,55 @@ namespace HRBoost.UI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Debits",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    PersonelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BusinessId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Debits", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Debits_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Debits_Businesses_BusinessId",
+                        column: x => x.BusinessId,
+                        principalTable: "Businesses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Expenses",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<decimal>(type: "Money", nullable: false),
+                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PersonelID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BusinessID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    ModifiedBy = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -310,6 +367,17 @@ namespace HRBoost.UI.Migrations
                         principalTable: "Businesses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Subscriptions",
+                columns: new[] { "Id", "CreateDate", "CreatedBy", "Duration", "ModifiedBy", "ModifiedDate", "Price", "Status", "SubscriptionType" },
+                values: new object[,]
+                {
+                    { new Guid("326ae2aa-9292-46cd-94af-d6073bba377e"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6205), "Basedefault", 12, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6207), 1499.90m, 1, "Yearly" },
+                    { new Guid("5ff4fcbc-6fa1-45da-be84-fdd8e7891028"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6209), "Basedefault", 100, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6211), 12999.90m, 1, "Premium" },
+                    { new Guid("91dbc3ef-46dd-4167-9d37-2c09ec27f3ab"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6140), "Basedefault", 0, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6172), 0m, 1, "Free" },
+                    { new Guid("adb7d1af-455c-45b3-be44-a35c97f8f153"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6199), "Basedefault", 1, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6202), 149.90m, 1, "Monthly" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -362,6 +430,16 @@ namespace HRBoost.UI.Migrations
                 column: "SubscriptionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Debits_BusinessId",
+                table: "Debits",
+                column: "BusinessId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Debits_UserId",
+                table: "Debits",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Expenses_BusinessID",
                 table: "Expenses",
                 column: "BusinessID");
@@ -392,6 +470,12 @@ namespace HRBoost.UI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Currencies");
+
+            migrationBuilder.DropTable(
+                name: "Debits");
+
+            migrationBuilder.DropTable(
+                name: "Document");
 
             migrationBuilder.DropTable(
                 name: "Expenses");

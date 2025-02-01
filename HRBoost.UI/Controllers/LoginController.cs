@@ -39,15 +39,15 @@ namespace HRBoost.UI.Controllers
 
             if (cevap)
             {
-                if (User.IsInRole("PERSONEL"))
+                if (User.IsInRole("personel"))
                 {
                     return RedirectToAction("Index", "Personel", new { area = "Personel" });
                 }
-                if (User.IsInRole("BUSINESSMANAGER"))
+                if (User.IsInRole("businessmanager"))
                 {
-                    return RedirectToAction("Index", "BusinessManager", new { area = "BusinessManager" });
+                    return RedirectToAction("Index","Home", new { area = "BusinessManager" });
                 }
-                if (User.IsInRole("ADMIN"))
+                if (User.IsInRole("admin"))
                 {
                     return RedirectToAction("Index", "Admin", new { area = "Admin" });
                 }
@@ -70,7 +70,7 @@ namespace HRBoost.UI.Controllers
             Business business = new Business();
             business.BusinessName = registerVM.BusinessName;
             business.SubscriptionId = s.Id;
-            Business b = await _businessService.RegisterBusiness(business,s.SubscriptionType);
+            Business b = await _businessService.RegisterBusiness(business,s.Duration);
 
             User user = new User();
             user.FirstName = registerVM.FirstName;

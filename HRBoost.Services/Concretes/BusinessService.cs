@@ -17,7 +17,7 @@ namespace HRBoost.Services.Concretes
 
         }
 
-        public async Task<Business> RegisterBusiness(Business business, string subName)
+        public async Task<Business> RegisterBusiness(Business business, int subDuration)
         {
 
 
@@ -27,7 +27,7 @@ namespace HRBoost.Services.Concretes
             }
             //MApper - MApster
 
-            #region Business
+            
             Business b = new();
             b.BusinessName = business.BusinessName;
             b.SubscriptionId = business.SubscriptionId;
@@ -38,25 +38,8 @@ namespace HRBoost.Services.Concretes
             b.BusinessPhone = "placeholder";
             b.ModifiedBy = "default";
             b.SubscriptionStartTime = DateTime.Now;
-            switch (subName)
-            {
-                case "Free":
-                    b.SubscriptionFinishTime = DateTime.Now.AddDays(15);
-                    break;
-                case "Monthly":
-                    b.SubscriptionFinishTime = DateTime.Now.AddMonths(1);
-                    break;
-                case "Yearly":
-                    b.SubscriptionFinishTime = DateTime.Now.AddYears(1);
-                    break;
-                case "Premium":
-                    b.SubscriptionFinishTime = DateTime.Now.AddYears(50);
-                    break;
-                default:
-                    b.SubscriptionFinishTime = DateTime.Now;
-                    break;
-            }
-            #endregion
+            b.SubscriptionFinishTime = DateTime.Now.AddMonths(subDuration);
+            
 
             try
             {
