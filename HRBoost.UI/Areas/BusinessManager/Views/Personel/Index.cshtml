@@ -15,6 +15,7 @@
             <th>Ad</th>
             <th>Soyad</th>
             <th>Email</th>
+            <th>Statü</th>
             <th>İşlemler</th>
         </tr>
     </thead>
@@ -25,13 +26,13 @@
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
+                <td>@user.Status</td>
 
                 <td>
                     <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-warning">Düzenle</a>
                     <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Sil</a>
                     <a asp-action="Freeze" asp-route-id="@user.Id" class="btn btn-danger">Dondur</a>
-                    <a asp-action="Index" asp-controller="Debit" asp-route-id="@user.Id" class="btn btn-danger">Zimmet</a>
-
+                    <a asp-action="Unfreeze" asp-route-id="@user.Id" class="btn btn-danger">Aktif</a>
                 </td>
             </tr>
         }
