@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HRBoost.ContextDb.Concrete;
 using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
+using HRBoost.Services.Concretes;
 
 namespace HRBoost.UI.Areas.Personel.Controllers
 {
@@ -15,10 +16,12 @@ namespace HRBoost.UI.Areas.Personel.Controllers
     public class ExpensesController : Controller
     {
         private readonly IExpense _expenseService;
+        private readonly IUserService _userService;
 
-        public ExpensesController(IExpense expenseService)
+        public ExpensesController(IExpense expenseService,IUserService userService)
         {
             _expenseService = expenseService;
+            _userService = userService;
         }
 
         //public async Task<IActionResult> Index()
@@ -45,7 +48,12 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         {
             try
             {
+                var personel = await _userService.GetUserByMail(User.Identity.Name);
+                expense.UserID = personel.Id;
+                expense.BusinessID = (Guid)personel.BusinessId;
+
                 await _expenseService.AddAsync(expense);
+
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -58,39 +66,39 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         }
 
 
-        //[HttpGet]
-        //public async Task<IActionResult> Update(Guid id)
-        //{
-        //    var currency = await _currencyService.GetById(x => x.Id == id);
-        //    return View(currency);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var expense = await _expenseService.GetById(x => x.Id == id);
+            return View(expense);
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Update(Currency currency)
-        //{
-        //    try
-        //    {
-        //        var currency2 = await _currencyService.GetById(x => x.Id == currency.Id);
-        //        currency2.Name = currency.Name;
-        //        currency2.Symbol = currency.Symbol;
-        //        await _currencyService.UpdateAsync(currency2);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch (Exception)
-        //    {
+        [HttpPost]
+        public async Task<IActionResult> Update(Expense expense)
+        {
+            try
+            {
+                var expense2 = await _expenseService.GetById(x => x.Id == expense.Id);
+                expense2.Name = expense2.Name;
+                expense2.Quantity = expense2.Quantity;
+                await _expenseService.UpdateAsync(expense2);
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
 
-        //    }
+            }
 
-        //    return View(currency);
-        //}
+            return View(expense);
+        }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Delete(Guid id)
-        //{
-        //    var currency = await _currencyService.GetById(x => x.Id == id);
-        //    await _currencyService.DeleteAsync(currency);
-        //    return RedirectToAction("Index");
-        //}
+    //[HttpGet]
+    //public async Task<IActionResult> Delete(Guid id)
+    //{
+    //    var expense = await _expenseService.GetById(x => x.Id == id);
+    //    await _expenseService.DeleteAsync(expense);
+    //    return RedirectToAction("Index");
+    //}
 
-    }
+}
 }

@@ -13,7 +13,7 @@ namespace HRBoost.Entity
 
         public decimal Quantity { get; set; }
 
-        public Guid PersonelID { get; set; }
+        public Guid UserID { get; set; }
 
         public Guid BusinessID { get; set; }
 
