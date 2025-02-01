@@ -16,5 +16,6 @@ namespace HRBoost.Services.Abstracts
 		Task<List<T>> GetAll();
 		Task<T> GetById(Expression<Func<T, bool>> exp);
 		Task<List<T>> GetBy(Expression<Func<T, bool>> exp);
-	}
+        Task<List<T>> GetAllPending();
+    }
 }

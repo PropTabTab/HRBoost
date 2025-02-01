@@ -76,7 +76,11 @@ namespace HRBoost.ContextDb.Concrete
 						{
 							baseEntity.CreateDate = now;
 							baseEntity.CreatedBy = "baseDefault";
-							baseEntity.Status = Status.Active;
+							if (baseEntity.Status == null) 
+							{
+                                baseEntity.Status = Status.Active;
+                            }
+
 							entityEntries.Add(entry);
 						}
 					}

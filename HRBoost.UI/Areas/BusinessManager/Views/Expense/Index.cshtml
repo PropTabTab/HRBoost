@@ -8,7 +8,7 @@
 <div class="container-fluid px-4">
     <h1 class="mt-4">Harcama Sayfası</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">WELCOME</li>
+        <li class="breadcrumb-item active">WELCOME Business Manager</li>
     </ol>
     <div class="row">
         <div class="col-xl-3 col-md-6">
@@ -40,7 +40,7 @@
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-danger text-white mb-4">
-                <div class="card-body">Diğer</div>
+                <div class="card-body">Bekleyen</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="#">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -49,38 +49,39 @@
         </div>
     </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h6 class="panel-title"><i class="icon-menu"></i> Expense List</h6>
-    </div>
-    <div class="panel-body">
-        
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h6 class="panel-title"><i class="icon-menu"></i> Expense List</h6>
+        </div>
+        <div class="panel-body">
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var expense in Model)
-                {
+
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        
-                        <td>@expense.Name</td>
-                        <td>@expense.Quantity</td>
-                        <td>@expense.Description</td>
-                        <td>@expense.Status</td>
-                        <td>
-                            <a asp-action="Delete" asp-controller="Expenses" asp-area="Personel" asp-route-id="@expense.Id" class="btn btn-danger">Sil</a>
-                            <a asp-action="Update" asp-controller="Expenses" asp-area="Personel" asp-route-id="@expense.Id" class="btn btn-warning">Update</a>
-                        </td>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Description</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var expense in Model)
+                    {
+                        <tr>
+
+                            <td>@expense.Name</td>
+                            <td>@expense.Quantity</td>
+                            <td>@expense.Description</td>
+                            @if (expense.Status == HRBoost.Shared.Enums.Status.Pending)
+                            {
+                                <td>
+                                    <a asp-action="Update" asp-controller="Expense" asp-area="BusinessManager" asp-route-id="@expense.Id" class="btn btn-dark">Onay</a>
+                                    <a asp-action="Delete" asp-controller="Expense" asp-area="BusinessManager" asp-route-id="@expense.Id" class="btn btn-danger">Reject</a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
