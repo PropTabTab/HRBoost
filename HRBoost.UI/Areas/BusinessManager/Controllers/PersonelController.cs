@@ -83,6 +83,32 @@ namespace HRBoost.UI.Areas.BusinessManager.Controllers
             await _userService.DeleteUserAsync(id);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Unfreeze(Guid id)
+        {
+           
+            var model = await _userService.GetUserByIdAsync(id);
+            if (model != null)
+            {
+                
+                model.Status = Shared.Enums.Status.Active;
+
+                await _userService.UpdateUserAsync(model);
+
+                _emailService.SendEmail
+                    (
+                    model.Email,
+                    "Hesabınız tekrar aktif hale getirildi",
+                    "Şirket yöneticinizin onayıyla hesabınız yeniden aktif hale getirildi. Daha fazla bilgi için şirket yöneticinizle iletişime geçebilirsiniz."
+                );
+
+                // İşlemden sonra liste sayfasına yönlendir
+                return RedirectToAction("Index");
+            }
+
+            // Eğer kullanıcı bulunamazsa aynı sayfayı hata mesajıyla döndür
+            return View(model);
+        }
 
         [HttpGet]
         public async Task<IActionResult> Freeze(Guid id)
