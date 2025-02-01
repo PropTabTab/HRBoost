@@ -33,6 +33,7 @@
                     <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Sil</a>
                     <a asp-action="Freeze" asp-route-id="@user.Id" class="btn btn-danger">Dondur</a>
                     <a asp-action="Unfreeze" asp-route-id="@user.Id" class="btn btn-danger">Aktif</a>
+                    <a asp-action="Index" asp-controller="Debit" asp-route-id="@user.Id" class="btn btn-danger">Zimmet</a>
                 </td>
             </tr>
         }
