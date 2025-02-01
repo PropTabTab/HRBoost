@@ -37,7 +37,7 @@ namespace HRBoost.ContextDb.Concrete
             builder.ApplyConfiguration(new PermissionTypeMap());
             builder.ApplyConfiguration(new BusinessMap());
             builder.ApplyConfiguration(new SubscriptionMap());
-
+			builder.ApplyConfiguration(new DocumentMap());
 
             base.OnModelCreating(builder);
 		}
