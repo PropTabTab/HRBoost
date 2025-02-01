@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<HRBoost.Entity.Expense>
 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -67,8 +68,7 @@
                 @foreach (var expense in Model)
                 {
                     <tr>
-                        @*
-                    <td>@Areas_Personel_Views_Expenses_Index</td> *@
+                        
                         <td>@expense.Name</td>
                         <td>@expense.Quantity</td>
                         <td>@expense.Description</td>

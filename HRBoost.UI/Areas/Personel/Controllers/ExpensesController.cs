@@ -79,8 +79,8 @@ namespace HRBoost.UI.Areas.Personel.Controllers
             try
             {
                 var expense2 = await _expenseService.GetById(x => x.Id == expense.Id);
-                expense2.Name = expense2.Name;
-                expense2.Quantity = expense2.Quantity;
+                expense2.Name = expense.Name;
+                expense2.Quantity = expense.Quantity;
                 await _expenseService.UpdateAsync(expense2);
                 return RedirectToAction("Index");
             }
@@ -92,13 +92,13 @@ namespace HRBoost.UI.Areas.Personel.Controllers
             return View(expense);
         }
 
-    //[HttpGet]
-    //public async Task<IActionResult> Delete(Guid id)
-    //{
-    //    var expense = await _expenseService.GetById(x => x.Id == id);
-    //    await _expenseService.DeleteAsync(expense);
-    //    return RedirectToAction("Index");
-    //}
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var expense = await _expenseService.GetById(x => x.Id == id);
+            await _expenseService.DeleteAsync(expense);
+            return RedirectToAction("Index");
+        }
 
-}
+    }
 }
