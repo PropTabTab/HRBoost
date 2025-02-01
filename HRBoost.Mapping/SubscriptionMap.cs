@@ -14,6 +14,12 @@ namespace HRBoost.Mapping
         public override void Configure(EntityTypeBuilder<Subscription> builder)
         {
             builder.Property(x => x.Price).HasColumnType("Money");
+            builder.HasData(new Subscription { SubscriptionType = "Free", Price = 0, CreateDate = DateTime.Now, CreatedBy = "Basedefault" });
+            builder.HasData(new Subscription { SubscriptionType = "Monthly", Price = 149.90m, CreateDate = DateTime.Now, CreatedBy = "Basedefault" });
+            builder.HasData(new Subscription { SubscriptionType = "Yearly", Price = 1499.90m, CreateDate = DateTime.Now, CreatedBy = "Basedefault" });
+            builder.HasData(new Subscription { SubscriptionType = "Premium", Price = 12999.90m, CreateDate = DateTime.Now, CreatedBy = "Basedefault" });
+
+
             base.Configure(builder);
 
         }

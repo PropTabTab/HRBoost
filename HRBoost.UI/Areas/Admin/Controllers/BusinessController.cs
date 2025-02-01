@@ -64,16 +64,16 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Freeze(Guid id)
         {
             var b = await _businessService.GetById(x => x.Id == id);
-            var ul = (await _userService.GetAllUsersAsync()).Where(x => x.BusinessId == b.Id);
+            var ul = (await _userService.GetAllUsersAsync()).Where(x => x.BusinessId == b.Id).ToList();
             var yonetici = new User();
             foreach (var user in ul)
             {
-                user.Status = Shared.Enums.Status.Pending;
+                user.Status = Shared.Enums.Status.DeActive;
                 await _userService.UpdateUserAsync(user);
-                if (await _userService.GetUserRole(user) == "BusinessManager")
+                if ((await _userService.GetUserRole(user)).ToLower() == "businessmanager")
                 {
                     yonetici = user;
-                }
+                }   
             }
            if (yonetici != null)
             {
@@ -81,10 +81,6 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
-
-
 
     }
 }
