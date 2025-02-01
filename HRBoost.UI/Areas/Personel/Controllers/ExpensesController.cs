@@ -7,160 +7,90 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HRBoost.ContextDb.Concrete;
 using HRBoost.Entity;
+using HRBoost.Services.Abstracts;
 
 namespace HRBoost.UI.Areas.Personel.Controllers
 {
     [Area("Personel")]
     public class ExpensesController : Controller
     {
-        private readonly BaseContext _context;
+        private readonly IExpense _expenseService;
 
-        public ExpensesController(BaseContext context)
+        public ExpensesController(IExpense expenseService)
         {
-            _context = context;
+            _expenseService = expenseService;
         }
 
-        // GET: Personel/Expenses
+        //public async Task<IActionResult> Index()
+        //{
+        //    var baseContext = _expenseService.Expenses.Include(e => e.Business);
+        //    return View(await baseContext.ToListAsync());
+        //}
+
         public async Task<IActionResult> Index()
         {
-            var baseContext = _context.Expenses.Include(e => e.Business);
-            return View(await baseContext.ToListAsync());
+            return View(await _expenseService.GetAll());
         }
 
-        // GET: Personel/Expenses/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        [HttpGet]
+        public async Task<IActionResult> Add()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var expense = await _context.Expenses
-                .Include(e => e.Business)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (expense == null)
-            {
-                return NotFound();
-            }
-
+            var expense = new Expense();
             return View(expense);
         }
 
-        // GET: Personel/Expenses/Create
-        public IActionResult Create()
-        {
-            ViewData["BusinessID"] = new SelectList(_context.Businesses, "Id", "BusinessName");
-            return View();
-        }
 
-        // POST: Personel/Expenses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Quantity,PersonelID,BusinessID,Id,Status,CreateDate,ModifiedDate,CreatedBy,ModifiedBy")] Expense expense)
+        public async Task<IActionResult> Add(Expense expense)
         {
-            if (ModelState.IsValid)
+            try
             {
-                expense.Id = Guid.NewGuid();
-                _context.Add(expense);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _expenseService.AddAsync(expense);
+                return RedirectToAction("Index");
             }
-            ViewData["BusinessID"] = new SelectList(_context.Businesses, "Id", "BusinessName", expense.BusinessID);
-            return View(expense);
-        }
-
-        // GET: Personel/Expenses/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null)
+            catch (Exception)
             {
-                return NotFound();
-            }
 
-            var expense = await _context.Expenses.FindAsync(id);
-            if (expense == null)
-            {
-                return NotFound();
-            }
-            ViewData["BusinessID"] = new SelectList(_context.Businesses, "Id", "BusinessName", expense.BusinessID);
-            return View(expense);
-        }
 
-        // POST: Personel/Expenses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Description,Quantity,PersonelID,BusinessID,Id,Status,CreateDate,ModifiedDate,CreatedBy,ModifiedBy")] Expense expense)
-        {
-            if (id != expense.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(expense);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ExpenseExists(expense.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["BusinessID"] = new SelectList(_context.Businesses, "Id", "BusinessName", expense.BusinessID);
-            return View(expense);
-        }
-
-        // GET: Personel/Expenses/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var expense = await _context.Expenses
-                .Include(e => e.Business)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (expense == null)
-            {
-                return NotFound();
             }
 
             return View(expense);
         }
 
-        // POST: Personel/Expenses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            var expense = await _context.Expenses.FindAsync(id);
-            if (expense != null)
-            {
-                _context.Expenses.Remove(expense);
-            }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Update(Guid id)
+        //{
+        //    var currency = await _currencyService.GetById(x => x.Id == id);
+        //    return View(currency);
+        //}
 
-        private bool ExpenseExists(Guid id)
-        {
-            return _context.Expenses.Any(e => e.Id == id);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Update(Currency currency)
+        //{
+        //    try
+        //    {
+        //        var currency2 = await _currencyService.GetById(x => x.Id == currency.Id);
+        //        currency2.Name = currency.Name;
+        //        currency2.Symbol = currency.Symbol;
+        //        await _currencyService.UpdateAsync(currency2);
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //    }
+
+        //    return View(currency);
+        //}
+
+        //[HttpGet]
+        //public async Task<IActionResult> Delete(Guid id)
+        //{
+        //    var currency = await _currencyService.GetById(x => x.Id == id);
+        //    await _currencyService.DeleteAsync(currency);
+        //    return RedirectToAction("Index");
+        //}
+
     }
 }

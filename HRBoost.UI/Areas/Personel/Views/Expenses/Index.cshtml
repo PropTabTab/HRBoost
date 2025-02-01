@@ -1,16 +1,59 @@
 ﻿@model IEnumerable<HRBoost.Entity.Expense>
+
 @{
-    ViewData["Title"] = "Expense List";
+    ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Harcama Sayfası</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">WELCOME</li>
+    </ol>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Harcama Ekle</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">Harcama Güncelle</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">Onaylanan & Reddedilen</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Bekleyen</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h6 class="panel-title"><i class="icon-menu"></i> Expense List</h6>
     </div>
     <div class="panel-body">
-        <a asp-action="Add" asp-controller="Expenses" asp-area="Personel" class="btn btn-primary">Expense Add</a>
-        </a>
+        
 
         <table class="table table-bordered">
             <thead>
@@ -23,8 +66,9 @@
             <tbody>
                 @foreach (var expense in Model)
                 {
-                    <tr>@* 
-                        <td>@Areas_Personel_Views_Expenses_Index</td> *@
+                    <tr>
+                        @*
+                    <td>@Areas_Personel_Views_Expenses_Index</td> *@
                         <td>@expense.Name</td>
                         <td>@expense.Quantity</td>
                         <td>@expense.Description</td>
