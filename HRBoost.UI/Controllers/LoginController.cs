@@ -70,7 +70,7 @@ namespace HRBoost.UI.Controllers
             Business business = new Business();
             business.BusinessName = registerVM.BusinessName;
             business.SubscriptionId = s.Id;
-            Business b = await _businessService.RegisterBusiness(business,s.SubscriptionType);
+            Business b = await _businessService.RegisterBusiness(business,s.Duration);
 
             User user = new User();
             user.FirstName = registerVM.FirstName;

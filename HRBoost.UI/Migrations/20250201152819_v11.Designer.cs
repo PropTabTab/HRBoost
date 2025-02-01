@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRBoost.UI.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20250129202802_v9")]
-    partial class v9
+    [Migration("20250201152819_v11")]
+    partial class v11
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,6 +129,101 @@ namespace HRBoost.UI.Migrations
                     b.ToTable("Currencies");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("BusinessId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PersonelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BusinessId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Debits");
+                });
+
+            modelBuilder.Entity("HRBoost.Entity.Document", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UploadDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Document");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.Expense", b =>
                 {
                     b.Property<Guid>("Id")
@@ -143,8 +238,7 @@ namespace HRBoost.UI.Migrations
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -152,8 +246,7 @@ namespace HRBoost.UI.Migrations
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -166,7 +259,7 @@ namespace HRBoost.UI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Quantity")
-                        .HasColumnType("Money");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -309,6 +402,9 @@ namespace HRBoost.UI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar");
 
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -330,6 +426,56 @@ namespace HRBoost.UI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscriptions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("91dbc3ef-46dd-4167-9d37-2c09ec27f3ab"),
+                            CreateDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6140),
+                            CreatedBy = "Basedefault",
+                            Duration = 0,
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6172),
+                            Price = 0m,
+                            Status = 1,
+                            SubscriptionType = "Free"
+                        },
+                        new
+                        {
+                            Id = new Guid("adb7d1af-455c-45b3-be44-a35c97f8f153"),
+                            CreateDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6199),
+                            CreatedBy = "Basedefault",
+                            Duration = 1,
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6202),
+                            Price = 149.90m,
+                            Status = 1,
+                            SubscriptionType = "Monthly"
+                        },
+                        new
+                        {
+                            Id = new Guid("326ae2aa-9292-46cd-94af-d6073bba377e"),
+                            CreateDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6205),
+                            CreatedBy = "Basedefault",
+                            Duration = 12,
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6207),
+                            Price = 1499.90m,
+                            Status = 1,
+                            SubscriptionType = "Yearly"
+                        },
+                        new
+                        {
+                            Id = new Guid("5ff4fcbc-6fa1-45da-be84-fdd8e7891028"),
+                            CreateDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6209),
+                            CreatedBy = "Basedefault",
+                            Duration = 100,
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6211),
+                            Price = 12999.90m,
+                            Status = 1,
+                            SubscriptionType = "Premium"
+                        });
                 });
 
             modelBuilder.Entity("HRBoost.Entity.User", b =>
@@ -558,6 +704,25 @@ namespace HRBoost.UI.Migrations
                     b.Navigation("Subscription");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.Debit", b =>
+                {
+                    b.HasOne("HRBoost.Entity.Business", "Business")
+                        .WithMany("Debits")
+                        .HasForeignKey("BusinessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HRBoost.Entity.User", "User")
+                        .WithMany("Debits")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Business");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.Expense", b =>
                 {
                     b.HasOne("HRBoost.Entity.Business", "Business")
@@ -639,6 +804,8 @@ namespace HRBoost.UI.Migrations
 
             modelBuilder.Entity("HRBoost.Entity.Business", b =>
                 {
+                    b.Navigation("Debits");
+
                     b.Navigation("Expenses");
 
                     b.Navigation("Users");
@@ -651,6 +818,8 @@ namespace HRBoost.UI.Migrations
 
             modelBuilder.Entity("HRBoost.Entity.User", b =>
                 {
+                    b.Navigation("Debits");
+
                     b.Navigation("Expenses");
                 });
 #pragma warning restore 612, 618

@@ -11,6 +11,7 @@ namespace HRBoost.Entity
         public string SubscriptionType { get; set; }
         public decimal Price { get; set; }
         // ay bazlı süre property ekle
+        public int Duration { get; set; }
         //Navi
         public virtual List<Business> Businesses { get; set; }
     }

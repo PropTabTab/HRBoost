@@ -1,6 +1,5 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
-using HRBoost.Services.Concretes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.Admin.Controllers
