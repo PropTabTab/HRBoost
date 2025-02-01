@@ -1,4 +1,4 @@
-﻿  using HRBoost.ContextDb.Abstract;
+﻿using HRBoost.ContextDb.Abstract;
 using HRBoost.Entity;
 using HRBoost.Shared.Enums;
 using HRBoost.Mapping;
@@ -22,6 +22,9 @@ namespace HRBoost.ContextDb.Concrete
 		public DbSet<Business> Businesses { get; set; }
 		public DbSet<Subscription> Subscriptions { get; set; }
 		public DbSet<FileType> FileTypes { get; set; }
+		public DbSet<Debit> Debits { get; set; }
+
+		public DbSet<Expense> Expenses { get; set; }
 
         public BaseContext(DbContextOptions options) : base(options)
 		{
@@ -37,9 +40,8 @@ namespace HRBoost.ContextDb.Concrete
             builder.ApplyConfiguration(new PermissionTypeMap());
             builder.ApplyConfiguration(new BusinessMap());
             builder.ApplyConfiguration(new SubscriptionMap());
-            builder.Entity<Role>().HasData(new Role { Name = "admin" },
-                    new Role { Name = "businessmanager" },
-                    new Role { Name = "personel" });
+			builder.ApplyConfiguration(new ExpenseMap());
+            builder.ApplyConfiguration(new DebitMap());
 
             base.OnModelCreating(builder);
 		}
