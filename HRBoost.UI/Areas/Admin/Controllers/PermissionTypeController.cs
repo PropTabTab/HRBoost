@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Controllers
 {
+   [Area("Admin")]
     public class PermissionTypeController : Controller
     {
         private readonly IPermissionTypeService _service;
