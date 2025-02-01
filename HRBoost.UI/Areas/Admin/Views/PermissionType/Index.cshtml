@@ -1,0 +1,129 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "İzin Türleri Yönetimi";
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">İzin Türleri Yönetimi</h2>
+
+   
+    <div class="form-group mt-4">
+        <label for="izinTuru">İzin Türü Seçin:</label>
+        <select class="form-control" id="izinTuru">
+            <option value="">Seçiniz</option>
+            <option value="Yıllık İzin">Yıllık İzin</option>
+            <option value="Sağlık İzni">Sağlık İzni</option>
+            <option value="Kişisel İzin">Kişisel İzin</option>
+            <option value="Ebeveyn İzni">Ebeveyn İzni</option>
+            <option value="Eğitim İzni">Eğitim İzni</option>
+            <option value="Doğum İzni">Doğum İzni</option>
+            <option value="Babalık İzni">Babalık İzni</option>
+            <option value="Ücretsiz İzin">Ücretsiz İzin</option>
+            <option value="Yarım Gün İzin">Yarım Gün İzin</option>
+            <option value="Saatlik İzin">Saatlik İzin</option>
+        </select>
+    </div>
+
+   
+    <div class="form-group mt-3">
+        <label for="izinBirimi">İzin Birimi Seçin:</label>
+        <select class="form-control" id="izinBirimi">
+            <option value="">Seçiniz</option>
+            <option value="ARGE">ARGE</option>
+            <option value="İnsan Kaynakları">İnsan Kaynakları</option>
+            <option value="Üretim">Üretim</option>
+            <option value="Finans">Finans</option>
+            <option value="Muhasebe">Muhasebe</option>
+            <option value="Tedarik Zinciri">Tedarik Zinciri</option>
+            <option value="Mühendislik">Mühendislik</option>
+            <option value="Satış ve Pazarlama">Satış ve Pazarlama</option>
+            <option value="Destek Hizmetleri">Destek Hizmetleri</option>
+            <option value="Bilgi Teknolojileri (IT)">Bilgi Teknolojileri (IT)</option>
+            <option value="Operasyon">Operasyon</option>
+            <option value="Hukuk">Hukuk</option>
+            <option value="Müşteri Hizmetleri">Müşteri Hizmetleri</option>
+            <option value="Kalite Kontrol">Kalite Kontrol</option>
+        </select>
+    </div>
+
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="newIzinTuru" placeholder="Yeni İzin Türü Ekle">
+            <button class="btn btn-success mt-2 green-button" onclick="addIzinTuru()">Ekle</button>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="newIzinBirimi" placeholder="Yeni İzin Birimi Ekle">
+            <button class="btn btn-success mt-2 green-button" onclick="addIzinBirimi()">Ekle</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function addIzinTuru() {
+        var newTuru = document.getElementById("newIzinTuru").value;
+        if (newTuru.trim() !== "") {
+            var select = document.getElementById("izinTuru");
+            var option = document.createElement("option");
+            option.value = newTuru;
+            option.text = newTuru;
+            select.appendChild(option);
+            document.getElementById("newIzinTuru").value = "";
+        }
+    }
+
+    function addIzinBirimi() {
+        var newBirimi = document.getElementById("newIzinBirimi").value;
+        if (newBirimi.trim() !== "") {
+            var select = document.getElementById("izinBirimi");
+            var option = document.createElement("option");
+            option.value = newBirimi;
+            option.text = newBirimi;
+            select.appendChild(option);
+            document.getElementById("newIzinBirimi").value = "";
+        }
+    }
+</script>
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 800px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    
+    .green-button {
+        background-color: #28a745 !important;
+        border: none;
+        color: white !important;
+        font-weight: bold;
+    }
+
+        .green-button:hover {
+            background-color: #218838 !important;
+        }
+
+    .table {
+        background-color: white;
+    }
+
+    .thead-light {
+        background-color: #e9ecef;
+    }
+</style>

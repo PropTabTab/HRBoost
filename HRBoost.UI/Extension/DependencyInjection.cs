@@ -30,6 +30,7 @@ namespace HRBoost.UI.Extension
             services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<IDocumentService, DocumentService>();
             services.AddScoped<IExpense, ExpenseService>();
+            services.AddScoped<IPermissionTypeService, PermissionTypeService>();
 
 
 
