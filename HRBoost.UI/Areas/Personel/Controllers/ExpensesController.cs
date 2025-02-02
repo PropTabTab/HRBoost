@@ -24,15 +24,10 @@ namespace HRBoost.UI.Areas.Personel.Controllers
             _userService = userService;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    var baseContext = _expenseService.Expenses.Include(e => e.Business);
-        //    return View(await baseContext.ToListAsync());
-        //}
-
+   
         public async Task<IActionResult> Index()
         {
-            return View(await _expenseService.GetAll());
+            return View(await _expenseService.GetAllPending());
         }
 
         [HttpGet]
@@ -51,7 +46,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
                 var personel = await _userService.GetUserByMail(User.Identity.Name);
                 expense.UserID = personel.Id;
                 expense.BusinessID = (Guid)personel.BusinessId;
-
+                expense.Status=Shared.Enums.Status.Pending;
                 await _expenseService.AddAsync(expense);
 
                 return RedirectToAction("Index");

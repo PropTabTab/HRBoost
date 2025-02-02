@@ -68,7 +68,12 @@ namespace HRBoost.Services.Concretes
 			return await _baseRepository.GetAllActive();
 		}
 
-		public virtual async Task<List<T>> GetBy(Expression<Func<T, bool>> exp)
+        public virtual async Task<List<T>> GetAllPending()
+        {
+            return await _baseRepository.GetBy(x=>x.Status!=Shared.Enums.Status.Deleted);
+        }
+
+        public virtual async Task<List<T>> GetBy(Expression<Func<T, bool>> exp)
 		{
 			return await _baseRepository.GetBy(exp);
 		}
