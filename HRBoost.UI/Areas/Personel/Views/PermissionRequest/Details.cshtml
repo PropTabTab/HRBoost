@@ -1,0 +1,59 @@
+﻿@model HRBoost.Entity.PermissionRequest
+
+@{
+    ViewData["Title"] = "İzin Talebi Detayları";
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm p-4">
+        <h2><i class="fa fa-info-circle"></i> İzin Talebi Detayları</h2>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-4">İzin Türü:</dt>
+            <dd class="col-sm-8">@Model.PermissionType</dd>
+
+            <dt class="col-sm-4">Açıklama:</dt>
+            <dd class="col-sm-8">@Model.Description</dd>
+
+            <dt class="col-sm-4">Başlangıç Tarihi:</dt>
+            <dd class="col-sm-8">@Model.StartDate.ToString("dd.MM.yyyy")</dd>
+
+            <dt class="col-sm-4">Bitiş Tarihi:</dt>
+            <dd class="col-sm-8">@Model.EndDate.ToString("dd.MM.yyyy")</dd>
+
+            <dt class="col-sm-4">Durum:</dt>
+            <dd class="col-sm-8">
+                @if (Model.Status == "Active")
+
+                {
+                    <span class="badge bg-success">Onaylandı</span>
+                }
+
+                else if (Model.Status == "Pending")
+
+                {
+                    <span class="badge bg-warning text-dark">Beklemede</span>
+                }
+
+                else if (Model.Status == "Deactive")
+
+                {
+                    <span class="badge bg-secondary">Pasif</span>
+                }
+
+                else if (Model.Status == "Deleted")
+
+                {
+                    <span class="badge bg-danger">Silindi</span>
+                }
+            </dd>
+        </dl>
+
+        <a href="@Url.Action("Index")" class="btn btn-secondary">
+            <i class="fa fa-arrow-left"></i> Geri Dön
+        </a>
+    </div>
+</div>
