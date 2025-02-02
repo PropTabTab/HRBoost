@@ -34,7 +34,7 @@ namespace HRBoost.ContextDb
                 option.Password.RequireUppercase = false;
                 option.Password.RequireLowercase = false;
 
-            }).AddEntityFrameworkStores<BaseContext>().AddDefaultTokenProviders();
+            }).AddRoles<Role>().AddEntityFrameworkStores<BaseContext>().AddDefaultTokenProviders();
 
 
 
