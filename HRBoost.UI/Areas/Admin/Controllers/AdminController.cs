@@ -1,8 +1,11 @@
 ﻿using HRBoost.Services.Abstracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
+
     [Area("Admin")]
     [Route("Admin")]
     public class AdminController : Controller
