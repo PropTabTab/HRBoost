@@ -1,10 +1,12 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Controllers
 {
-   [Area("Admin")]
+    [Authorize(Roles = "admin")]
+    [Area("Admin")]
     public class PermissionTypeController : Controller
     {
         private readonly IPermissionTypeService _service;

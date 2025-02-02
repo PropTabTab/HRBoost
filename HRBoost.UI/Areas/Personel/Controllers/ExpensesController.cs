@@ -9,9 +9,11 @@ using HRBoost.ContextDb.Concrete;
 using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.Services.Concretes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HRBoost.UI.Areas.Personel.Controllers
 {
+    [Authorize(Roles = "personel, businessmanager,admin")]
     [Area("Personel")]
     public class ExpensesController : Controller
     {
