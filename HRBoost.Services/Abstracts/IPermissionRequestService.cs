@@ -13,5 +13,8 @@ namespace HRBoost.Services.Abstracts
     {
         Task<string?> GetAllAsync();
         Task<string?> GetAllRequestsAsync();
+        Task<string?> GetByIdAsync(Func<object, bool> value);
+        Task<string?> GetByIdAsync(Guid id);
+        Task SaveChangesAsync();
     }
 }

@@ -26,5 +26,20 @@ namespace HRBoost.Services.Concretes
         {
             throw new NotImplementedException();
         }
+
+        public Task<string?> GetByIdAsync(Func<object, bool> value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string?> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

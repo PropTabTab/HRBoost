@@ -9,23 +9,28 @@ namespace HRBoost.Entity
 {
     public class PermissionRequest : BaseEntity
     {
-        [Required]
-        public string PermissionType { get; set; } 
+     
 
-        [Required]
-        [MaxLength(500)]
-        public string Description { get; set; } 
+        [Required(ErrorMessage = "İzin türü boş olamaz!")]
+        public  Guid PermissionTypeId { get; set; }
 
-        [Required]
-        public DateTime StartDate { get; set; } 
 
-        [Required]
-        public DateTime EndDate { get; set; } 
+        [Required(ErrorMessage = "Açıklama boş olamaz!")]
+        public string Description { get; set; }
 
-        public string Status { get; set; } = "Pending"; 
+        [Required(ErrorMessage = "Başlangıç tarihi boş olamaz!")]
+        [DataType(DataType.Date)]
+        public DateTime StartDate { get; set; }
+
+        [Required(ErrorMessage = "Bitiş tarihi boş olamaz!")]
+        [DataType(DataType.Date)]
+        public DateTime EndDate { get; set; }
+
+       
 
         public string? ApprovedBy { get; set; } 
 
         public DateTime? DecisionDate { get; set; } 
+        public virtual PermissionType? PermissionType { get; set; }
     }
 }

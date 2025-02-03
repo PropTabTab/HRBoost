@@ -13,5 +13,6 @@ namespace HRBoost.Entity
         public string Description { get; set; } 
         public DateTime CreatedAt { get; set; } 
         public int? Days { get; set; }
+        public virtual List<PermissionRequest> PermissionRequests { get; set; }
     }
 }

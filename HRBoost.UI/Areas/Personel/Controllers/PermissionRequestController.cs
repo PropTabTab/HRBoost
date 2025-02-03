@@ -1,6 +1,11 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
+using HRBoost.UI.Areas.Personel.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HRBoost.UI.Areas.Personel.Controllers
 {
@@ -8,10 +13,14 @@ namespace HRBoost.UI.Areas.Personel.Controllers
     public class PermissionRequestController : Controller
     {
         private readonly IPermissionRequestService _service;
+        private readonly IPermissionTypeService _TypeService;
 
-        public PermissionRequestController(IPermissionRequestService service)
+        public PermissionRequestController(IPermissionRequestService service,IPermissionTypeService typeService)
+        
         {
             _service = service;
+            _TypeService = typeService;
+            
         }
 
         public async Task<IActionResult> Index()
@@ -24,30 +33,39 @@ namespace HRBoost.UI.Areas.Personel.Controllers
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "Veriler yüklenirken hata oluştu: " + ex.Message;
-                return View(new List<PermissionRequest>()); 
+                return View(new List<PermissionRequest>());
             }
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var model=new PermissionRequestVM();
+            model.PermissionTypes = await _TypeService.GetAll();
+            return View(model); 
+            
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(PermissionRequest request)
+        public async Task<IActionResult> Create(PermissionRequestVM request)
         {
-            if (ModelState.IsValid)
+            request.PermissionTypes = await _TypeService.GetAll();
+            if (request==null)
             {
-                await _service.AddAsync(request);
-                return RedirectToAction("Index");
+                TempData["ErrorMessage"] = "Form geçersiz! Lütfen tüm alanları doldurduğunuzdan emin olun.";
+                return View(request);
             }
-            return View(request);
+
+            await _service.AddAsync(request.PermissionRequest); 
+           
+
+            TempData["SuccessMessage"] = "İzin talebi başarıyla kaydedildi!";
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Details(Guid id) 
+        public async Task<IActionResult> Details(Guid id)
         {
-            var request = _service.GetById(x => x.Id == id); 
+            var request = await _service.GetByIdAsync(id);
             if (request == null)
             {
                 return NotFound();
@@ -56,3 +74,5 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         }
     }
 }
+
+//bundayım

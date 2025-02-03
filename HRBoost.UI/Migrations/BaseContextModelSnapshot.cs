@@ -305,6 +305,55 @@ namespace HRBoost.UI.Migrations
                     b.ToTable("FileTypes");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.PermissionRequest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ApprovedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DecisionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("PermissionTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionTypeId");
+
+                    b.ToTable("PermissionRequest");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.PermissionType", b =>
                 {
                     b.Property<Guid>("Id")
@@ -421,48 +470,48 @@ namespace HRBoost.UI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("14f807fc-4062-4d9c-8860-be9cd10b3e71"),
-                            CreateDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4588),
+                            Id = new Guid("04755e43-9a1f-4505-b725-19c5cc2f32f8"),
+                            CreateDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6263),
                             CreatedBy = "Basedefault",
                             Duration = 0,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4632),
+                            ModifiedDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6306),
                             Price = 0m,
                             Status = 1,
                             SubscriptionType = "Free"
                         },
                         new
                         {
-                            Id = new Guid("2178cbb9-53dd-4ad1-b7bf-9b8357d8d9a5"),
-                            CreateDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4651),
+                            Id = new Guid("6885d8a3-6f3c-4639-a8a8-3c0e1ed98fca"),
+                            CreateDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6323),
                             CreatedBy = "Basedefault",
                             Duration = 1,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4654),
+                            ModifiedDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6325),
                             Price = 149.90m,
                             Status = 1,
                             SubscriptionType = "Monthly"
                         },
                         new
                         {
-                            Id = new Guid("c343e511-dbef-474a-b116-671d1af1156c"),
-                            CreateDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4657),
+                            Id = new Guid("4570aaba-a95f-42dc-a290-8bc1e1c80150"),
+                            CreateDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6328),
                             CreatedBy = "Basedefault",
                             Duration = 12,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4659),
+                            ModifiedDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6335),
                             Price = 1499.90m,
                             Status = 1,
                             SubscriptionType = "Yearly"
                         },
                         new
                         {
-                            Id = new Guid("2f9692fc-f60e-4150-99bf-3012d3ab5d57"),
-                            CreateDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4661),
+                            Id = new Guid("6db7f4cf-66a6-4604-b1da-57fa9d36f030"),
+                            CreateDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6338),
                             CreatedBy = "Basedefault",
                             Duration = 100,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 2, 1, 40, 3, 157, DateTimeKind.Local).AddTicks(4663),
+                            ModifiedDate = new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6339),
                             Price = 12999.90m,
                             Status = 1,
                             SubscriptionType = "Premium"
@@ -733,6 +782,17 @@ namespace HRBoost.UI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.PermissionRequest", b =>
+                {
+                    b.HasOne("HRBoost.Entity.PermissionType", "PermissionType")
+                        .WithMany("PermissionRequests")
+                        .HasForeignKey("PermissionTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PermissionType");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.User", b =>
                 {
                     b.HasOne("HRBoost.Entity.Business", "Business")
@@ -800,6 +860,11 @@ namespace HRBoost.UI.Migrations
                     b.Navigation("Expenses");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("HRBoost.Entity.PermissionType", b =>
+                {
+                    b.Navigation("PermissionRequests");
                 });
 
             modelBuilder.Entity("HRBoost.Entity.Subscription", b =>

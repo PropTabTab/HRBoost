@@ -1,4 +1,5 @@
-﻿@model HRBoost.Entity.PermissionRequest
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.Entity.PermissionRequest
 
 @{
     ViewData["Title"] = "İzin Talebi Detayları";
@@ -26,29 +27,11 @@
 
             <dt class="col-sm-4">Durum:</dt>
             <dd class="col-sm-8">
-                @if (Model.Status == "Active")
-
-                {
-                    <span class="badge bg-success">Onaylandı</span>
-                }
-
-                else if (Model.Status == "Pending")
-
-                {
-                    <span class="badge bg-warning text-dark">Beklemede</span>
-                }
-
-                else if (Model.Status == "Deactive")
-
-                {
-                    <span class="badge bg-secondary">Pasif</span>
-                }
-
-                else if (Model.Status == "Deleted")
-
-                {
-                    <span class="badge bg-danger">Silindi</span>
-                }
+                <span class="badge bg-@(Model.Status == HRBoost.Shared.Enums.Status.Active? "success" :
+                    Model.Status == HRBoost.Shared.Enums.Status.Pending ? "warning text-dark" :
+                    Model.Status == HRBoost.Shared.Enums.Status.DeActive ? "secondary" : "danger")">
+                    @Model.Status
+                </span>
             </dd>
         </dl>
 

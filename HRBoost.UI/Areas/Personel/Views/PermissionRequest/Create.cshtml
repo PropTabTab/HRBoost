@@ -1,4 +1,5 @@
-﻿@model HRBoost.Entity.PermissionRequest
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.UI.Areas.Personel.Models.PermissionRequestVM
 
 @{
     ViewData["Title"] = "Yeni İzin Talebi";
@@ -11,30 +12,42 @@
         <h2><i class="fa fa-plus-circle"></i> Yeni İzin Talebi</h2>
         <hr />
 
-        <form asp-action="Create" method="post">
+        @if (TempData["ErrorMessage"] != null && ViewData.ModelState.IsValid == false)
+
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+
+        <form asp-action="Create" asp-controller="PermissionRequest" method="post">
             <div class="mb-3">
-                <label asp-for="PermissionType" class="form-label">İzin Türü</label>
-                <select asp-for="PermissionType" class="form-control">
-                    <option value="">Seçiniz...</option>
-                    <option value="Yıllık">Yıllık İzin</option>
-                    <option value="Hastalık">Hastalık İzni</option>
-                    <option value="Doğum">Doğum İzni</option>
+                <label asp-for="PermissionRequest.PermissionTypeId" class="form-label">İzin Türü</label>
+                <select asp-for="PermissionRequest.PermissionTypeId" class="form-control" required>
+                    @foreach (var item in Model.PermissionTypes)
+                    {
+                        <option value=@item.Id>@item.Name</option>
+                    }
+               
                 </select>
             </div>
 
             <div class="mb-3">
-                <label asp-for="Description" class="form-label">Açıklama</label>
-                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                <label asp-for="PermissionRequest.Description" class="form-label">Açıklama</label>
+                <textarea asp-for="PermissionRequest.Description" class="form-control" rows="3" required></textarea>
             </div>
 
             <div class="mb-3">
-                <label asp-for="StartDate" class="form-label">Başlangıç Tarihi</label>
-                <input asp-for="StartDate" type="date" class="form-control" />
+                <label asp-for="PermissionRequest.StartDate" class="form-label">Başlangıç Tarihi</label>
+                <input asp-for="PermissionRequest.StartDate" type="date" class="form-control" required />
             </div>
 
             <div class="mb-3">
-                <label asp-for="EndDate" class="form-label">Bitiş Tarihi</label>
-                <input asp-for="EndDate" type="date" class="form-control" />
+                <label asp-for="PermissionRequest.EndDate" class="form-label">Bitiş Tarihi</label>
+                <input asp-for="PermissionRequest.EndDate" type="date" class="form-control" required />
             </div>
 
             <button type="submit" class="btn btn-success">

@@ -1,4 +1,5 @@
-﻿@model List<HRBoost.Entity.PermissionRequest>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<HRBoost.Entity.PermissionRequest>
 
 @{
     ViewData["Title"] = "İzin Talepleri";
@@ -11,6 +12,12 @@
         <h2 class="mb-4">
             <i class="fa fa-file-alt"></i> İzin Talepleri
         </h2>
+
+        @if (TempData["SuccessMessage"] != null)
+
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
 
         @if (Model == null || !Model.Any())
 
@@ -48,39 +55,15 @@
                             <td>@request.StartDate.ToString("dd.MM.yyyy")</td>
                             <td>@request.EndDate.ToString("dd.MM.yyyy")</td>
                             <td>
-                                @if (request.Status == "Active")
-
-                                {
-                                    <span class="badge bg-success">Onaylandı</span>
-                                }
-
-                                else if (request.Status == "Pending")
-
-                                {
-                                    <span class="badge bg-warning text-dark">Beklemede</span>
-                                }
-
-                                else if (request.Status == "Deactive")
-
-                                {
-                                    <span class="badge bg-secondary">Pasif</span>
-                                }
-
-                                else if (request.Status == "Deleted")
-
-                                {
-                                    <span class="badge bg-danger">Silindi</span>
-                                }
+                                <span class="badge bg-@(request.Status == HRBoost.Shared.Enums.Status.Active ? "success" :
+                                    request.Status == HRBoost.Shared.Enums.Status.Pending ? "warning text-dark" :
+                                    request.Status == HRBoost.Shared.Enums.Status.DeActive ? "secondary" : "danger")">
+                                    @request.Status
+                                </span>
                             </td>
                             <td>
                                 <a href="@Url.Action("Details", new { id = request.Id })" class="btn btn-info btn-sm">
                                     <i class="fa fa-eye"></i> Detaylar
-                                </a>
-                                <a href="@Url.Action("Edit", new { id = request.Id })" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-edit"></i> Düzenle
-                                </a>
-                                <a href="@Url.Action("Delete", new { id = request.Id })" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i> Sil
                                 </a>
                             </td>
                         </tr>
@@ -97,6 +80,3 @@
         </div>
     </div>
 </div>
-
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
