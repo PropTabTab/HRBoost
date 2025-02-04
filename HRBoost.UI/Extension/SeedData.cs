@@ -1,5 +1,7 @@
 ﻿using HRBoost.Entity;
+
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 public static class SeedData
 {
@@ -12,6 +14,7 @@ public static class SeedData
         string[] roleNames = { "admin", "personel", "businessmanager" };
         foreach (var roleName in roleNames)
         {
+
             if (!await roleManager.RoleExistsAsync(roleName))
             {
                 await roleManager.CreateAsync(new Role(roleName));
