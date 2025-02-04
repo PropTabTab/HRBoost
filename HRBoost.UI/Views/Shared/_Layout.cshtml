@@ -41,7 +41,7 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+            <a asp-action="Index" asp-controller="Home" class="logo d-flex align-items-center me-auto me-lg-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="~/img/logo.png" alt=""> -->
                 <h1 class="sitename">HRBoost</h1>
@@ -50,37 +50,46 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="active">Ana Sayfa<br></a></li>
-                    <li><a href="#about">Hakkımızda</a></li>
-                    <li><a href="#services">Hizmetlerimiz</a></li>
-                    <li><a href="#portfolio">Portfolyo</a></li>
-                    <li><a href="#testimonials">Yorumlar</a></li>
-                    <li><a href="#team">Ekip</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown">
-                                <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#hero" class="nav-link">Ana Sayfa</a></li>
+                    <li><a href="#about" class="nav-link">Hakkımızda</a></li>
+                    <li><a href="#services" class="nav-link">Hizmetlerimiz</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolyo</a></li>
+                    <li><a href="#testimonials" class="nav-link">Yorumlar</a></li>
+                    <li><a href="#team" class="nav-link">Ekip</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
+            <!-- JavaScript Kodu -->
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Tüm nav-link sınıfına sahip bağlantıları seç
+                    document.querySelectorAll(".nav-link").forEach(link => {
+                        link.addEventListener("click", function (event) {
+                            event.preventDefault(); // Varsayılan bağlantı davranışını engelle
+
+                            let targetId = this.getAttribute("href").substring(1); // Bağlantının hedef ID'sini al
+                            let baseURL = window.location.origin;
+
+                            if (window.location.pathname === "/" || window.location.pathname.includes("index.html")) {
+                                // Eğer zaten ana sayfadaysa, hedef bölüme yumuşak kaydırma yap
+                                let targetSection = document.getElementById(targetId);
+                                if (targetSection) {
+                                    targetSection.scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                    console.warn(targetId + " bölümü bulunamadı.");
+                                }
+                            } else {
+                                // Eğer farklı bir sayfadaysa, ana sayfaya yönlendir ve ilgili bölüme git
+                                window.location.href = baseURL + "/#" + targetId;
+                            }
+                        });
+                    });
+                });
+            </script>
+
             <a class="btn-getstarted" asp-action="Index" asp-controller="Subscription">Get Started</a>
+            <a class="btn-getstarted" asp-action="SignIn" asp-controller="Login">Login</a>
 
         </div>
     </header>
