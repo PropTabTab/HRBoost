@@ -1,9 +1,11 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.Personel.Controllers
 {
+    [Authorize(Roles = "personel, businessmanager,admin")]
     [Area("Personel")]
     public class HarcamalarimController:Controller
     {

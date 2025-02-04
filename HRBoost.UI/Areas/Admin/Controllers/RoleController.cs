@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HRBoost.Services.Abstracts;
 using HRBoost.Entity;
+using Microsoft.AspNetCore.Authorization;
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
-	[Area("Admin")]
-
+    [Authorize(Roles = "admin")]
+    [Area("Admin")]
 	public class RoleController : Controller
 	{
 		private readonly IRoleService _roleService;
