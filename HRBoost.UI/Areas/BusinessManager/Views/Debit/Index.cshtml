@@ -6,39 +6,42 @@
 }
 @model HRBoost.UI.Areas.BusinessManager.Models.VM.DebitListVM
 
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Zimmet Listesi
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Zimmet Adı</th>
+                    <th>Açıklama</th>
+                    <th>Miktar</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var debit in Model.Debits)
+                {
+                    <tr>
+                        <td>@debit.Name</td>
+                        <td>@debit.Description</td>
+                        <td>@debit.Amount</td>
 
-<<h2>Zimmet Listesi</h2>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@debit.Id" class="btn btn-warning">Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@debit.Id" class="btn btn-danger">Sil</a>
 
-<a asp-action="Create" asp-route-id="@Model.UserId" class="btn btn-primary">Yeni Zimmet Ekle</a>
+                        </td>
+                    </tr>
+                }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Zimmet Tarihi</th>
-            <th>Değiştirme Tarihi</th>
-            <th>Zimmet Adı</th>
-            <th>Açıklama</th>
-            <th>Miktar</th>
-            <th>İşlemler</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var debit in Model.Debits)
-        {
-            <tr>
-                <td>@debit.CreateDate.ToShortDateString()</td>
-                <td>@debit.ModifiedDate.ToShortDateString()</td>
-                <td>@debit.Name</td>
-                <td>@debit.Description</td>
-                <td>@debit.Amount</td>
+            </tbody>
+        </table>
+    </div>
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@debit.Id" class="btn btn-warning">Düzenle</a>
-                    <a asp-action="Delete" asp-route-id="@debit.Id" class="btn btn-danger">Sil</a>
+    <a asp-action="Create" asp-route-id="@Model.UserId" class="btn btn-primary">Yeni Zimmet Ekle</a>
 
-                </td>
-            </tr>
-        }
+</div>
 
-    </tbody>
-</table>

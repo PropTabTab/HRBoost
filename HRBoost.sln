@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRBoost.UI", "HRBoost.UI\HR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRBoost.Entity", "HRBoost.Entity\HRBoost.Entity.csproj", "{736B0476-59F0-4153-994E-8D76AAD7BDE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRBoost.Shared", "HRBoost.Shared\HRBoost.Shared.csproj", "{61AAC583-589F-4870-8007-2E3CE4446657}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRBoost.Shared", "HRBoost.Shared\HRBoost.Shared.csproj", "{61AAC583-589F-4870-8007-2E3CE4446657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRBoost.ContextDb", "HRBoost.ContextDb\HRBoost.ContextDb.csproj", "{CFAA2DF0-57C0-4446-B13F-C68E28AA0A6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRBoost.ContextDb", "HRBoost.ContextDb\HRBoost.ContextDb.csproj", "{CFAA2DF0-57C0-4446-B13F-C68E28AA0A6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRBoost.Mapping", "HRBoost.Mapping\HRBoost.Mapping.csproj", "{956D6D2A-A55A-43E6-BC07-CA401017B833}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRBoost.Mapping", "HRBoost.Mapping\HRBoost.Mapping.csproj", "{956D6D2A-A55A-43E6-BC07-CA401017B833}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

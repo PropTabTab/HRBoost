@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HRBoost.UI.Migrations
 {
     /// <inheritdoc />
-    public partial class v11 : Migration
+    public partial class enise : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -141,6 +141,34 @@ namespace HRBoost.UI.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PermissionRequest",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PermissionTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ApprovedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DecisionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PermissionRequest", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PermissionRequest_PermissionTypes_PermissionTypeId",
+                        column: x => x.PermissionTypeId,
+                        principalTable: "PermissionTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -308,9 +336,9 @@ namespace HRBoost.UI.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BusinessId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -342,9 +370,8 @@ namespace HRBoost.UI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PersonelID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BusinessID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -355,8 +382,8 @@ namespace HRBoost.UI.Migrations
                 {
                     table.PrimaryKey("PK_Expenses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Expenses_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Expenses_AspNetUsers_UserID",
+                        column: x => x.UserID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -373,11 +400,23 @@ namespace HRBoost.UI.Migrations
                 columns: new[] { "Id", "CreateDate", "CreatedBy", "Duration", "ModifiedBy", "ModifiedDate", "Price", "Status", "SubscriptionType" },
                 values: new object[,]
                 {
-                    { new Guid("326ae2aa-9292-46cd-94af-d6073bba377e"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6205), "Basedefault", 12, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6207), 1499.90m, 1, "Yearly" },
-                    { new Guid("5ff4fcbc-6fa1-45da-be84-fdd8e7891028"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6209), "Basedefault", 100, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6211), 12999.90m, 1, "Premium" },
-                    { new Guid("91dbc3ef-46dd-4167-9d37-2c09ec27f3ab"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6140), "Basedefault", 0, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6172), 0m, 1, "Free" },
-                    { new Guid("adb7d1af-455c-45b3-be44-a35c97f8f153"), new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6199), "Basedefault", 1, "Basedefault", new DateTime(2025, 2, 1, 18, 28, 18, 437, DateTimeKind.Local).AddTicks(6202), 149.90m, 1, "Monthly" }
+                    { new Guid("04755e43-9a1f-4505-b725-19c5cc2f32f8"), new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6263), "Basedefault", 0, "Basedefault", new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6306), 0m, 1, "Free" },
+                    { new Guid("4570aaba-a95f-42dc-a290-8bc1e1c80150"), new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6328), "Basedefault", 12, "Basedefault", new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6335), 1499.90m, 1, "Yearly" },
+                    { new Guid("6885d8a3-6f3c-4639-a8a8-3c0e1ed98fca"), new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6323), "Basedefault", 1, "Basedefault", new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6325), 149.90m, 1, "Monthly" },
+                    { new Guid("6db7f4cf-66a6-4604-b1da-57fa9d36f030"), new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6338), "Basedefault", 100, "Basedefault", new DateTime(2025, 2, 3, 22, 21, 59, 60, DateTimeKind.Local).AddTicks(6339), 12999.90m, 1, "Premium" }
                 });
+            migrationBuilder.InsertData(
+              table: "PermissionTypes",
+              columns: new[] { "Id", "CreateDate", "CreatedAt", "CreatedBy", "Days", "Description", "ModifiedBy", "ModifiedDate", "Name", "Status" },
+              values: new object[,]
+              {
+                    { new Guid("129c511b-b839-46ad-959a-04710514c43a"), new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4326), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4327), "Doğum İzin", 1 },
+                    { new Guid("24e8d426-8114-47aa-b006-e5fbbf3f4933"), new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4298), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4310), "Sağlık İzin", 1 },
+                    { new Guid("2689a06d-fd70-43af-9330-c9d536b78f12"), new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4313), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4315), "Kişisel İzin", 1 },
+                    { new Guid("2f88dc14-d69a-49eb-9db5-cae590d65e8b"), new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4236), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4279), "Yıllık İzin", 1 },
+                    { new Guid("49699144-6f8a-4d37-b28d-a0548ec7e55c"), new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4321), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4323), "Eğitim İzin", 1 },
+                    { new Guid("f67944cf-f6f3-414a-8b86-3e462b39db2b"), new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4318), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 1, 23, 27, 20, 184, DateTimeKind.Local).AddTicks(4319), "Ebeveyn İzin", 1 }
+              });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -444,9 +483,14 @@ namespace HRBoost.UI.Migrations
                 column: "BusinessID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expenses_UserId",
+                name: "IX_Expenses_UserID",
                 table: "Expenses",
-                column: "UserId");
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PermissionRequest_PermissionTypeId",
+                table: "PermissionRequest",
+                column: "PermissionTypeId");
         }
 
         /// <inheritdoc />
@@ -483,13 +527,16 @@ namespace HRBoost.UI.Migrations
                 name: "FileTypes");
 
             migrationBuilder.DropTable(
-                name: "PermissionTypes");
+                name: "PermissionRequest");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "PermissionTypes");
 
             migrationBuilder.DropTable(
                 name: "Businesses");
