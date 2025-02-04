@@ -229,5 +229,12 @@ namespace HRBoost.UI.Areas.Admin.Controllers
 
             return RedirectToAction("List");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.Logout();
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }
