@@ -9,9 +9,7 @@ namespace HRBoost.ContextDb.Abstract
 {
 	public interface IUnitOfWork
 	{
-        object GetRepository<T>();
         IBaseRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity;
-        void SaveChanges();
         Task<int> SaveChangesAsync();
 	}
 }
