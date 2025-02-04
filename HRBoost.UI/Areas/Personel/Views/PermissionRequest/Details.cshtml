@@ -1,0 +1,42 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.Entity.PermissionRequest
+
+@{
+    ViewData["Title"] = "İzin Talebi Detayları";
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm p-4">
+        <h2><i class="fa fa-info-circle"></i> İzin Talebi Detayları</h2>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-4">İzin Türü:</dt>
+            <dd class="col-sm-8">@Model.PermissionType</dd>
+
+            <dt class="col-sm-4">Açıklama:</dt>
+            <dd class="col-sm-8">@Model.Description</dd>
+
+            <dt class="col-sm-4">Başlangıç Tarihi:</dt>
+            <dd class="col-sm-8">@Model.StartDate.ToString("dd.MM.yyyy")</dd>
+
+            <dt class="col-sm-4">Bitiş Tarihi:</dt>
+            <dd class="col-sm-8">@Model.EndDate.ToString("dd.MM.yyyy")</dd>
+
+            <dt class="col-sm-4">Durum:</dt>
+            <dd class="col-sm-8">
+                <span class="badge bg-@(Model.Status == HRBoost.Shared.Enums.Status.Active? "success" :
+                    Model.Status == HRBoost.Shared.Enums.Status.Pending ? "warning text-dark" :
+                    Model.Status == HRBoost.Shared.Enums.Status.DeActive ? "secondary" : "danger")">
+                    @Model.Status
+                </span>
+            </dd>
+        </dl>
+
+        <a href="@Url.Action("Index")" class="btn btn-secondary">
+            <i class="fa fa-arrow-left"></i> Geri Dön
+        </a>
+    </div>
+</div>
