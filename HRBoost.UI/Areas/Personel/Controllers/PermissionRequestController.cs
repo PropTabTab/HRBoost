@@ -27,7 +27,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         {
             try
             {
-                var requests = await _service.GetAllRequestsAsync();
+                var requests = await _service.GetAll();
                 return View(requests);
             }
             catch (Exception ex)
@@ -65,7 +65,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
 
         public async Task<IActionResult> Details(Guid id)
         {
-            var request = await _service.GetByIdAsync(id);
+            var request = await _service.GetById(x => x.Id == id);
             if (request == null)
             {
                 return NotFound();
