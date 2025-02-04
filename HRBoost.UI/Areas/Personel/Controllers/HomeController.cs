@@ -12,21 +12,20 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         IUserService _userService;
         private IBusinessService _businessService;
         private readonly IEmailService _emailService;
+        private readonly IHolidayService _holidayService;
 
-        public HomeController(IUserService userService, IBusinessService businessService, IEmailService emailService)
+        public HomeController(IUserService userService, IBusinessService businessService, IEmailService emailService, IHolidayService holidayService)
         {
             _userService = userService;
             _businessService = businessService;
             _emailService = emailService;
+            _holidayService = holidayService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var yonetici = await _userService.GetUserByMail(User.Identity.Name);
-            var business = (await _businessService.GetBy(x => x.Id == yonetici.BusinessId)).First();
-
-            var workers = (await _userService.GetAllUsersAsync()).Where(x => x.BusinessId == business.Id).ToList();
-            return View(workers);
+            var holidays = await _holidayService.getHolidays();
+            return View(holidays);
         }
 
     }
