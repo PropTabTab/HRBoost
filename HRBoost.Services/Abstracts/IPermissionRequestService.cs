@@ -11,10 +11,6 @@ namespace HRBoost.Services.Abstracts
 {
     public interface IPermissionRequestService : IService<PermissionRequest>
     {
-        Task<string?> GetAllAsync();
-        Task<string?> GetAllRequestsAsync();
-        Task<string?> GetByIdAsync(Func<object, bool> value);
-        Task<string?> GetByIdAsync(Guid id);
-        Task SaveChangesAsync();
+        
     }
 }
