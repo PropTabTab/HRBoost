@@ -11,9 +11,12 @@ using HRBoost.Services.Abstracts;
 using HRBoost.Services.Concretes;
 using System.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
+
     [Area("Admin")]
 
     public class CurrenciesController : Controller

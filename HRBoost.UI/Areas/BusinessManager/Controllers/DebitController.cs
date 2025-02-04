@@ -1,10 +1,12 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.UI.Areas.BusinessManager.Models.VM;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.BusinessManager.Controllers
 {
+    [Authorize(Roles = "businessmanager,admin")]
     [Area("BusinessManager")]
     public class DebitController : Controller
     {
