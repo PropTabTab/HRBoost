@@ -11,7 +11,9 @@ namespace HRBoost.Entity
 
         public Guid UserId { get; set; }
         public string FileName { get; set; }
-        public string FilePath { get; set; }
+        public byte[] File {  get; set; }
         public DateTime UploadDate { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

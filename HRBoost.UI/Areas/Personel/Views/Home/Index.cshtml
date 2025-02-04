@@ -1,5 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model List<HRBoost.Entity.User>
+@model List<HRBoost.Entity.Holiday>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -70,26 +70,28 @@
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        Çalışan Bilgileri
+        Resmi Tatiller
     </div>
     <div class="card-body">
         <table class="table">
             <thead>
                 <tr>
                     <th>Ad</th>
-                    <th>Soyad</th>
-                    <th>Email</th>
+                    <th>Tarih</th>
                 </tr>
             </thead>
+                <tfoot>
+                    <tr>
+                        <th>Ad</th>
+                        <th>Tarih</th>
+                    </tr>
+                </tfoot>
             <tbody>
-                @foreach (var user in Model)
+                @foreach (var holiday in Model)
                 {
                     <tr>
-                        <td>@user.FirstName</td>
-                        <td>@user.LastName</td>
-                        <td>@user.Email</td>
-
-
+                        <td>@holiday.title</td>
+                        <td>@holiday.localeDateString</td>
                     </tr>
                 }
             </tbody>

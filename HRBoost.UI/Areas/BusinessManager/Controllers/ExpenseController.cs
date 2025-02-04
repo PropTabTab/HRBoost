@@ -1,11 +1,13 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.Shared.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.BusinessManager.Controllers
 {
-	[Area("BusinessManager")]
+    [Authorize(Roles = "businessmanager,admin")]
+    [Area("BusinessManager")]
 	public class ExpenseController :Controller
 	{
 		private readonly IExpense _expenseService;
