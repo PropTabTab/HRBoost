@@ -12,7 +12,7 @@ namespace HRBoost.Services.Concretes
 {
 	public class BaseServices<T> : IService<T> where T : BaseEntity
 	{
-		private readonly IUnitOfWork _unitOfWork;
+		protected readonly IUnitOfWork _unitOfWork;
 		private readonly IBaseRepository<T> _baseRepository;
 
 		public BaseServices(IUnitOfWork unitOfWork)

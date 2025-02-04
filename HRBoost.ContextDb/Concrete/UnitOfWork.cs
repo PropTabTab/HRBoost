@@ -20,7 +20,12 @@ namespace HRBoost.ContextDb.Concrete
 			_repositoryDictionary = new Dictionary<string, dynamic>();
 		}
 
-		public IBaseRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
+        public object GetRepository<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IBaseRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
 		{
 			var entityName = typeof(TEntity).Name;
 			var repositoryCreated = _repositoryDictionary.ContainsKey(entityName);
@@ -33,7 +38,12 @@ namespace HRBoost.ContextDb.Concrete
 			return _repositoryDictionary[entityName];
 		}
 
-		public async Task<int> SaveChangesAsync()
+        public void SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> SaveChangesAsync()
 		{
 			return await _context.SaveChanges(new CancellationToken());
 		}
