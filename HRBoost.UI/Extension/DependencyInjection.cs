@@ -33,6 +33,8 @@ namespace HRBoost.UI.Extension
             services.AddScoped<IDebitService, DebitService>();
             services.AddScoped<IPermissionTypeService, PermissionTypeService>();
             services.AddScoped<IPermissionRequestService, PermissionRequestService>();
+            services.AddScoped<IHolidayService, HolidayService>();
+
 
 
 
