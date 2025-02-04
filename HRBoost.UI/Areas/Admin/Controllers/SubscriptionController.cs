@@ -35,5 +35,31 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             return RedirectToAction("Index");
             
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            Subscription sub = await _subscriptionService.GetById(x=> x.Id == id);
+            await _subscriptionService.DeleteAsync(sub);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            Subscription sub = await _subscriptionService.GetById(x => x.Id == id);
+            return View(sub);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Subscription sub)
+        {
+            Subscription oldSub = await _subscriptionService.GetById(x => x.Id == sub.Id);
+            oldSub.SubscriptionType = sub.SubscriptionType;
+            oldSub.Price = sub.Price;
+            oldSub.Duration = sub.Duration;
+            await _subscriptionService.UpdateAsync(oldSub);
+            return RedirectToAction("Index");
+        }
     }
 }

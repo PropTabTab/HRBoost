@@ -18,17 +18,18 @@
             <thead>
                 <tr>
                     <th>Type</th>
-                    <th>Price</th>
+                    <th>Price(₺)</th>
+                    <th>Duration(Months)</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
-
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>Type</th>
-                    <th>Price</th>
+                    <th>Price(₺)</th>
+                    <th>Duration(Months)</th>
                     <th>Status</th>
                     <th></th>
                     <th></th>
@@ -40,9 +41,10 @@
                     <tr>
                         <td>@sub.SubscriptionType</td>
                         <td>@sub.Price</td>
+                        <td>@sub.Duration</td>
                         <td>@sub.Status</td>
-                        <th> <a asp-action="Reject" asp-controller="User" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-danger">Sil</a></th>
-                        <th> <a asp-action="Reject" asp-controller="User" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-danger">Sil</a></th>
+                        <th> <a asp-action="Delete" asp-controller="Subscription" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-danger">Sil</a></th>
+                        <th> <a asp-action="Update" asp-controller="Subscription" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-danger">Güncelle</a></th>
                     </tr>
                 }
 

@@ -19,19 +19,13 @@ namespace HRBoost.UI.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var permissionTypes = new List<PermissionType>
-    {
-        new PermissionType { Id = Guid.NewGuid(), Name = "Yıllık İzin", Description = "Yıllık olarak alınan izin" },
-        new PermissionType { Id = Guid.NewGuid(), Name = "Sağlık İzni", Description = "Sağlık sorunları nedeniyle alınan izin" },
-        new PermissionType { Id = Guid.NewGuid(), Name = "Kişisel İzin", Description = "Kişisel nedenlerle alınan izin" }
-    };
 
 
             var savedPermissions = await _service.GetAll();
             
                
 
-            ViewBag.PermissionTypes = permissionTypes;
+            
             return View(savedPermissions);
         }
         [HttpGet]
