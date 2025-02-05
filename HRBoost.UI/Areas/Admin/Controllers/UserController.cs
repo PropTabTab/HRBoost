@@ -53,7 +53,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                 Status = Status.Active
             };
 
-            var result = await _userService.RegisterAsync(user, "BusinessManager");
+            var result = await _userService.RegisterAsync(user, "businessmanager");
 
             if (!result)
             {

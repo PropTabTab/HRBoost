@@ -1,97 +1,108 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model List<HRBoost.Entity.Holiday>
+@model HRBoost.UI.Areas.Personel.Models.PersonelVM
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="container-fluid px-4">
-<h1 class="mt-4">Personel</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">WELCOME</li>
-</ol>
-<div class="row">
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-primary text-white mb-4">
-            <div class="card-body">Harcamalarım</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
+    <h1 class="mt-4">Personel</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">WELCOME</li>
+    </ol>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">Harcamalarım</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" asp-controller="Expenses" asp-action="Index" asp-area="Personel">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-warning text-white mb-4">
-            <div class="card-body">Zimmetlerim</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" asp-controller="Debit" asp-action="List" asp-area="Personel">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">Zimmetlerim</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" asp-controller="Debit" asp-action="List" asp-area="Personel">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-success text-white mb-4">
-            <div class="card-body">İzinlerim</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">İzinlerim</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" asp-controller="PermissionRequest" asp-action="Index" asp-area="Personel">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-danger text-white mb-4">
-            <div class="card-body">Özlük</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Özlük</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" asp-controller="Document" asp-action="Index" asp-area="Personel">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xl-6">
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-chart-area me-1"></i>
-                İzinlerim
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="square bg-success">
+                            <h3 class="text-center"> Toplam İzinler</h3>
+                            <h1 class="text-center"> 20 Gün </h1>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="square bg-warning">
+                            <h3 class="text-center"> Kalan İzinler</h3>
+                            <h1 class="text-center"> @(20-@Model.permissionDuration) Gün </h1>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    İzinli Çalısan Sayısı
+                </div>
+                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+            </div>
         </div>
     </div>
-    <div class="col-xl-6">
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
-                İzinli Çalısan Sayısı
-            </div>
-            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Resmi Tatiller
         </div>
-    </div>
-</div>
-<div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        Resmi Tatiller
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Ad</th>
-                    <th>Tarih</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var holiday in Model)
-                {
+        <div class="card-body">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@holiday.title</td>
-                        <td>@holiday.localeDateString</td>
+                        <th>Ad</th>
+                        <th>Tarih</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var holiday in Model.holidays)
+                    {
+                        <tr>
+                            <td>@holiday.title</td>
+                            <td>@holiday.localeDateString</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </div>
 
 
