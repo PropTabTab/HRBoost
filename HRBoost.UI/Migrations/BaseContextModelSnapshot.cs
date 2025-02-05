@@ -409,73 +409,73 @@ namespace HRBoost.UI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c2f78d5c-873d-43ba-af17-2888bd699910"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4433),
+                            Id = new Guid("1778f74b-d237-4951-a3df-75c3bba440cf"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1165),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "Basedefault",
                             Description = "",
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4478),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1203),
                             Name = "Yıllık İzin",
                             Status = 1
                         },
                         new
                         {
-                            Id = new Guid("dbea3f2f-4984-4077-abe6-7836123c573b"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4504),
+                            Id = new Guid("aab94161-04ea-4071-b0fd-32f5d6744f1e"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1222),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "Basedefault",
                             Description = "",
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4506),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1224),
                             Name = "Sağlık İzin",
                             Status = 1
                         },
                         new
                         {
-                            Id = new Guid("e08f3dee-7107-4319-a1c4-2be6cbf25026"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4511),
+                            Id = new Guid("c2caab35-7b7a-4ee8-8952-19650595a515"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1229),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "Basedefault",
                             Description = "",
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4513),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1231),
                             Name = "Kişisel İzin",
                             Status = 1
                         },
                         new
                         {
-                            Id = new Guid("e721cf12-7999-4b33-9f8c-b84b6c1cc336"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4523),
+                            Id = new Guid("2e8459a2-bdc5-41f9-a9ec-1acc0bb85af3"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1235),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "Basedefault",
                             Description = "",
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4524),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1236),
                             Name = "Ebeveyn İzin",
                             Status = 1
                         },
                         new
                         {
-                            Id = new Guid("fc5f77d1-4072-46f5-b531-5941b1c1537b"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4528),
+                            Id = new Guid("de770e7a-3949-4008-a2bf-ae5a4860983e"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1240),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "Basedefault",
                             Description = "",
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4529),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1242),
                             Name = "Eğitim İzin",
                             Status = 1
                         },
                         new
                         {
-                            Id = new Guid("b41edee0-e003-4003-b8dd-c319c28fbfba"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4533),
+                            Id = new Guid("d20e2b79-00b3-4d94-aeaf-8a0533fb480b"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1248),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "Basedefault",
                             Description = "",
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4535),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(1263),
                             Name = "Doğum İzin",
                             Status = 1
                         });
@@ -551,48 +551,48 @@ namespace HRBoost.UI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6bc14cc6-d8ff-4097-81bd-e2524690b05e"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5790),
+                            Id = new Guid("8b92b1b5-76f2-4477-a032-18437e0b621a"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2512),
                             CreatedBy = "Basedefault",
                             Duration = 0,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5798),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2521),
                             Price = 0m,
                             Status = 1,
                             SubscriptionType = "Free"
                         },
                         new
                         {
-                            Id = new Guid("522e96b4-dcec-4c97-931d-d5302b065ef7"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5813),
+                            Id = new Guid("958104ef-2e3c-44d1-87f8-b0fa02d0e3ef"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2540),
                             CreatedBy = "Basedefault",
                             Duration = 1,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5824),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2542),
                             Price = 149.90m,
                             Status = 1,
                             SubscriptionType = "Monthly"
                         },
                         new
                         {
-                            Id = new Guid("d98db5b1-0d87-4bd8-bc5d-bb4a085f6b41"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5828),
+                            Id = new Guid("92691fe9-5e9d-4c09-8419-2c06ddb6b5d6"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2547),
                             CreatedBy = "Basedefault",
                             Duration = 12,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5830),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2550),
                             Price = 1499.90m,
                             Status = 1,
                             SubscriptionType = "Yearly"
                         },
                         new
                         {
-                            Id = new Guid("875eea3b-249a-48cb-82e5-206692e43285"),
-                            CreateDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5833),
+                            Id = new Guid("50098aa5-0bcc-4604-a824-c249a520a583"),
+                            CreateDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2554),
                             CreatedBy = "Basedefault",
                             Duration = 100,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5835),
+                            ModifiedDate = new DateTime(2025, 2, 6, 0, 36, 25, 58, DateTimeKind.Local).AddTicks(2556),
                             Price = 12999.90m,
                             Status = 1,
                             SubscriptionType = "Premium"
