@@ -15,7 +15,7 @@
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body">Harcama Ekle</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-controller="Expenses" asp-action="Add" asp-area="Personel">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body">Harcama Güncelle</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-action="Update" asp-area="Personel">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h6 class="panel-title"><i class="icon-menu"></i> Expense List</h6>
+        <h6 class="panel-title"><i class="icon-menu"></i> Harcama Listesi</h6>
     </div>
     <div class="panel-body">
         
@@ -59,10 +59,11 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Description</th>
-                    <th>Status</th>
+                    <th>Adı</th>
+                    <th>Miktarı</th>
+                    <th>Açıklama</th>
+                    <th>Durum</th>
+                    <th>İşlem</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,7 +77,7 @@
                         <td>@expense.Status</td>
                         <td>
                             <a asp-action="Delete" asp-controller="Expenses" asp-area="Personel" asp-route-id="@expense.Id" class="btn btn-danger">Sil</a>
-                            <a asp-action="Update" asp-controller="Expenses" asp-area="Personel" asp-route-id="@expense.Id" class="btn btn-warning">Update</a>
+                            <a asp-action="Update" asp-controller="Expenses" asp-area="Personel" asp-route-id="@expense.Id" class="btn btn-warning">Güncelle</a>
                         </td>
                     </tr>
                 }
@@ -84,3 +85,4 @@
         </table>
     </div>
 </div>
+    <a asp-controller="Home" asp-action="Index" asp-area="Personel" class="btn btn-secondary">Geri</a>

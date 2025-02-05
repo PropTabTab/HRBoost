@@ -5,7 +5,6 @@
 }
 @model IEnumerable<HRBoost.Entity.Document>
 
-<h2>HrBoost </h2>
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
@@ -15,21 +14,16 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-
                     <th>Dosya Adı</th>
                     <th> Kullanıcı Adı</th>
-                   
-                  
                     <th>Kayıt Tarihi</th>
                     <th> İşlemler</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                  
                     <th>Dosya Adı</th>
                     <th> Kullanıcı Adı</th>
-                
                     <th>Kayıt Tarihi</th>
                     <th> İşlemler</th>
                 </tr>
@@ -38,18 +32,17 @@
                 @foreach (var document in Model)
                 {
                     <tr>
-                      
                         <td>@document.FileName </td>
                         <td>@User.Identity.Name </td>
                         <td>@document.UploadDate</td>
                         <th> <a asp-action="Delete" asp-controller="Document" asp-area="Personel" asp-route-id="@document.Id" class="btn btn-danger">Sil</a></th>
-
                     </tr>
                 }
-
-
             </tbody>
         </table>
     </div>
 </div>
+
+<a asp-action="Add" asp-controller="Document" asp-area="Personel" class="btn btn-primary">Yeni Özlük Ekle</a>
+<a asp-action="Index" asp-controller="Home" asp-area="Personel" class="btn btn-secondary">Geri</a>
 

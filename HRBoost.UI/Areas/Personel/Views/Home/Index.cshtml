@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="container-fluid px-4">
-<h1 class="mt-4">PErsonel Sayfası</h1>
+<h1 class="mt-4">Personel</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">WELCOME</li>
 </ol>
@@ -14,7 +14,7 @@
         <div class="card bg-primary text-white mb-4">
             <div class="card-body">Harcamalarım</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-controller="Expenses" asp-action="Index" asp-area="Personel">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="card bg-warning text-white mb-4">
             <div class="card-body">Zimmetlerim</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" asp-controller="Debit" asp-action="List" asp-area="Personel">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -32,16 +32,16 @@
         <div class="card bg-success text-white mb-4">
             <div class="card-body">İzinlerim</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-controller="PermissionRequest" asp-action="Index" asp-area="Personel">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
         <div class="card bg-danger text-white mb-4">
-            <div class="card-body">Resmi Tatiller</div>
+            <div class="card-body">Özlük</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-controller="Document" asp-action="Index" asp-area="Personel">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -80,12 +80,6 @@
                     <th>Tarih</th>
                 </tr>
             </thead>
-                <tfoot>
-                    <tr>
-                        <th>Ad</th>
-                        <th>Tarih</th>
-                    </tr>
-                </tfoot>
             <tbody>
                 @foreach (var holiday in Model)
                 {

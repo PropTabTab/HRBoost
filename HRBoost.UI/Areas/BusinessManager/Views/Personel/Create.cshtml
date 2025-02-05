@@ -7,29 +7,46 @@
 
 
 
-<h2>Yeni Personel Ekle</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="FirstName">Ad</label>
-        <input asp-for="FirstName" class="form-control" placeholder="Ad girin" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
+            <div class="card" style="border-color: #ddd;">
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="card-title">Yeni Personel Ekle</h5>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+
+                        <div class="form-group mb-2">
+                            <label for="FirstName">Ad</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="Ad girin" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group mb-2">
+                            <label for="LastName">Soyad</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Soyad girin" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group mb-2">
+                            <label for="Email">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" placeholder="Email adresi girin" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                            <a asp-action="Index" class="btn btn-secondary">Geri</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="LastName">Soyad</label>
-        <input asp-for="LastName" class="form-control" placeholder="Soyad girin" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="Email">Email</label>
-        <input asp-for="Email" type="email" class="form-control" placeholder="Email adresi girin" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-
-  
-
-    <button type="submit" class="btn btn-primary">Ekle</button>
-    <a asp-action="Index" class="btn btn-secondary">Geri</a>
-</form>
+</div>
