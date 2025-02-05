@@ -2,40 +2,87 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 @model IEnumerable<HRBoost.Entity.User>
+
 <style>
   
     body {
-        background-color: black; 
-        color: white; 
+        background-color: white;
+        color: black;
     }
 
    
-    table {
-        background-color: #1a1a1a; 
-        color: white; 
+    .card {
+        background-color: white !important;
+        color: black !important;
+        border: 1px solid #ddd;
     }
 
-    th, td {
-        border: 1px solid white; 
-        color: white;
-    }
-
-   
-    .text-white {
+  
+    .card-header {
+        background-color: #343a40 !important; /* Dark grey */
         color: white !important;
     }
+
+    
+    table {
+        width: 100%;
+        background-color: white;
+        color: black;
+        border-collapse: collapse;
+    }
+
+  
+    th {
+        background-color: white !important;
+        color: black !important;
+        padding: 10px;
+        font-weight: bold;
+        text-align: left;
+        border-bottom: 2px solid black;
+    }
+
+    
+    td {
+        background-color: white !important;
+        color: black !important;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+   
+    tr:hover {
+        background-color: #f5f5f5 !important; /* Hafif gri */
+    }
+
+   
+    tr:focus, tr:hover {
+        color: black !important;
+    }
+
+    
+    input[type="search"] {
+        background-color: white;
+        color: black;
+        border: 1px solid #ccc;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+      
+        input[type="search"]::placeholder {
+            color: #888;
+        }
 </style>
 
 <div class="card mb-4">
-    <div class="card-header bg-dark text-white">
+    <div class="card-header">
         <i class="fas fa-table me-1"></i>
-       Kullanıcı Listesi
+        Kullanıcı Listesi
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -45,7 +92,6 @@
             </thead>
             <tfoot>
                 <tr>
-                    <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -58,7 +104,6 @@
 
                 {
                     <tr>
-                        <td>@user.Id</td>
                         <td>@user.FirstName</td>
                         <td>@user.LastName</td>
                         <td>@user.Email</td>
@@ -66,11 +111,7 @@
                         <td>@user.EmailConfirmed</td>
                     </tr>
                 }
-
-
             </tbody>
-            
         </table>
     </div>
 </div>
-
