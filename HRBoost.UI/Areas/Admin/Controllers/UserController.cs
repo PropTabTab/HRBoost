@@ -224,13 +224,21 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                TempData["ErrorMessage"] = "Silmek istediğiniz kullanıcı bulunamadı.";
+                return RedirectToAction("List");
+            }
+
             var result = await _userService.DeleteUserAsync(id);
             if (!result)
             {
-                ViewBag.ErrorMessage = "Kullanıcı silinirken bir hata oluştu.";
-                return View("Error");
+                TempData["ErrorMessage"] = "Kullanıcı silinirken bir hata oluştu.";
+                return RedirectToAction("List");
             }
 
+            TempData["SuccessMessage"] = "Kullanıcı başarıyla silindi.";
             return RedirectToAction("List");
         }
 
