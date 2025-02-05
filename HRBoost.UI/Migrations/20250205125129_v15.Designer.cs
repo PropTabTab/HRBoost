@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HRBoost.UI.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20250204203116_ahmet")]
-    partial class ahmet
+    [Migration("20250205125129_v15")]
+    partial class v15
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -191,11 +191,11 @@ namespace HRBoost.UI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar");
 
-                    b.Property<string>("FileName")
+                    b.Property<byte[]>("File")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("FilePath")
+                    b.Property<string>("FileName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -217,6 +217,8 @@ namespace HRBoost.UI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Document");
                 });
@@ -350,7 +352,7 @@ namespace HRBoost.UI.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -406,6 +408,80 @@ namespace HRBoost.UI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PermissionTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("42ebbb87-b154-41c0-a060-9712a19e8564"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5509),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Basedefault",
+                            Description = "",
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5576),
+                            Name = "Yıllık İzin",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("fb2e23d5-2a89-4597-ae1f-7dc3f77732ce"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5597),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Basedefault",
+                            Description = "",
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5598),
+                            Name = "Sağlık İzin",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("2f6c562a-2524-4e19-b7c3-df000880b8dc"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5601),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Basedefault",
+                            Description = "",
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5603),
+                            Name = "Kişisel İzin",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("197639bb-712a-4d92-9ff4-4c8cc002719c"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5605),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Basedefault",
+                            Description = "",
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5606),
+                            Name = "Ebeveyn İzin",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("3cc361a8-7946-4c71-95bd-205758230ba7"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5608),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Basedefault",
+                            Description = "",
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5610),
+                            Name = "Eğitim İzin",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("26c9584f-b280-443a-9c48-a8144bb35acf"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5613),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Basedefault",
+                            Description = "",
+                            ModifiedBy = "Basedefault",
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5614),
+                            Name = "Doğum İzin",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("HRBoost.Entity.Role", b =>
@@ -478,48 +554,48 @@ namespace HRBoost.UI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("382881dc-724f-4d26-8daf-f566633a8e8f"),
-                            CreateDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1222),
+                            Id = new Guid("349c3da0-a4ef-4eea-a3e6-342c38123349"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6254),
                             CreatedBy = "Basedefault",
                             Duration = 0,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1258),
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6267),
                             Price = 0m,
                             Status = 1,
                             SubscriptionType = "Free"
                         },
                         new
                         {
-                            Id = new Guid("cf57c623-bd1b-4af4-9369-78710d09de74"),
-                            CreateDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1277),
+                            Id = new Guid("0d0521bf-6d15-40cb-841d-46377cb7bda0"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6276),
                             CreatedBy = "Basedefault",
                             Duration = 1,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1279),
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6278),
                             Price = 149.90m,
                             Status = 1,
                             SubscriptionType = "Monthly"
                         },
                         new
                         {
-                            Id = new Guid("a24cbd3d-10bc-461c-80cc-93d45d2354f9"),
-                            CreateDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1282),
+                            Id = new Guid("6be794d5-234d-4f5e-8e9d-a8c5140919c5"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6281),
                             CreatedBy = "Basedefault",
                             Duration = 12,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1284),
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6283),
                             Price = 1499.90m,
                             Status = 1,
                             SubscriptionType = "Yearly"
                         },
                         new
                         {
-                            Id = new Guid("6bd79f56-ac79-456c-8f6e-ae2c90e844af"),
-                            CreateDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1286),
+                            Id = new Guid("0231134b-faf7-46cf-adea-811f621fb758"),
+                            CreateDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6285),
                             CreatedBy = "Basedefault",
                             Duration = 100,
                             ModifiedBy = "Basedefault",
-                            ModifiedDate = new DateTime(2025, 2, 4, 23, 31, 15, 520, DateTimeKind.Local).AddTicks(1288),
+                            ModifiedDate = new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6287),
                             Price = 12999.90m,
                             Status = 1,
                             SubscriptionType = "Premium"
@@ -771,6 +847,17 @@ namespace HRBoost.UI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("HRBoost.Entity.Document", b =>
+                {
+                    b.HasOne("HRBoost.Entity.User", "User")
+                        .WithMany("Documents")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("HRBoost.Entity.Expense", b =>
                 {
                     b.HasOne("HRBoost.Entity.Business", "Business")
@@ -800,9 +887,7 @@ namespace HRBoost.UI.Migrations
 
                     b.HasOne("HRBoost.Entity.User", "User")
                         .WithMany("Permissions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("PermissionType");
 
@@ -891,6 +976,8 @@ namespace HRBoost.UI.Migrations
             modelBuilder.Entity("HRBoost.Entity.User", b =>
                 {
                     b.Navigation("Debits");
+
+                    b.Navigation("Documents");
 
                     b.Navigation("Expenses");
 
