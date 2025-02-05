@@ -99,5 +99,15 @@ namespace HRBoost.UI.Areas.BusinessManager.Controllers
 			return RedirectToAction("Index");
 		}
 
-	}
+        [HttpGet]
+        public async Task<IActionResult> Approve(Guid id)
+        {
+            var expense = await _expenseService.GetById(x => x.Id == id);
+			expense.Status= Status.Approved;
+            await _expenseService.UpdateAsync(expense);
+            return RedirectToAction("Index");
+        }
+
+
+    }
 }

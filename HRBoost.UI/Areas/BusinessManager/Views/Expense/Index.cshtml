@@ -75,7 +75,7 @@
                             @if (expense.Status == HRBoost.Shared.Enums.Status.Pending)
                             {
                                 <td>
-                                    <a asp-action="Update" asp-controller="Expense" asp-area="BusinessManager" asp-route-id="@expense.Id" class="btn btn-dark">Onay</a>
+                                    <a asp-action="Approve" asp-controller="Expense" asp-area="BusinessManager" asp-route-id="@expense.Id" class="btn btn-dark">Onay</a>
                                     <a asp-action="Delete" asp-controller="Expense" asp-area="BusinessManager" asp-route-id="@expense.Id" class="btn btn-danger">Reject</a>
                                 </td>
                             }
