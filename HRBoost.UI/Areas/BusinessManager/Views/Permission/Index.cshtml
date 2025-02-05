@@ -47,18 +47,18 @@
                         <td>@request.PermissionRequest.Status</td>
                         <td>@request.PermissionRequest.Description</td>
                         <td>
-                            <a href="@Url.Action("Details", "BusinessManager", new { id = request.PermissionRequest.Id })" class="btn btn-info btn-sm">
+                            <a href="@Url.Action("Details", "Permission", new { id = request.PermissionRequest.Id })" class="btn btn-info btn-sm">
                                 <i class="fa fa-eye"></i> Detay
                             </a>
                             @if (request.PermissionRequest.Status == HRBoost.Shared.Enums.Status.Pending)
 
                             {
-                                <form method="post" action="@Url.Action("Approve", "BusinessManager", new { id = request.PermissionRequest.Id })" style="display:inline;">
+                                <form method="post" action="@Url.Action("Approve", "Permission", new { id = request.PermissionRequest.Id })" style="display:inline;">
                                     <button type="submit" class="btn btn-success btn-sm">
                                         <i class="fa fa-check"></i> Onayla
                                     </button>
                                 </form>
-                                <form method="post" action="@Url.Action("Reject", "BusinessManager", new { id = request.PermissionRequest.Id })" style="display:inline;">
+                                <form method="post" action="@Url.Action("Reject", "Permission", new { id = request.PermissionRequest.Id })" style="display:inline;">
                                     <button type="submit" class="btn btn-danger btn-sm">
                                         <i class="fa fa-times"></i> Reddet
                                     </button>

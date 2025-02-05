@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HRBoost.UI.Migrations
 {
     /// <inheritdoc />
-    public partial class v15 : Migration
+    public partial class v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -412,12 +412,12 @@ namespace HRBoost.UI.Migrations
                 columns: new[] { "Id", "CreateDate", "CreatedAt", "CreatedBy", "Days", "Description", "ModifiedBy", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { new Guid("197639bb-712a-4d92-9ff4-4c8cc002719c"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5605), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5606), "Ebeveyn İzin", 1 },
-                    { new Guid("26c9584f-b280-443a-9c48-a8144bb35acf"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5613), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5614), "Doğum İzin", 1 },
-                    { new Guid("2f6c562a-2524-4e19-b7c3-df000880b8dc"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5601), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5603), "Kişisel İzin", 1 },
-                    { new Guid("3cc361a8-7946-4c71-95bd-205758230ba7"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5608), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5610), "Eğitim İzin", 1 },
-                    { new Guid("42ebbb87-b154-41c0-a060-9712a19e8564"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5509), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5576), "Yıllık İzin", 1 },
-                    { new Guid("fb2e23d5-2a89-4597-ae1f-7dc3f77732ce"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5597), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(5598), "Sağlık İzin", 1 }
+                    { new Guid("b41edee0-e003-4003-b8dd-c319c28fbfba"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4533), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4535), "Doğum İzin", 1 },
+                    { new Guid("c2f78d5c-873d-43ba-af17-2888bd699910"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4433), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4478), "Yıllık İzin", 1 },
+                    { new Guid("dbea3f2f-4984-4077-abe6-7836123c573b"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4504), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4506), "Sağlık İzin", 1 },
+                    { new Guid("e08f3dee-7107-4319-a1c4-2be6cbf25026"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4511), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4513), "Kişisel İzin", 1 },
+                    { new Guid("e721cf12-7999-4b33-9f8c-b84b6c1cc336"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4523), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4524), "Ebeveyn İzin", 1 },
+                    { new Guid("fc5f77d1-4072-46f5-b531-5941b1c1537b"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4528), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Basedefault", null, "", "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(4529), "Eğitim İzin", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -425,10 +425,10 @@ namespace HRBoost.UI.Migrations
                 columns: new[] { "Id", "CreateDate", "CreatedBy", "Duration", "ModifiedBy", "ModifiedDate", "Price", "Status", "SubscriptionType" },
                 values: new object[,]
                 {
-                    { new Guid("0231134b-faf7-46cf-adea-811f621fb758"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6285), "Basedefault", 100, "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6287), 12999.90m, 1, "Premium" },
-                    { new Guid("0d0521bf-6d15-40cb-841d-46377cb7bda0"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6276), "Basedefault", 1, "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6278), 149.90m, 1, "Monthly" },
-                    { new Guid("349c3da0-a4ef-4eea-a3e6-342c38123349"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6254), "Basedefault", 0, "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6267), 0m, 1, "Free" },
-                    { new Guid("6be794d5-234d-4f5e-8e9d-a8c5140919c5"), new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6281), "Basedefault", 12, "Basedefault", new DateTime(2025, 2, 5, 15, 51, 28, 357, DateTimeKind.Local).AddTicks(6283), 1499.90m, 1, "Yearly" }
+                    { new Guid("522e96b4-dcec-4c97-931d-d5302b065ef7"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5813), "Basedefault", 1, "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5824), 149.90m, 1, "Monthly" },
+                    { new Guid("6bc14cc6-d8ff-4097-81bd-e2524690b05e"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5790), "Basedefault", 0, "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5798), 0m, 1, "Free" },
+                    { new Guid("875eea3b-249a-48cb-82e5-206692e43285"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5833), "Basedefault", 100, "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5835), 12999.90m, 1, "Premium" },
+                    { new Guid("d98db5b1-0d87-4bd8-bc5d-bb4a085f6b41"), new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5828), "Basedefault", 12, "Basedefault", new DateTime(2025, 2, 5, 23, 54, 36, 557, DateTimeKind.Local).AddTicks(5830), 1499.90m, 1, "Yearly" }
                 });
 
             migrationBuilder.CreateIndex(

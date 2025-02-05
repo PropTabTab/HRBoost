@@ -24,7 +24,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var bl = await _businessService.GetAll();
+            var bl = await _businessService.GetAllPending();
             return View(bl);
         }
 
@@ -82,6 +82,32 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             {
                 _emailService.SendEmail(yonetici.Email, "Abolenik süresi dolumu", "Abonelik süreniz dolduğu için hesabiniz dondurulmuştur. Daha fazla bilgi için müşteri hizmetleriyle iletişime geçin");
             }
+           b.Status = Shared.Enums.Status.DeActive;
+            await _businessService.UpdateAsync(b);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Unfreeze(Guid id)
+        {
+            var b = await _businessService.GetById(x => x.Id == id);
+            var ul = (await _userService.GetAllUsersAsync()).Where(x => x.BusinessId == b.Id).ToList();
+            var yonetici = new User();
+            foreach (var user in ul)
+            {
+                user.Status = Shared.Enums.Status.Active;
+                await _userService.UpdateUserAsync(user);
+                if ((await _userService.GetUserRole(user)).ToLower() == "businessmanager")
+                {
+                    yonetici = user;
+                }
+            }
+            if (yonetici != null)
+            {
+                _emailService.SendEmail(yonetici.Email, "Abonelik yenilendi. ", "Aboneliğiniz yeniden aktive edilmiştir. Daha fazla bilgi için müşteri hizmetleriyle iletişime geçin");
+            }
+            b.Status = Shared.Enums.Status.Active;
+            await _businessService.UpdateAsync(b);
             return RedirectToAction("Index");
         }
 
