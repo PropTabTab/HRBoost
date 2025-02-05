@@ -59,9 +59,10 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Quantity</th>
-                        <th>Description</th>
+                        <th>Ad</th>
+                        <th>Miktar</th>
+                        <th>Durum</th>
+                        <th>Açıklama</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +73,7 @@
                             <td>@expense.Name</td>
                             <td>@expense.Quantity</td>
                             <td>@expense.Description</td>
+                            <td>@expense.Status</td>
                             @if (expense.Status == HRBoost.Shared.Enums.Status.Pending)
                             {
                                 <td>
