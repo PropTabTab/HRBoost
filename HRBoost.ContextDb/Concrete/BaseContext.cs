@@ -75,7 +75,11 @@ namespace HRBoost.ContextDb.Concrete
 						if (entry.State == EntityState.Added)
 						{
 							baseEntity.CreateDate = now;
-							baseEntity.CreatedBy = "baseDefault";
+							if(baseEntity.CreatedBy=="" || baseEntity.CreatedBy == null)
+                            {
+                                baseEntity.CreatedBy = "baseDefault";
+
+                            }
 							if (baseEntity.Status != Status.Pending) 
 							{
                                 baseEntity.Status = Status.Active;

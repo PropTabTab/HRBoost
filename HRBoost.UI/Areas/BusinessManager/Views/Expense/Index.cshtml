@@ -59,21 +59,24 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+
                         <th>Ad</th>
                         <th>Miktar</th>
-                        <th>Durum</th>
                         <th>Açıklama</th>
+                        <th>Durum</th>
+                        <th>Personel</th>
+                        <th>İşlem</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var expense in Model)
                     {
                         <tr>
-
                             <td>@expense.Name</td>
                             <td>@expense.Quantity</td>
                             <td>@expense.Description</td>
                             <td>@expense.Status</td>
+                            <td>@expense.CreatedBy</td>
                             @if (expense.Status == HRBoost.Shared.Enums.Status.Pending)
                             {
                                 <td>

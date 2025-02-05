@@ -49,6 +49,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
                 expense.UserID = personel.Id;
                 expense.BusinessID = (Guid)personel.BusinessId;
                 expense.Status=Shared.Enums.Status.Pending;
+                expense.CreatedBy= personel.FirstName +" "+ personel.LastName;
                 await _expenseService.AddAsync(expense);
 
                 return RedirectToAction("Index");
