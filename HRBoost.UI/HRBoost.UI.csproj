@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HRBoost.ContextDb\HRBoost.ContextDb.csproj" />
     <ProjectReference Include="..\HRBoost.Services\HRBoost.Services.csproj" />
+    <ProjectReference Include="..\HRBoost.Shared\HRBoost.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

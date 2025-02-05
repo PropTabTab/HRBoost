@@ -203,10 +203,7 @@ namespace HRBoost.Services.Concretes
         }
 
 
-        public Task<User> GetUserByEmailAsync(string email)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public List<User> GetUsersByBusiness(Guid businessId)
         {

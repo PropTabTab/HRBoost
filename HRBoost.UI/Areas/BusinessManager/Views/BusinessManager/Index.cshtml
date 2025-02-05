@@ -1,0 +1,73 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<HRBoost.UI.Areas.Personel.Models.PermissionRequestVM>
+
+@{
+    ViewData["Title"] = "İzin Talepleri";
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm p-4">
+        <h2><i class="fa fa-list"></i> İzin Talepleri</h2>
+        <hr />
+
+        @if (TempData["ErrorMessage"] != null)
+
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Personel</th>
+                    <th>İzin Türü</th>
+                    <th>Başlangıç</th>
+                    <th>Bitiş</th>
+                    <th>Açıklama</th>
+                    <th>Durum</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model)
+
+                {
+                    <tr>
+                        <td>@request.EmployeeName</td>
+                        <td>@request.PermissionRequest.PermissionType</td>
+                        <td>@request.PermissionRequest.StartDate</td>
+                        <td>@request.PermissionRequest.EndDate</td>
+                        <td>@request.PermissionRequest.Status</td>
+                        <td>@request.PermissionRequest.Description</td>
+                        <td>
+                            <a href="@Url.Action("Details", "BusinessManager", new { id = request.PermissionRequest.Id })" class="btn btn-info btn-sm">
+                                <i class="fa fa-eye"></i> Detay
+                            </a>
+                            @if (request.PermissionRequest.Status == HRBoost.Shared.Enums.Status.Pending)
+
+                            {
+                                <form method="post" action="@Url.Action("Approve", "BusinessManager", new { id = request.PermissionRequest.Id })" style="display:inline;">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fa fa-check"></i> Onayla
+                                    </button>
+                                </form>
+                                <form method="post" action="@Url.Action("Reject", "BusinessManager", new { id = request.PermissionRequest.Id })" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-times"></i> Reddet
+                                    </button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

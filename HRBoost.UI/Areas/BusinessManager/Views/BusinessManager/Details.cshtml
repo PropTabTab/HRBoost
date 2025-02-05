@@ -1,0 +1,41 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.UI.Areas.Personel.Models.PermissionRequestVM
+
+@{
+    ViewData["Title"] = "İzin Talebi Detayı";
+
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm p-4">
+        <h2><i class="fa fa-info-circle"></i> İzin Talebi Detayı</h2>
+        <hr />
+
+        <p><strong>Personel:</strong> @Model.EmployeeName</p>
+        <p><strong>İzin Türü:</strong> @Model.PermissionRequest.PermissionType</p>
+        <p><strong>Başlangıç Tarihi:</strong> @Model.PermissionRequest.StartDate</p>
+        <p><strong>Bitiş Tarihi:</strong> @Model.PermissionRequest.EndDate</p>
+        <p><strong>Açıklama:</strong> @Model.PermissionRequest.Description</p>
+        <p><strong>Durum:</strong> @Model.PermissionRequest.Status</p>
+
+        @if (Model.PermissionRequest.Status ==HRBoost.Shared.Enums.Status.Pending)
+
+        {
+            <form method="post" action="@Url.Action("Approve", "BusinessManager", new { id = Model.PermissionRequest.Id })" style="display:inline;">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-check"></i> Onayla
+                </button>
+            </form>
+            <form method="post" action="@Url.Action("Reject", "BusinessManager", new { id = Model.PermissionRequest.Id })" style="display:inline;">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-times"></i> Reddet
+                </button>
+            </form>
+        }
+
+        <a href="@Url.Action("Index", "BusinessManager")" class="btn btn-secondary">
+            <i class="fa fa-arrow-left"></i> Geri Dön
+        </a>
+    </div>
+</div>
