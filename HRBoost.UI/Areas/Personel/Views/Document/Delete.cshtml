@@ -1,0 +1,21 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model HRBoost.Entity.Document
+
+@{
+    ViewData["Title"] = "Sil";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Özlük Bilgisi Sil</h2>
+<p>
+    @Model.UserId kullanıcısına ait
+    "@Model.FileName" dosyasını (@Model.UploadDate tarihinde yüklenmiş) silmek istediğinize emin misiniz?
+</p>
+
+<form method="post" asp-action="DeleteConfirmed" asp-controller="Document"asp-area="Personel"asp-route-id=@Model.Id > 
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Evet, Sil</button>
+    <a class="btn btn-primary" href="/Personel/Document/Index">Hayır, Geri Dön</a>
+</form>
+

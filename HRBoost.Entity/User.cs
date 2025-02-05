@@ -37,5 +37,7 @@ namespace HRBoost.Entity
         public virtual List<Debit> Debits { get; set; }
         public virtual List<PermissionRequest> Permissions { get; set; }
 
+        public virtual List<Document>   Documents { get; set; }
+
     }
 }

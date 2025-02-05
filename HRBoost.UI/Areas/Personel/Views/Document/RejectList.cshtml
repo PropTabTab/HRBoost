@@ -19,18 +19,18 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th> Tc</th>
+                    <th> Kullanıcı Adı</th>
                     <th>DosyaAdı</th>
-                    <th>KayıtYeri</th>
+                   
                     <th>KayıtTarihi</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th> Tc</th>
+                    <th> Kullanıcı Adı</th>
                     <th>DosyaAdı</th>
-                    <th>KayıtYeri</th>
+                  
                     <th>KayıtTarihi</th>
                 </tr>
             </tfoot>
@@ -38,12 +38,12 @@
                 @foreach (var user in Model)
                 {
                     <tr>
-                        <td>@user.Id</td>
-                        <td>@user.UserId</td>
+                        
+                        <td>@User.Identity.Name</td>
                         <td>@user.FileName </td>
-                        <td>@user.FilePath</td>
+                        
                         <td>@user.UploadDate</td>
-                        <th> <a asp-action="Reject" asp-controller="User" asp-area="Admin" asp-route-id="@user.Id" class="btn btn-danger">Sil</a></th>
+                        <th> <a asp-action="Reject" asp-controller="User" asp-area="Personel" asp-route-id="@user.Id" class="btn btn-danger">Sil</a></th>
                     </tr>
                 }
 

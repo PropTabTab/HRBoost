@@ -1,10 +1,12 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using HRBoost.Services.Concretes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
     public class FileTypeController : Controller
     {
