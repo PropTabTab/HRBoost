@@ -8,43 +8,45 @@
 }
 
 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-<h4>Özlük Ekle </h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Add" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            
-            <div class="form-group">
-                <label asp-for="FileName" class="control-label">Dosya Adı</label>
-                <input asp-for="FileName" class="form-control" />
-                <span asp-validation-for="FileName" class="text-danger"></span>
-          
-            
-            <div class="form-group">
-                <div>
-                    <label for="file">Dosya Yükleyin:</label>
-                    <input asp-for=File type="file" name="file" id="file" />
+            <div class="card" style="border-color: #ddd;">
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="card-title">Özlük Ekle</h5>
                 </div>
 
-          
+                <div class="card-body">
+                    <form asp-action="Add" method="post" enctype="multipart/form-data">
 
-            <div class="form-group">
-                <label asp-for="UploadDate" class="control-label">Tarih</label>
-                <input asp-for="UploadDate" class="form-control" />
-                <span asp-validation-for="UploadDate" class="text-danger"></span>
-            </div>
+                        <div class="form-group mb-2">
+                            <label asp-for="FileName" class="control-label">Dosya Adı</label>
+                            <input asp-for="FileName" class="form-control" />
+                            <span asp-validation-for="FileName" class="text-danger"></span>
+                        </div>
 
-            <div class="form-group">
-                <input type="submit" value="Kaydet" class="btn btn-primary" />
+
+                        <div class="form-group mb-2">
+                            <label for="file">Dosya Yükleyin:</label>
+                            <input asp-for=File type="file" name="file" id="file" />
+                        </div>
+
+
+                        <div class="form-group mb-2">
+                            <label asp-for="UploadDate" class="control-label">Tarih</label>
+                            <input asp-for="UploadDate" class="form-control" />
+                            <span asp-validation-for="UploadDate" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <a asp-action="Index" class="btn btn-secondary">Geri</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Listeye Dön</a>
-</div>
-

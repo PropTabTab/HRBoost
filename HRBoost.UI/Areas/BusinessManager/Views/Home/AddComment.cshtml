@@ -6,28 +6,30 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>AddComment</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-<h4>Business</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddComment">
-            
-            <div class="form-group">
-                <label asp-for="BusinessComment" class="control-label"></label>
-                <input asp-for="BusinessComment" class="form-control" />
-                <span asp-validation-for="BusinessComment" class="text-danger"></span>
+            <div class="card" style="border-color: #ddd;">
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="card-title">Yorum Ekle</h5>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="AddComment" method="post">
+
+                        <div class="form-group">
+                            <textarea id="text" asp-for="BusinessComment" class="form-control" rows="6" placeholder="Yorumunuzu Yazınız" required=""></textarea>
+                            <span asp-validation-for="BusinessComment" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" value="Create" class="btn btn-primary">Kaydet</button>
+                            <a asp-action="Index" class="btn btn-secondary">Geri</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
