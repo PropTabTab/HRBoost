@@ -32,6 +32,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         public IActionResult Add()
         {
             var userModel = new UserViewModel();
+            ViewBag.Roles = new List<string> { "admin", "personel", "businessmanager" };
             return View(userModel);
         }
 
@@ -41,6 +42,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.ErrorMessage = "Lütfen tüm alanları doldurunuz.";
+                ViewBag.Roles = new List<string> { "admin", "personel", "businessmanager" };
                 return View(userModel);
             }
 
@@ -52,8 +54,8 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                 Password = userModel.Password,
                 Status = Status.Active
             };
-
-            var result = await _userService.RegisterAsync(user, "businessmanager");
+            user.EmailConfirmed = true;
+            var result = await _userService.RegisterAsync(user, userModel.Role);
 
             if (!result)
             {
