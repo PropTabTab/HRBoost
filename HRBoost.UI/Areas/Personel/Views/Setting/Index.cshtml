@@ -93,7 +93,9 @@
 
     <h2>Kullanıcı Ayarları</h2>
     <div class="container mt-5">
-        <form asp-action="Settings" method="post">
+        <form asp-action="Index" asp-controller="Setting" method="post">
+            <input asp-for="Id" type="hidden" />
+
             <div class="form-group">
                 <label for="FirstName">Ad:</label>
                 <input asp-for="FirstName" class="form-control" placeholder="Adınızı girin" />
@@ -121,6 +123,6 @@
         </form>
 
 
-        <a asp-action="Deactivate" asp-controller="User" asp-route-id="@Model.Id" class="btn btn-danger mt-2">Hesabı Pasif Yap</a>
+        <a asp-action="Deactivate" asp-controller="Setting" asp-route-id="@Model.Id" class="btn btn-danger mt-2">Hesabı Pasif Yap</a>
        
     </div>

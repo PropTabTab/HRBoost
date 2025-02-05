@@ -104,6 +104,11 @@ namespace HRBoost.Services.Concretes
             u.CreateDate = DateTime.Now;
             u.ModifiedDate = DateTime.Now;
             u.ModifiedBy = "default";
+            if (user.EmailConfirmed)
+            {
+                u.EmailConfirmed = user.EmailConfirmed;
+
+            }
             #endregion
 
             try
