@@ -8,6 +8,8 @@
         public string Password { get; set; }
         public Guid Id { get; set; }
         public string Status { get; set; }
+        public string Role { get; set; }
+
 
     }
 }

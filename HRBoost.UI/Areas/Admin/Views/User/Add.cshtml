@@ -60,8 +60,21 @@
                                 @foreach (var status in Enum.GetValues(typeof(HRBoost.Shared.Enums.Status)))
 
                                 {
-                                    <option value="@status" @(Model.  Status == status ? "selected" : "")>
+                                    <option value="@status" @(Model.Status == status ? "selected" : "")>
                                         @status
+                                    </option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="Role" class="form-label">Rol:</label>
+                            <select asp-for=@Model.Role id="Role" name="Role" class="form-select" required>
+                                @foreach (var role in ViewBag.Roles)
+
+                                {
+                                    <option value="@role" @(Model.Role == role ? "selected" : "")>
+                                        @role
                                     </option>
                                 }
                             </select>
