@@ -1,5 +1,6 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
+using HRBoost.Services.Concretes;
 using HRBoost.UI.Areas.Admin.Models.VM;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,7 +22,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userservice.GetUserByMail(User.Identity.Name);
-            var documents = await _documentservice.GetBy(x => x.UserId == user.Id);
+            var documents = await _documentservice.GetBy(x => x.UserId == user.Id && x.Status!=Shared.Enums.Status.Deleted);
             DocumentVM vm = new DocumentVM();
             return View(documents);
 
@@ -90,24 +91,27 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var document = await _documentservice.GetById(x => x.Id == id);
-            if (document == null)
+            var user = await _documentservice.GetById(x => x.Id == id);
+            if (user == null)
             {
                 ViewBag.ErrorMessage = "Silmek istediğiniz dosya bulunamadı.";
                 return View("Error");
             }
-         
-            return View(document);
+
+            return View(user);
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var document = await _documentservice.GetById(x => x.Id == id);
+            Document document = await _documentservice.GetById(x => x.Id == id);
             await _documentservice.DeleteAsync(document);
 
             return RedirectToAction("Index");
         }
+
 
     }
 }
