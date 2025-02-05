@@ -31,11 +31,11 @@ namespace HRBoost.Services.Concretes
             Business b = new();
             b.BusinessName = business.BusinessName;
             b.SubscriptionId = business.SubscriptionId;
-            b.Status = Shared.Enums.Status.Pending;
+            b.Status = Shared.Enums.Status.Active;
             b.CreatedBy = "default";
             b.CreateDate = DateTime.Now;
             b.ModifiedDate = DateTime.Now;
-            b.BusinessPhone = "placeholder";
+            b.BusinessPhone = business.BusinessPhone;
             b.ModifiedBy = "default";
             b.SubscriptionStartTime = DateTime.Now;
             b.SubscriptionFinishTime = DateTime.Now.AddMonths(subDuration);

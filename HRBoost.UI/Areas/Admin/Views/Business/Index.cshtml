@@ -14,24 +14,25 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Adress</th>
-                    <th>Phone</th>
+                    <th>Ad</th>
+                    <th>Adres</th>
+                    <th>Telefon</th>
                     <th>Logo</th>
-                    <th>Status</th>
-                    <th>Subscription Finish Date</th>
-                    <th></th>
+                    <th>Statü</th>
+                    <th>Üyelik Bitiş Tarihi</th>
+                    <th>İşlemler</th>
 
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Name</th>
-                    <th>Adress</th>
-                    <th>Phone</th>
+                    <th>Ad</th>
+                    <th>Adres</th>
+                    <th>Telefon</th>
                     <th>Logo</th>
-                    <th>Status</th>
-                    <th>Subscription Finish Date</th>
+                    <th>Statü</th>
+                    <th>Üyelik Bitiş Tarihi</th>
+                    <th>İşlemler</th>
 
                     <th></th>
                 </tr>
@@ -50,7 +51,16 @@
                         <td>
                             <a asp-action="Edit" asp-route-id="@b.Id" class="btn btn-warning">Düzenle</a>
                             <a asp-action="Delete" asp-route-id="@b.Id" class="btn btn-danger">Sil</a>
-                            <a asp-action="Freeze" asp-route-id="@b.Id" class="btn btn-danger">Dondur</a>
+                            @if (b.Status == HRBoost.Shared.Enums.Status.Active)
+                            {
+                                <a asp-action="Freeze" asp-route-id="@b.Id" class="btn btn-danger">Dondur</a>
+
+                            }
+                            else
+                            {
+                                <a asp-action="Unfreeze" asp-route-id="@b.Id" class="btn btn-danger">Aktifleştir</a>
+
+                            }
 
                         </td>
                     </tr>

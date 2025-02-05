@@ -7,11 +7,11 @@ using Azure.Core;
 namespace HRBoost.UI.Areas.BusinessManager.Controllers
 {
     [Area("BusinessManager")]
-    public class BusinessManagerController : Controller
+    public class PermissionController : Controller
     {
         private readonly IPermissionRequestService _permissionRequestService;
         private readonly IUserService _userService;
-        public BusinessManagerController(IPermissionRequestService permissionRequestService, IUserService userService)
+        public PermissionController(IPermissionRequestService permissionRequestService, IUserService userService)
         {
             _permissionRequestService = permissionRequestService;
             _userService = userService;
