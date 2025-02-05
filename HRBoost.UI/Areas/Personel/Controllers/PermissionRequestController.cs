@@ -14,12 +14,14 @@ namespace HRBoost.UI.Areas.Personel.Controllers
     {
         private readonly IPermissionRequestService _service;
         private readonly IPermissionTypeService _TypeService;
+        private readonly IUserService _userService;
 
-        public PermissionRequestController(IPermissionRequestService service,IPermissionTypeService typeService)
+        public PermissionRequestController(IPermissionRequestService service,IPermissionTypeService typeService,IUserService userService)
         
         {
             _service = service;
             _TypeService = typeService;
+            _userService = userService;
             
         }
 
@@ -27,7 +29,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         {
             try
             {
-                var requests = await _service.GetAll();
+                var requests = await _service.GetAllPending();
                 return View(requests);
             }
             catch (Exception ex)
@@ -42,6 +44,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         {
             var model=new PermissionRequestVM();
             model.PermissionTypes = await _TypeService.GetAll();
+            
             return View(model); 
             
         }
@@ -55,8 +58,10 @@ namespace HRBoost.UI.Areas.Personel.Controllers
                 TempData["ErrorMessage"] = "Form geçersiz! Lütfen tüm alanları doldurduğunuzdan emin olun.";
                 return View(request);
             }
-
-            await _service.AddAsync(request.PermissionRequest); 
+            var user = await _userService.GetUserByMail(User.Identity.Name);
+            request.PermissionRequest.UserId = user.Id;
+            request.PermissionRequest.Status = Shared.Enums.Status.Pending;
+               await _service.AddAsync(request.PermissionRequest); 
            
 
             TempData["SuccessMessage"] = "İzin talebi başarıyla kaydedildi!";
@@ -65,7 +70,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
 
         public async Task<IActionResult> Details(Guid id)
         {
-            var request = await _service.GetById(x => x.Id == id);
+            var request = await _service.GetById(x => x.Id ==id);
             if (request == null)
             {
                 return NotFound();

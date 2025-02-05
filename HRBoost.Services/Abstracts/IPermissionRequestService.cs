@@ -11,6 +11,7 @@ namespace HRBoost.Services.Abstracts
 {
     public interface IPermissionRequestService : IService<PermissionRequest>
     {
-        
+        Task<bool> ApproveRequest(PermissionRequest request);
+        Task<bool> RejectRequest(PermissionRequest request);
     }
 }
