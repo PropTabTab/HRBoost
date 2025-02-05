@@ -1,4 +1,5 @@
-﻿using HRBoost.ContextDb.Abstract;
+﻿using Azure.Core;
+using HRBoost.ContextDb.Abstract;
 using HRBoost.ContextDb.Concrete;
 using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
@@ -17,29 +18,18 @@ namespace HRBoost.Services.Concretes
 
         }
 
-        public Task<string?> GetAllAsync()
+        public async Task<bool> ApproveRequest(PermissionRequest request)
         {
-            throw new NotImplementedException();
+            request.Status = Shared.Enums.Status.Approved;
+            await this.UpdateAsync(request);
+            return true;
         }
 
-        public Task<string?> GetAllRequestsAsync()
+        public async Task<bool> RejectRequest(PermissionRequest request)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<string?> GetByIdAsync(Func<object, bool> value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
+            request.Status = Shared.Enums.Status.Deleted;
+            await this.UpdateAsync(request);
+            return true;
         }
     }
 }

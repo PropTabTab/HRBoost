@@ -26,7 +26,7 @@ namespace HRBoost.Services.Abstracts
 
         Task<string> GetUserRole(User user);
        
-        Task<User> GetUserByEmailAsync(string email);
+   
         List<User> GetUsersByBusiness(Guid businessId);
         Task<bool> Logout();
     }
