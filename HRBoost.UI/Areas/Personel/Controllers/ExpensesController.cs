@@ -29,7 +29,9 @@ namespace HRBoost.UI.Areas.Personel.Controllers
    
         public async Task<IActionResult> Index()
         {
-            return View(await _expenseService.GetAllPending());
+            var expenses = await _expenseService.GetAllPending();
+            var user = await _userService.GetUserByMail(User.Identity.Name);
+            return View(expenses.Where(x=> x.UserID == user.Id).ToList());
         }
 
         [HttpGet]

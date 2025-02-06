@@ -25,7 +25,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
         var yonetici = await _userService.GetUserByMail(User.Identity.Name);
         var business = (await _businessService.GetBy(x => x.Id == yonetici.BusinessId)).First();
 
-        var workers = (await _userService.GetAllUsersAsync()).Where(x => x.BusinessId == business.Id).ToList();
+        var workers = (await _userService.GetAllUsersAsync()).Where(x => x.BusinessId == business.Id ).ToList();
         return View(workers);
     }
 

@@ -61,7 +61,7 @@
                     <div class="col-xs-6">
                         <div class="square bg-warning">
                             <h3 class="text-center"> Kalan İzinler</h3>
-                            <h1 class="text-center"> @(20-@Model.permissionDuration) Gün </h1>
+                            <h1 class="text-center"> @(20 - @Model.permissionDuration) Gün </h1>
                         </div>
                     </div>
                 </div>
@@ -70,11 +70,21 @@
         </div>
         <div class="col-xl-6">
             <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    İzinli Çalısan Sayısı
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="square bg-success">
+                            <h3 class="text-center"> Onaylanmış Harcamalar</h3>
+                            <h1 class="text-center"> @Model.approvedExpense₺ </h1>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="square bg-warning">
+                            <h3 class="text-center"> Onay Bekleyen Harcamalar</h3>
+                            <h1 class="text-center"> @Model.pendingExpense₺ </h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
             </div>
         </div>
     </div>

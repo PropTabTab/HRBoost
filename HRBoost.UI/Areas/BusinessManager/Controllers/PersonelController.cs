@@ -47,7 +47,8 @@ namespace HRBoost.UI.Areas.BusinessManager.Controllers
 
                 model.BusinessId = business.Id;
                 model.BusinessName = business.BusinessName;   
-                model.Password = "123456789";   
+                model.Password = "123456789";
+                model.EmailConfirmed = true;
                 await _userService.RegisterAsync(model, "Personel");
                 TempData["Message"] = "Personel başarıyla eklendi.";
                 return RedirectToAction("Index");
@@ -119,7 +120,7 @@ namespace HRBoost.UI.Areas.BusinessManager.Controllers
             {
                 model.Status = Shared.Enums.Status.DeActive;
                 await _userService.UpdateUserAsync(model);
-                _emailService.SendEmail(model.Email, "Hesabınız şirket yöeticisi tarafından askıya alındı", "Ayrıntılı bilgi için şirket yöeticinizle iletişime geçin");
+                _emailService.SendEmail(model.Email, "Hesabınız şirket yöneticisi tarafından askıya alındı", "Ayrıntılı bilgi için şirket yöeticinizle iletişime geçin");
                 return RedirectToAction("Index");
             }
 
