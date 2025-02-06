@@ -2,6 +2,7 @@
 @model HRBoost.UI.Areas.BusinessManager.Models.VM.HomeVM
 @{
     ViewData["Title"] = "Index";
+
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,6 +11,7 @@
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">WELCOME</li>
     </ol>
+
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
@@ -24,7 +26,7 @@
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body">İzin</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a asp-action="Index" asp-area="BusinessManager" asp-controller="Permission" class="small text-white stretched-link" >View Details</a>
+                    <a asp-action="Index" asp-area="BusinessManager" asp-controller="Permission" class="small text-white stretched-link">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -48,46 +50,46 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="square bg-success">
-                            <h3 class="text-center"> Onaylı İzinler</h3>
-                            <h1 class="text-center"> @Model.approvedPermission </h1>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6">
-                        <div class="square bg-warning">
-                            <h3 class="text-center"> Onay bekleyen izinler</h3>
-                            <h1 class="text-center"> @Model.pendingPermission </h1>
-                        </div>
-                    </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title font-weight-bold">Onaylı İzinler</h5>
+                    <p class="card-text display-6 text-muted">@Model.approvedPermission</p>
                 </div>
-
             </div>
         </div>
         <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="square bg-success">
-                            <h3 class="text-center"> Onaylanmış Harcamalar</h3>
-                            <h1 class="text-center"> @Model.approvedExpense₺ </h1>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6">
-                        <div class="square bg-warning">
-                            <h3 class="text-center"> Onay Bekleyen Harcamalar</h3>
-                            <h1 class="text-center"> @Model.pendingExpense₺ </h1>
-                        </div>
-                    </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title font-weight-bold">Onay Bekleyen İzinler</h5>
+                    <p class="card-text display-6 text-muted">@Model.pendingPermission</p>
                 </div>
             </div>
         </div>
+    </div>
+
+  
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title font-weight-bold">Onaylanmış Harcamalar</h5>
+                    <p class="card-text display-6 text-muted">@Model.approvedExpense₺</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title font-weight-bold">Onay Bekleyen Harcamalar</h5>
+                    <p class="card-text display-6 text-muted">@Model.pendingExpense₺</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -104,6 +106,7 @@
                 </thead>
                 <tbody>
                     @foreach (var user in Model.Personel)
+
                     {
                         <tr>
                             <td>@user.FirstName</td>
@@ -116,3 +119,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    .card {
+        border-radius: 10px;
+        transition: 0.3s ease-in-out;
+    }
+    .card:hover {
+        transform: scale(1.02);
+    }
+    .card-title {
+        font-size: 1.2rem;
+        color: #333;
+    }
+    .card-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    .shadow-sm {
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
