@@ -5,6 +5,7 @@ using HRBoost.UI.Areas.Admin.Models.VM;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace HRBoost.UI.Areas.Admin.Controllers
 {
@@ -91,22 +92,22 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UserViewModel userModel)
         {
-            if (!ModelState.IsValid)
+            if (userModel==null)
             {
                 ViewBag.ErrorMessage = "Lütfen tüm alanları doğru şekilde doldurunuz.";
                 return View(userModel);
             }
 
-            var user = new User
-            {
-                Id = userModel.Id,
-                FirstName = userModel.FirstName,
-                LastName = userModel.LastName,
-                Email = userModel.Email,
-                Status = Enum.Parse<Status>(userModel.Status)
-            };
+            var oldUser = await _userService.GetUserByIdAsync(userModel.Id);
+            oldUser.Id = userModel.Id;
+            oldUser.FirstName = userModel.FirstName;
+            oldUser.LastName = userModel.LastName;
+            oldUser.Email = userModel.Email;
+            oldUser.Status = Enum.Parse<Status>(userModel.Status);
+            
+            
 
-            var result = await _userService.UpdateUserAsync(user);
+            var result = await _userService.UpdateUserAsync(oldUser);
 
             if (!result)
             {
@@ -131,7 +132,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             }
 
 
-            var user = users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault();
+            var user = users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             var userModel = new UserViewModel
             {
                 Id = user.Id,
@@ -174,17 +175,17 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             return RedirectToAction("Settings");
         }
 
-        
+
         public async Task<IActionResult> Deactivate(Guid id)
         {
             var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
             {
                 ViewBag.ErrorMessage = "Pasif hale getirmek istediğiniz kullanıcı bulunamadı.";
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("List");
             }
 
-            if ((await _userService.GetUserRole(user)).ToLower()=="businessmanager")
+            if ((await _userService.GetUserRole(user)).ToLower() == "businessmanager")
             {
                 var users = _userService.GetUsersByBusiness((Guid)user.BusinessId);
                 foreach (var u in users)
@@ -192,7 +193,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
                     u.Status = Status.DeActive;
                     var res = await _userService.UpdateUserAsync(u);
                 }
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("List", "User", new { area = "Admin" });
 
             }
             user.Status = Status.DeActive;
@@ -201,11 +202,10 @@ namespace HRBoost.UI.Areas.Admin.Controllers
             if (!result)
             {
                 ViewBag.ErrorMessage = "Kullanıcı pasif hale getirilemedi.";
-                return RedirectToAction("Settings");
+                return RedirectToAction("List");
             }
 
-            await _userService.Logout();
-            return RedirectToAction("Index","Home", new {area ="" });
+            return RedirectToAction("List", "User", new { area = "Admin" });
         }
 
         [HttpGet]
@@ -247,6 +247,38 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         {
             await _userService.Logout();
             return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        public async Task<IActionResult> Activate(Guid id)
+        {
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = "Aktif hale getirmek istediğiniz kullanıcı bulunamadı.";
+                return RedirectToAction("List");
+            }
+
+            if ((await _userService.GetUserRole(user)).ToLower() == "businessmanager")
+            {
+                var users = _userService.GetUsersByBusiness((Guid)user.BusinessId);
+                foreach (var u in users)
+                {
+                    u.Status = Status.Active;
+                    var res = await _userService.UpdateUserAsync(u);
+                }
+                return RedirectToAction("List", "User", new { area = "Admin" });
+
+            }
+            user.Status = Status.Active;
+            var result = await _userService.UpdateUserAsync(user);
+
+            if (!result)
+            {
+                ViewBag.ErrorMessage = "Kullanıcı aktif hale getirilemedi.";
+                return RedirectToAction("List");
+            }
+
+            return RedirectToAction("List", "User", new { area = "Admin" });
         }
     }
 }

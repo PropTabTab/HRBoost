@@ -1,13 +1,14 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 @model IEnumerable<HRBoost.Entity.User>
 
 <style>
-  
+
     body {
-        background-color: white; 
-        color: black; 
+        background-color: white;
+        color: black;
     }
 
 
@@ -17,13 +18,13 @@
         border: 1px solid #ddd;
     }
 
-   
+
     .card-header {
-        background-color: #343a40 !important; 
+        background-color: #343a40 !important;
         color: white !important;
     }
 
-    
+
     table {
         width: 100%;
         background-color: white;
@@ -31,7 +32,7 @@
         border-collapse: collapse;
     }
 
- 
+
     th {
         background-color: white !important;
         color: black !important;
@@ -41,7 +42,7 @@
         border-bottom: 2px solid black;
     }
 
-   
+
     td {
         background-color: white !important;
         color: black !important;
@@ -49,17 +50,17 @@
         border: 1px solid #ddd;
     }
 
-   
+
     tr:hover {
-        background-color: #f5f5f5 !important; 
+        background-color: #f5f5f5 !important;
     }
 
-   
+
     tr:focus, tr:hover {
         color: black !important;
     }
 
-    
+
     input[type="search"] {
         background-color: white;
         color: black;
@@ -68,12 +69,12 @@
         border-radius: 5px;
     }
 
-    
-    input[type="search"]::placeholder {
-        color: #888;
-    }
 
-    
+        input[type="search"]::placeholder {
+            color: #888;
+        }
+
+
     .btn-delete {
         background-color: red;
         color: white;
@@ -83,9 +84,9 @@
         cursor: pointer;
     }
 
-    .btn-delete:hover {
-        background-color: darkred;
-    }
+        .btn-delete:hover {
+            background-color: darkred;
+        }
 </style>
 
 <script>
@@ -105,40 +106,48 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Adı</th>
+                    <th>Soyadı</th>
                     <th>Email</th>
-                    <th>Status</th>
-                    <th>Email Confirmed</th>
-                    <th>Actions</th> <!-- Yeni sütun: Silme Butonu -->
+                    <th>Statü</th>
+                    <th>Email Doğrulaması</th>
+                    <th>İşlem</th> <!-- Yeni sütun: Silme Butonu -->
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Adı</th>
+                    <th>Soyadı</th>
                     <th>Email</th>
-                    <th>Status</th>
-                    <th>Email Confirmed</th>
-                    <th>Actions</th> <!-- Yeni sütun: Silme Butonu -->
+                    <th>Statü</th>
+                    <th>Email Doğrulaması</th>
+                    <th>İşlem</th> <!-- Yeni sütun: Silme Butonu -->
                 </tr>
             </tfoot>
             <tbody>
                 @foreach (var user in Model)
 
                 {
-                        <tr>
-                            <td>@user.FirstName</td>
-                            <td>@user.LastName</td>
-                            <td>@user.Email</td>
-                            <td>@user.Status</td>
-                            <td>@user.EmailConfirmed</td>
-                            <td>
-                                <button class="btn-delete" onclick="confirmDelete('@user.Id')">Sil</button>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Status</td>
+                        <td>@user.EmailConfirmed</td>
+                        <td>
+                            <button class="btn btn-danger" onclick="confirmDelete('@user.Id')">Sil</button>
+                            <a asp-action="Edit" asp-controller="User" asp-area="Admin" asp-route-id="@user.Id" class="btn btn-warning">Güncelle</a>
+                            @if (user.Status==HRBoost.Shared.Enums.Status.Pending)
+                            {
+                                <a asp-action="Deactivate" asp-controller="User" asp-area="Admin" asp-route-id="@user.Id" class="btn btn-danger">Reddet</a>
+                                <a asp-action="Activate" asp-controller="User" asp-area="Admin" asp-route-id="@user.Id" class="btn btn-primary">Onayla</a>
+                            }
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
+        <a asp-action="Add" asp-controller="User" asp-area="Admin" class="btn btn-primary">Kullanıcı Ekle</a>
+        <a asp-action="Index" asp-controller="Admin" asp-area="Admin" class="btn btn-secondary">Geri</a>
     </div>
 </div>

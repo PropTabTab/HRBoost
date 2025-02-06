@@ -1,11 +1,10 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-@model HRBoost.Entity.PermissionType
-
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
+@model HRBoost.Entity.PermissionType
 
 
 <div class="container mt-5">
@@ -14,22 +13,22 @@
 
             <div class="card" style="border-color: #ddd;">
                 <div class="card-header" style="background-color: #555; color: #fff;">
-                    <h5 class="card-title">Yeni İzin Türü Ekle</h5>
+                    <h5 class="card-title">Dosya Türü Güncelle</h5>
                 </div>
 
                 <div class="card-body">
-                    <form method="post" asp-action="Create" asp-controller="PermissionType" asp-area="Admin" enctype="multipart/form-data">
+                    <form asp-action="Update" method="post">
+                        <input asp-for="Id" type="hidden" />
 
                         <div class="form-group mb-2">
-                            <label asp-for="Name">İzin Türü</label>
-                            <input asp-for="Name" type="text" class="form-control" id="Name" name="Name" placeholder="İzin Türü Adını Girin" required />
-                            <span asp-validation-for="Name" class="text-danger"></span>
+                            <label for="Name" class="form-label">İzin Türü Adı</label>
+                            <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required>
                         </div>
 
 
                         <div class="form-group mb-2">
-                            <label asp-for="Description" for="Description">Açıklama</label>
-                            <textarea class="form-control" id="Description" name="Description" placeholder="Açıklama Girin"></textarea>
+                            <label for="Description" class="form-label">Açıklama</label>
+                            <textarea class="form-control" id="Description" name="Description" rows="3">@Model.Description</textarea>
                         </div>
 
 

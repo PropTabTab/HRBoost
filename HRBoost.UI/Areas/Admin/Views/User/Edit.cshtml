@@ -1,109 +1,65 @@
-﻿@model HRBoost.UI.Areas.Admin.Models.VM.UserViewModel
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model HRBoost.UI.Areas.Admin.Models.VM.UserViewModel
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kullanıcı Düzenleme</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+@{
+    ViewData["Title"] = "Edit";
 
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #333;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
 
-        h1 {
-            color: yellow;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+            <div class="card" style="border-color: #ddd;">
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="card-title">Kullanıcı Güncelleme</h5>
+                </div>
 
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+                <div class="card-body">
+                    <form method=post asp-action="Edit" asp-area="Admin" asp-controller="User" role="form">
+                        <input asp-for="Id" type="hidden" />
 
-        input, select, button {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+                        <div class="form-group mb-2">
+                            <label asp-for="FirstName" class="col-sm-2 control-label">Adı</label>
+                            <div class="col-sm-10">
+                                <input asp-for="FirstName" class="form-control" placeholder="Adı" type="text" />
+                            </div>
+                        </div>
 
-        input, select {
-            background-color: #222;
-            color: white;
-        }
 
-        input:focus, select:focus {
-            outline: none;
-            box-shadow: 0 0 5px yellow;
-        }
+                        <div class="form-group mb-2">
+                            <label asp-for="LastName" class="col-sm-2 control-label">Soyadı</label>
+                            <div class="col-sm-10">
+                                <input asp-for="LastName" class="form-control" placeholder="Soyadı" type="text" />
+                            </div>
+                        </div>
 
-        button {
-            background-color: yellow;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
 
-        button:hover {
-            background-color: orange;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Kullanıcı Düzenleme</h1>
-        <form asp-action="Edit" method="post">
-            <input type="hidden" asp-for="Id" />
+                        <div class="form-group mb-2">
+                            <label asp-for="Email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input asp-for="Email" class="form-control" placeholder="Email" type="text" />
+                            </div>
+                        </div>
 
-            <div>
-                <label asp-for="FirstName">Ad</label>
-                <input asp-for="FirstName" />
+                        <div>
+                            <label asp-for="Status">Durum</label>
+                            <select asp-for="Status">
+                                <option value="Active">Aktif</option>
+                                <option value="DeActive">Pasif</option>
+                                <option value="Pending">Beklemede</option>
+                                <option value="Deleted">Silindi</option>
+                            </select>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <a asp-action="List" asp-controller="User" asp-area="Admin" class="btn btn-secondary">Geri</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div>
-                <label asp-for="LastName">Soyad</label>
-                <input asp-for="LastName" />
-            </div>
-
-            <div>
-                <label asp-for="Email">E-Posta</label>
-                <input asp-for="Email" />
-            </div>
-
-            <div>
-                <label asp-for="Status">Durum</label>
-                <select asp-for="Status">
-                    <option value="Active">Aktif</option>
-                    <option value="DeActive">Pasif</option>
-                    <option value="Pending">Beklemede</option>
-                    <option value="Deleted">Silindi</option>
-                </select>
-            </div>
-
-            <button type="submit">Kaydet</button>
-        </form>
+        </div>
     </div>
-</body>
-</html>
+</div>

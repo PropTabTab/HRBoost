@@ -6,7 +6,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+@* <h1>Edit</h1>
 
 <h4>Business</h4>
 <hr />
@@ -48,5 +48,61 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div> *@
 
+
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card" style="border-color: #ddd;">
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="card-title">Şirketi Düzenle</h5>
+                </div>
+
+                <div class="card-body">
+                    <form method=post asp-action="Edit" asp-area="Admin" asp-controller="Business" role="form">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-2">
+                            <label asp-for="BusinessName" class="control-label">Şirket Adı</label>
+                            <input asp-for="BusinessName" class="form-control" />
+                            <span asp-validation-for="BusinessName" class="text-danger"></span>
+                        </div>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-2">
+                            <label asp-for="BusinessAdress" class="control-label">Şirket Adresi</label>
+                            <input asp-for="BusinessAdress" class="form-control" />
+                            <span asp-validation-for="BusinessAdress" class="text-danger"></span>
+                        </div>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-2">
+                            <label asp-for="BusinessPhone" class="control-label">Şirket Telefonu</label>
+                            <input asp-for="BusinessPhone" class="form-control" />
+                            <span asp-validation-for="BusinessPhone" class="text-danger"></span>
+                        </div>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-2">
+                            <label asp-for="BusinessLogo" class="control-label">Şirket Logosu</label>
+                            <input type="file" asp-for="BusinessLogo" class="form-control" />
+                            <span asp-validation-for="BusinessLogo" class="text-danger"></span>
+                        </div>
+
+                        <input asp-for="Id" type="hidden" />
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <a asp-action="Index" asp-area="Admin" asp-controller="Business" class="btn btn-secondary">Geri</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

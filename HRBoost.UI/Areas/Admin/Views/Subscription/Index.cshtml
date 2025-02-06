@@ -4,34 +4,30 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Reject</h1>
-
 @model List<HRBoost.Entity.Subscription>
-<h2>Kullanıcı Listesi</h2>
+
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        DataTable Example
+        Abonelikler Listesi
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Type</th>
-                    <th>Price(₺)</th>
-                    <th>Duration(Months)</th>
-                    <th>Status</th>
-                    <th></th>
+                    <th>Abonelik Türü</th>
+                    <th>Abonelik Ücreti</th>
+                    <th>Abonelik Süresi (Ay)</th>
+                    <th>Statü</th>
                     <th></th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>Type</th>
-                    <th>Price(₺)</th>
-                    <th>Duration(Months)</th>
-                    <th>Status</th>
-                    <th></th>
+                    <th>Abonelik Türü</th>
+                    <th>Abonelik Ücreti</th>
+                    <th>Abonelik Süresi (Ay)</th>
+                    <th>Statü</th>
                     <th></th>
                 </tr>
             </tfoot>
@@ -43,17 +39,17 @@
                         <td>@sub.Price</td>
                         <td>@sub.Duration</td>
                         <td>@sub.Status</td>
-                        <th> <a asp-action="Delete" asp-controller="Subscription" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-danger">Sil</a></th>
-                        <th> <a asp-action="Update" asp-controller="Subscription" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-danger">Güncelle</a></th>
+                        <th> <a asp-action="Delete" asp-controller="Subscription" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-danger">Sil</a>
+                            <a asp-action="Update" asp-controller="Subscription" asp-area="Admin" asp-route-id="@sub.Id" class="btn btn-warning">Güncelle</a>
+                        </th>
                     </tr>
                 }
 
 
             </tbody>
-            
+
         </table>
-        <div class="row">
-            <a asp-action="Add" asp-controller="Subscription" asp-area="Admin" class="btn btn-primary">Add</a>
-        </div>
+        <a asp-action="Add" asp-controller="Subscription" asp-area="Admin" class="btn btn-primary">Abonelik Türü Ekle</a>
+        <a asp-action="Index" asp-controller="Admin" asp-area="Admin" class="btn btn-secondary">Geri</a>
     </div>
 </div>
