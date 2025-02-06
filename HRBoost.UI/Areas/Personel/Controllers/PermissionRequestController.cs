@@ -30,7 +30,8 @@ namespace HRBoost.UI.Areas.Personel.Controllers
             try
             {
                 var requests = await _service.GetAllPending();
-                return View(requests);
+                var user = await _userService.GetUserByMail(User.Identity.Name);
+                return View(requests.Where(x=> x.UserId==user.Id).ToList());
             }
             catch (Exception ex)
             {

@@ -1,5 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model List<HRBoost.Entity.User>
+@model HRBoost.UI.Areas.BusinessManager.Models.VM.HomeVM
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -51,23 +51,43 @@
     <div class="row">
         <div class="col-xl-6">
             <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Ciro
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="square bg-success">
+                            <h3 class="text-center"> Onaylı İzinler</h3>
+                            <h1 class="text-center"> @Model.approvedPermission </h1>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="square bg-warning">
+                            <h3 class="text-center"> Onay bekleyen izinler</h3>
+                            <h1 class="text-center"> @Model.pendingPermission </h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+
             </div>
         </div>
         <div class="col-xl-6">
             <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    İzinli Çalısan Sayısı
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="square bg-success">
+                            <h3 class="text-center"> Onaylanmış Harcamalar</h3>
+                            <h1 class="text-center"> @Model.approvedExpense₺ </h1>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="square bg-warning">
+                            <h3 class="text-center"> Onay Bekleyen Harcamalar</h3>
+                            <h1 class="text-center"> @Model.pendingExpense₺ </h1>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
             </div>
         </div>
-    </div>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -83,7 +103,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var user in Model)
+                    @foreach (var user in Model.Personel)
                     {
                         <tr>
                             <td>@user.FirstName</td>

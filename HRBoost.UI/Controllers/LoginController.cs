@@ -34,14 +34,14 @@ namespace HRBoost.UI.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> SignIn(User user)
         {
-
+            
             var cevap = await _userService.LoginAsync(user);
 
             if (cevap)
             {
                 if (User.IsInRole("personel"))
                 {
-                    return RedirectToAction("Index", "Personel", new { area = "Personel" });
+                    return RedirectToAction("Index", "Home", new { area = "Personel" });
                 }
                 if (User.IsInRole("businessmanager"))
                 {
