@@ -7,7 +7,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Add</h1>
+@* <h1>Add</h1>
 
 <h4>Subscription</h4>
 <hr />
@@ -41,4 +41,52 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+ *@
 
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card" style="border-color: #ddd;">
+                <div class="card-header" style="background-color: #555; color: #fff;">
+                    <h5 class="card-title">Abonelik Türü Ekle</h5>
+                </div>
+
+                <div class="card-body">
+                    <form method=post asp-action="Add" asp-area="Admin" asp-controller="Subscription" role="form">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-2">
+                            <label asp-for="SubscriptionType" class="control-label">Abonelik Türü</label>
+                            <input asp-for="SubscriptionType" class="form-control" />
+                            <span asp-validation-for="SubscriptionType" class="text-danger"></span>
+                        </div>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-2">
+                            <label asp-for="Price" class="control-label">Abonelik Ücreti</label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-2">
+                            <label asp-for="Duration" class="control-label">Abonelik Süresi</label>
+                            <input asp-for="Duration" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <a asp-action="Index" asp-area="Admin" asp-controller="Subscription" class="btn btn-secondary">Geri</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

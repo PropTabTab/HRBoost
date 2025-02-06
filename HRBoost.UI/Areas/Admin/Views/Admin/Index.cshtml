@@ -15,34 +15,34 @@
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body">Şirketler</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" asp-for="Index" asp-Controller="Business" >View Details</a>
+                    <a class="small text-white stretched-link" asp-action="Index" asp-Controller="Business" asp-area="Admin">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-warning text-white mb-4">
-                <div class="card-body"> Resmî tatiller</div>
+                <div class="card-body">Roller</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-controller="Role" asp-action="Index" asp-area="Admin">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-success text-white mb-4">
-                <div class="card-body">Yaklaşan üyelikler</div>
+                <div class="card-body">Abonelikler</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-controller="Subscription" asp-action="Index" asp-area="Admin">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-danger text-white mb-4">
-                <div class="card-body">Diğer</div>
+                <div class="card-body">Kullanıcılar</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
+                    <a class="small text-white stretched-link" asp-controller="User" asp-action="List" asp-area="Admin">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

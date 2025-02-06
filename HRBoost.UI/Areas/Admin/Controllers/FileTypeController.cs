@@ -46,9 +46,13 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(FileType fileType)
         {
-            await _fileTypeService.UpdateAsync(fileType);
+            var type = await _fileTypeService.GetById(x => x.Id == fileType.Id);
+            type.Name = fileType.Name;
+            type.Description = fileType.Description;
 
-            return View(fileType);
+            await _fileTypeService.UpdateAsync(type);
+
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)

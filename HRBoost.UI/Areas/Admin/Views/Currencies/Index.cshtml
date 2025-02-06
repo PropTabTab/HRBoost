@@ -4,23 +4,32 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h6 class="panel-title"><i class="icon-menu"></i> Currency List</h6>
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        <i class="fas fa-table me-1"></i>
+        Para Birimi Listesi
     </div>
-    <div class="panel-body">
-       <a asp-action="Add" asp-controller="Currencies" asp-area="Admin" class="btn btn-primary">Currency Add</a>
-        </a>
-
-        <table class="table table-bordered">
+    <div class="card-body">
+        <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Symbol</th>
-                    <th>Actions</th>
+                    <th>Kod</th>
+                    <th>Para Birimi Adı</th>
+                    <th>Para Birimi Sembolü</th>
+                    <th>İşlem</th>
+
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th>Kod</th>
+                    <th>Para Birimi Adı</th>
+                    <th>Para Birimi Sembolü</th>
+                    <th>İşlem</th>
+
+                    <th></th>
+                </tr>
+            </tfoot>
             <tbody>
                 @foreach (var currency in Model)
                 {
@@ -30,11 +39,17 @@
                         <td>@currency.Symbol</td>
                         <td>
                             <a asp-action="Delete" asp-controller="Currencies" asp-area="Admin" asp-route-id="@currency.Id" class="btn btn-danger">Sil</a>
-							<a asp-action="Update" asp-controller="Currencies" asp-area="Admin" asp-route-id="@currency.Id" class="btn btn-warning">Update</a>
+                            <a asp-action="Update" asp-controller="Currencies" asp-area="Admin" asp-route-id="@currency.Id" class="btn btn-warning">Update</a>
                         </td>
                     </tr>
                 }
+
+
             </tbody>
         </table>
+        <a asp-action="Add" asp-controller="Currencies" asp-area="Admin" class="btn btn-primary">Yeni Para Birimi Ekle</a>
+        <a asp-action="Index" asp-controller="Admin" asp-area="Admin" class="btn btn-secondary">Geri</a>
     </div>
 </div>
+
+

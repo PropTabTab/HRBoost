@@ -5,41 +5,40 @@
 }
 @model IEnumerable<HRBoost.Entity.FileType>
 
-<h2>HrBoost </h2>
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        DOSYA TÜRLERİ
+        Dosya Türleri
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th> Adı</th>
+                    <th>Adı</th>
                     <th>Açıklaması</th>
                     <th>Durumu</th>
-                    <th>Action</th>
+                    <th>İşlem</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th>ID</th>
-                    <th> Adı</th>
+                    <th>Adı</th>
                     <th>Açıklaması</th>
                     <th>Durumu</th>
-                    <th>Action</th>
+                    <th>İşlem</th>
                 </tr>
             </tfoot>
             <tbody>
-                @foreach (var user in Model)
+                @foreach (var file in Model)
                 {
                     <tr>
-                        <td>@user.Id</td>
-                        <td>@user.Name</td>
-                        <td>@user.Description</td>
-                        <td>@user.Status</td>
-                        <th> <a asp-action="Delete" asp-controller="FileType" asp-area="Admin" asp-route-id="@user.Id" class="btn btn-danger">Sil</a></th>
+                        <td>@file.Name</td>
+                        <td>@file.Description</td>
+                        <td>@file.Status</td>
+                        <th>
+                            <a asp-action="Delete" asp-controller="FileType" asp-area="Admin" asp-route-id="@file.Id" class="btn btn-danger">Sil</a>
+                            <a asp-action="Update" asp-controller="FileType" asp-area="Admin" asp-route-id="@file.Id" class="btn btn-warning">Güncelle</a>
+                        </th>
 
                     </tr>
                 }
@@ -47,6 +46,8 @@
 
             </tbody>
         </table>
+        <a asp-action="Add" asp-controller="FileType" asp-area="Admin" class="btn btn-primary">Yeni Dosya Türü Ekle</a>
+        <a asp-action="Index" asp-controller="Admin" asp-area="Admin" class="btn btn-secondary">Geri</a>
     </div>
 </div>
 

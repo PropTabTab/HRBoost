@@ -2,60 +2,59 @@
 @model HRBoost.UI.Areas.Admin.Models.VM.UserViewModel
 
 
-
 @{
     ViewData["Title"] = "Add";
 
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-          
+
             <div class="card" style="border-color: #ddd;">
                 <div class="card-header" style="background-color: #555; color: #fff;">
                     <h5 class="card-title">Kullanıcı Ekle</h5>
                 </div>
-              
+
                 <div class="card-body">
                     <form method="post" action="/Admin/User/Add">
-                       
+
                         <div class="form-group mb-2">
-                            <label for="FirstName" class="form-label">Ad:</label>2
+                            <label for="FirstName" class="form-label">Adı</label>
                             <input type="text" id="FirstName" name="FirstName"
-                                   class="form-control" placeholder="Adınızı girin"
+                                   class="form-control" placeholder="Adınızı Girin"
                                    value="@Model.FirstName" required />
                         </div>
 
-                       
+
                         <div class="form-group mb-2">
-                            <label for="LastName" class="form-label">Soyad:</label>
+                            <label for="LastName" class="form-label">Soyadı</label>
                             <input type="text" id="LastName" name="LastName"
-                                   class="form-control" placeholder="Soyadınızı girin"
+                                   class="form-control" placeholder="Soyadınızı Girin"
                                    value="@Model.LastName" required />
                         </div>
 
-                        
+
                         <div class="form-group mb-2">
-                            <label for="Email" class="form-label">Email:</label>
+                            <label for="Email" class="form-label">Email</label>
                             <input type="email" id="Email" name="Email"
-                                   class="form-control" placeholder="E-posta adresinizi girin"
+                                   class="form-control" placeholder="E-posta Adresinizi Girin"
                                    value="@Model.Email" required />
                         </div>
 
-                       
+
                         <div class="form-group mb-2">
-                            <label for="Password" class="form-label">Şifre:</label>
+                            <label for="Password" class="form-label">Şifre</label>
                             <input type="password" id="Password" name="Password"
-                                   class="form-control" placeholder="Şifrenizi girin" required />
+                                   class="form-control" placeholder="Şifrenizi Girin" required />
                         </div>
 
-                       
 
-                      
+
+
                         <div class="form-group mb-2">
-                            <label for="Status" class="form-label">Durum:</label>
+                            <label for="Status" class="form-label">Statü</label>
                             <select id="Status" name="Status" class="form-select" required>
                                 @foreach (var status in Enum.GetValues(typeof(HRBoost.Shared.Enums.Status)))
 
@@ -68,7 +67,7 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="Role" class="form-label">Rol:</label>
+                            <label for="Role" class="form-label">Rol</label>
                             <select asp-for=@Model.Role id="Role" name="Role" class="form-select" required>
                                 @foreach (var role in ViewBag.Roles)
 
@@ -82,9 +81,9 @@
 
                         <!-- Ekle Butonu -->
                         <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-dark btn-sm" style="background-color: #555; color: #fff;">
-                                Ekle
-                            </button>
+                            <a type="submit" class="btn btn-primary" >Ekle</a>
+                            <a href="@Url.Action("List")" class="btn btn-secondary">Geri</a>
+
                         </div>
                     </form>
                 </div>
@@ -93,3 +92,5 @@
     </div>
 </div>
 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+
