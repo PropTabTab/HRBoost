@@ -73,7 +73,7 @@ namespace HRBoost.UI.Areas.Personel.Controllers
             }
 
             ViewBag.SuccessMessage = "Bilgiler başarıyla güncellendi.";
-            return RedirectToAction("Index");
+            return RedirectToAction("Index" );
         }
 
 

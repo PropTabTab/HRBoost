@@ -20,7 +20,7 @@ namespace HRBoost.UI.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
 		{
-            var bl = await _businessService.GetAll();
+            var bl = await _businessService.GetAllPending();
 			return View(bl);
 		}
 	}

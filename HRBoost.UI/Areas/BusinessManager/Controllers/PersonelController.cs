@@ -1,6 +1,7 @@
 ﻿using HRBoost.Entity;
 using HRBoost.Services.Abstracts;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRBoost.UI.Areas.BusinessManager.Controllers
@@ -70,7 +71,11 @@ namespace HRBoost.UI.Areas.BusinessManager.Controllers
         {
             if (model != null)
             {
-                await _userService.UpdateUserAsync(model);
+                var user = await _userService.GetUserByIdAsync((Guid)model.Id);
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email = model.Email;
+                await _userService.UpdateUserAsync(user);
                 TempData["Message"] = "Personel bilgileri başarıyla güncellendi.";
                 return RedirectToAction("Index");
             }
